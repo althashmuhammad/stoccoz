@@ -16,6 +16,15 @@
       (navigatePricing)="onNavigate('pricing')"
     ></app-warehouse-explore>
   </main>
+} @else if (activePage() === 'explore-vans') {
+  <main class="explore-vans-wrapper">
+    <app-vans-explore
+      (navigateAbout)="onNavigate('about')"
+      (navigateHome)="onNavigate('home')"
+      (navigatePricing)="onNavigate('pricing')"
+      (navigateWarehouse)="onNavigate('explore-warehouse')"
+    ></app-vans-explore>
+  </main>
 } @else {
   <main #mainRef>
     <app-hero (navigateAbout)="onNavigate('about')"></app-hero>

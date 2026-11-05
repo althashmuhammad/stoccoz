@@ -55,8 +55,8 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
                 @for (feat of exploreFeatures; track feat.title) {
                   <a
                     class="mega-feature"
-                    [href]="feat.title === 'Warehouse Management' ? '#explore-warehouse' : (feat.title === 'VanSales' ? '#vansales' : '#warehouse')"
-                    (click)="feat.title === 'Warehouse Management' ? goToExploreWarehouse($event) : handleSectionNav(feat.title === 'VanSales' ? 'vansales' : 'warehouse', $event)"
+                    [href]="feat.title === 'Warehouse Management' ? '#explore-warehouse' : (feat.title === 'VanSales' ? '#explore-vans' : '#warehouse')"
+                    (click)="feat.title === 'Warehouse Management' ? goToExploreWarehouse($event) : (feat.title === 'VanSales' ? goToExploreVans($event) : handleSectionNav('warehouse', $event))"
                   >
                     <span class="mega-icon"><app-line-icon [name]="feat.icon"></app-line-icon></span>
                     <span><b>{{ feat.title }}</b><small>{{ feat.copy }}</small></span>
@@ -118,7 +118,7 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
                 <span><app-line-icon name="warehouse"></app-line-icon></span>
                 <div><b>Warehouse</b><small>Inventory and warehouse operations</small></div>
               </a>
-              <a href="#vansales" (click)="featuresOpen.set(false); handleSectionNav('vansales', $event)">
+              <a href="#explore-vans" (click)="featuresOpen.set(false); goToExploreVans($event)">
                 <span><app-line-icon name="van"></app-line-icon></span>
                 <div><b>VanSales</b><small>Field sales and distribution</small></div>
               </a>
@@ -169,8 +169,8 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
   `
 })
 export class NavbarComponent {
-  activePage = input<'home' | 'about' | 'pricing' | 'explore-warehouse'>('home');
-  navigatePage = output<'home' | 'about' | 'pricing' | 'explore-warehouse'>();
+  activePage = input<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans'>('home');
+  navigatePage = output<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans'>();
 
   @ViewChild('navLinksRef') navLinksRef?: ElementRef<HTMLElement>;
 
@@ -294,7 +294,7 @@ export class NavbarComponent {
       targetEl = nav.querySelector<HTMLElement>('a[href="#pricing"]');
     } else if (this.activePage() === 'about') {
       targetEl = nav.querySelector<HTMLElement>('a[href="#about"]');
-    } else if (this.activePage() === 'explore-warehouse') {
+    } else if (this.activePage() === 'explore-warehouse' || this.activePage() === 'explore-vans') {
       targetEl = nav.querySelector<HTMLElement>('.platform-nav>button');
     }
 
@@ -331,6 +331,17 @@ export class NavbarComponent {
     setTimeout(() => this.updateIndicatorToActive(), 50);
   }
 
+  goToExploreVans(e?: Event) {
+    if (e) e.preventDefault();
+    this.mobileOpen.set(false);
+    this.open.set(false);
+    this.featuresOpen.set(false);
+    this.navigatePage.emit('explore-vans');
+    window.location.hash = '#explore-vans';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => this.updateIndicatorToActive(), 50);
+  }
+
   goToAbout(e: Event) {
     e.preventDefault();
     this.mobileOpen.set(false);
@@ -358,6 +369,10 @@ export class NavbarComponent {
     this.featuresOpen.set(false);
     if (sectionId === 'warehouse') {
       this.goToExploreWarehouse(e);
+      return;
+    }
+    if (sectionId === 'vansales' || sectionId === 'vans') {
+      this.goToExploreVans(e);
       return;
     }
     if (this.activePage() !== 'home') {
