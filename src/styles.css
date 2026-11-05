@@ -2231,6 +2231,9 @@ app-geometric-grid-background {
   --van-scale: .78;
   --van-x: 0px;
   --van-y: 55px;
+  --intro-opacity: 1;
+  --intro-y: 0px;
+  --intro-visibility: visible;
   height: 240vh;
   position: relative;
 }
@@ -2251,6 +2254,7 @@ app-geometric-grid-background {
   pointer-events: none;
   position: absolute;
   width: 100%;
+  z-index: 1;
 }
 
 .vansales-experience-section {
@@ -2261,31 +2265,55 @@ app-geometric-grid-background {
 }
 
 .vansales-reveal-intro {
-  padding: 75px 0 35px;
+  position: absolute;
+  top: clamp(28px, 5.5vh, 52px);
+  left: 50%;
+  transform: translate3d(-50%, var(--intro-y, 0px), 0);
+  z-index: 10;
+  width: min(780px, 92vw);
+  text-align: center;
+  pointer-events: none;
+  opacity: var(--intro-opacity, 1);
+  visibility: var(--intro-visibility, visible);
+  will-change: opacity, transform;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  margin: 0;
 }
 
 .vansales-reveal-intro .eyebrow {
   color: #2f6bff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 auto 10px;
+  text-align: center;
 }
 
 .vansales-reveal-intro h2 {
   color: #0a1f52;
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(48px, 7vw, 84px);
-  line-height: .96;
-  max-width: 900px;
+  font-size: clamp(32px, 4.2vw, 50px);
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .vansales-reveal-intro h2 em {
   color: var(--yellow);
+  font-style: normal;
 }
 
 .vansales-reveal-intro>p:last-child {
   color: #4a5a85;
-  font-size: clamp(16px, 1.6vw, 19px);
+  font-size: clamp(15px, 1.4vw, 18px);
   line-height: 1.6;
-  margin-top: 22px;
-  max-width: 590px;
+  margin: 12px auto 0;
+  max-width: 580px;
+  text-align: center;
 }
 
 .vansales-reveal-outro {
@@ -4043,7 +4071,18 @@ app-geometric-grid-background {
   }
 
   .vansales-reveal-intro {
-    padding: 75px 0 42px;
+    top: clamp(18px, 3.5vh, 32px);
+    width: calc(100% - 32px);
+    padding: 0;
+  }
+
+  .vansales-reveal-intro h2 {
+    font-size: clamp(26px, 6vw, 36px);
+  }
+
+  .vansales-reveal-intro > p:last-child {
+    font-size: 14px;
+    margin-top: 10px;
   }
 
   .vansales-reveal-outro {

@@ -5,14 +5,15 @@ import { Component, ElementRef, ViewChild, afterNextRender, OnDestroy } from '@a
   standalone: true,
   template: `
     <section class="vansales-experience-section" id="vansales">
-      <div class="vansales-reveal-intro section-shell" data-reveal>
-        <p class="eyebrow">Van sales software</p>
-        <h2>STOCCOZ <em>VanSales</em></h2>
-        <p>Everything a sales van needs in the field, from the first route to the final payment.</p>
-      </div>
-
       <div class="van-transition" #trackRef>
         <div class="van-sticky">
+          <!-- Centered intro headline positioned in the upper stage area; fades away on scroll -->
+          <div class="vansales-reveal-intro">
+            <p class="eyebrow">Van sales software</p>
+            <h2>STOCCOZ <em>VanSales</em></h2>
+            <p>Everything a sales van needs in the field, from the first route to the final payment.</p>
+          </div>
+
           <iframe
             #experienceRef
             class="van-experience"
@@ -72,6 +73,15 @@ export class VanSalesTransitionComponent implements OnDestroy {
       this.progress = current;
       this.postProgress(current);
       track.style.setProperty('--transition-progress', `${current * 100}%`);
+
+      // Smoothly fade out intro as user scrolls down and tiles start assembling
+      const introP = Math.min(1, Math.max(0, current / 0.14));
+      const introOpacity = 1 - introP;
+      const introY = -24 * introP;
+      track.style.setProperty('--intro-opacity', introOpacity.toFixed(3));
+      track.style.setProperty('--intro-y', `${introY.toFixed(1)}px`);
+      track.style.setProperty('--intro-visibility', introOpacity <= 0.005 ? 'hidden' : 'visible');
+
       if (Math.abs(target - current) > 0.0007) {
         this.frame = requestAnimationFrame(render);
       } else {
@@ -92,6 +102,8 @@ export class VanSalesTransitionComponent implements OnDestroy {
         target = current = 0.5;
         this.progress = current;
         this.postProgress(current);
+        track.style.setProperty('--intro-opacity', '0');
+        track.style.setProperty('--intro-visibility', 'hidden');
       } else {
         update();
       }
