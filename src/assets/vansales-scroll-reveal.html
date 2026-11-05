@@ -229,135 +229,74 @@
   .stage { height: 100% !important; position: absolute !important; inset: 0; }
   .hint { display: none !important; }
 
-  /* Van Sales Management Open Layout (No Container / No Card, matching 2nd reference) */
-  .vansales-typing-banner {
+  /* Van Sales Management (Exact Image 1 Design: Centered, in upper blank space, fades away on scroll) */
+  .vansales-intro-banner {
     position: absolute;
     left: 50%;
-    top: 48%;
+    top: 31%;
     transform: translate3d(-50%, -50%, 0);
     z-index: 10;
     pointer-events: none;
-    width: min(90vw, 860px);
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    padding: 0 !important;
+    width: min(92vw, 860px);
+    text-align: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
     opacity: 1;
     visibility: visible;
     will-change: transform, opacity;
-    transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* Tag Capsule inspired by 2nd reference image */
-  .typing-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 5px 14px;
-    background: #fef3c7;
-    border: 1px solid rgba(245, 158, 11, 0.3);
-    border-radius: 9999px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #92400e;
-    margin-bottom: 16px;
+  .intro-eyebrow {
+    margin: 0 0 16px 0;
+    font-family: var(--font-body);
+    font-size: clamp(13px, 1.3vw, 15px);
+    font-weight: 500;
+    color: #94a3b8;
+    letter-spacing: 0.01em;
   }
 
-  .typing-pulse-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #f59e0b;
-    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
-    animation: typingPulse 2s infinite ease-out;
-  }
-
-  @keyframes typingPulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
-    70% { transform: scale(1.08); box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
-  }
-
-  /* Clean Left Yellow Accent Line matching 2nd reference */
-  .typing-unboxed-content {
-    border-left: 4px solid #f59e0b;
-    padding-left: clamp(20px, 3.2vw, 32px);
-    padding-block: 4px;
-  }
-
-  .typing-title {
-    margin: 0 0 14px 0;
+  .intro-headline {
+    margin: 0 0 20px 0;
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(1.65rem, 3.2vw, 2.35rem);
+    font-size: clamp(2.3rem, 4.3vw, 3.5rem);
     letter-spacing: -0.025em;
     color: #08122d;
-    line-height: 1.18;
+    line-height: 1.14;
+    text-wrap: balance;
   }
 
-  .typing-yellow-accent {
-    color: #f59e0b;
-  }
-
-  .typing-desc {
-    margin: 0;
+  .intro-description {
+    margin: 0 auto;
+    max-width: 780px;
     font-family: var(--font-body);
-    font-size: clamp(1.02rem, 1.38vw, 1.18rem);
-    line-height: 1.7;
-    color: #334155;
-    min-height: 4.8em;
-    max-width: 820px;
+    font-size: clamp(1.02rem, 1.35vw, 1.18rem);
+    line-height: 1.65;
+    color: #475569;
+    font-weight: 400;
   }
 
-  .typing-black-text {
-    color: #0f172a;
-    font-weight: 500;
-  }
-
-  .typing-yellow-text {
-    color: #d97706;
+  .intro-description .highlight-yellow {
+    color: #f59e0b;
     font-weight: 600;
-    text-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
-    background: linear-gradient(120deg, #f59e0b, #d97706);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: all 0.25s ease;
   }
 
-  .typing-caret {
-    display: inline-block;
-    width: 3px;
-    height: 1.15em;
-    background: #f59e0b;
-    box-shadow: 0 0 10px rgba(245, 158, 11, 0.9), 0 0 18px rgba(245, 158, 11, 0.4);
-    margin-left: 2px;
-    vertical-align: -2px;
-    border-radius: 2px;
-    animation: caretBlink 0.65s infinite alternate ease-in-out;
-  }
-
-  @keyframes caretBlink {
-    0% { opacity: 1; transform: scaleY(1); }
-    50% { opacity: 0.15; }
-    100% { opacity: 1; transform: scaleY(1); }
-  }
-
-  @media (max-width: 600px) {
-    .vansales-typing-banner {
+  @media (max-width: 768px) {
+    .vansales-intro-banner {
+      top: 26%;
       width: calc(100% - 32px);
     }
-    .typing-unboxed-content {
-      padding-left: 16px;
-      border-left-width: 3.5px;
+    .intro-headline {
+      font-size: clamp(1.85rem, 6vw, 2.35rem);
+      margin-bottom: 14px;
     }
-    .typing-desc {
-      min-height: 6.8em;
-      font-size: 0.98rem;
+    .intro-description {
+      font-size: 0.95rem;
+      line-height: 1.55;
     }
   }
 </style>
@@ -374,18 +313,17 @@
   <div class="stage" id="stage">
     <div class="tiles" id="tiles" aria-hidden="true"></div>
 
-    <!-- Van Sales Management Scroll Typing Element (Unboxed, matching 2nd reference image) -->
-    <div class="vansales-typing-banner" id="vansalesTypingBanner" aria-live="polite">
-      <div class="typing-pill">
-        <span class="typing-pulse-dot"></span>
-        <span>ON-FIELD OPERATIONS</span>
-      </div>
-      <div class="typing-unboxed-content">
-        <h3 class="typing-title">Van Sales Management <span class="typing-yellow-accent">—</span></h3>
-        <p class="typing-desc">
-          <span class="typing-black-text" id="typingBlack"></span><span class="typing-yellow-text" id="typingYellow"></span><span class="typing-caret" id="typingCaret"></span>
-        </p>
-      </div>
+    <!-- Van Sales Management Intro Banner (Matching 1st reference image exact design) -->
+    <div class="vansales-intro-banner" id="vansalesIntroBanner" aria-live="polite">
+      <p class="intro-eyebrow">On-Field Operations</p>
+      <h2 class="intro-headline">
+        Manage on-the-go sales<br />
+        from vehicles
+      </h2>
+      <p class="intro-description">
+        Track real-time van inventory, handle stock transfers, assign drivers, manage routes,
+        and streamline customer billing — all from a <span class="highlight-yellow">centralized system.</span>
+      </p>
     </div>
 
     <div class="van" id="van">
@@ -457,16 +395,7 @@
   var tilesEl = document.getElementById('tiles');
   var van = document.getElementById('van');
   var hint = document.getElementById('hint');
-  var typingBanner = document.getElementById('vansalesTypingBanner');
-  var typingBlack = document.getElementById('typingBlack');
-  var typingYellow = document.getElementById('typingYellow');
-  var typingCaret = document.getElementById('typingCaret');
-
-  var FULL_TEXT = "Manage on-the-go sales directly from vehicles with real-time van inventory tracking, seamless stock transfers, driver assignments, route management, and efficient customer billing. Track every van's sales performance and stock movements from a centralized system.";
-  var TRAIL_LEN = 14;
-  var renderedCharCount = 0;
-  var autoTicker = 0;
-  var lastScrollP = 0;
+  var introBanner = document.getElementById('vansalesIntroBanner');
   var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
 
   var SHADES = ['#0a1f52', '#0b2257', '#091c4c'];
@@ -572,68 +501,38 @@
     }
   }
 
-  function renderTypingBanner(p) {
-    if (!typingBanner) return;
+  function renderIntroBanner(p) {
+    if (!introBanner) return;
 
-    // Disappear quickly and smoothly between p = 0.10 and p = 0.17
-    // Completely invisible for p >= 0.17 so van assembly proceeds with 100% clarity
-    var DISAPPEAR_START = 0.10;
-    var DISAPPEAR_END = 0.17;
+    // Fades away smoothly as user scrolls and the van shape starts assembling
+    // Completely invisible by p = 0.08
+    var FADE_START = 0.01;
+    var FADE_END = 0.08;
 
-    if (p >= DISAPPEAR_END) {
-      typingBanner.style.opacity = '0';
-      typingBanner.style.visibility = 'hidden';
-      typingBanner.style.transform = 'translate3d(-50%, -64%, 0) scale(0.95)';
+    if (p >= FADE_END) {
+      introBanner.style.opacity = '0';
+      introBanner.style.visibility = 'hidden';
+      introBanner.style.transform = 'translate3d(-50%, -64%, 0) scale(0.96)';
       return;
     }
 
-    typingBanner.style.visibility = 'visible';
+    introBanner.style.visibility = 'visible';
 
-    // Calculate quick smooth disappearance
-    var op = 1;
-    var yGlide = 0;
-    var sc = 1;
-
-    if (p > DISAPPEAR_START) {
-      var dProgress = clamp((p - DISAPPEAR_START) / (DISAPPEAR_END - DISAPPEAR_START));
-      var ease = dProgress * dProgress * (3 - 2 * dProgress);
-      op = 1 - ease;
-      yGlide = -28 * ease;
-      sc = 1 - 0.05 * ease;
+    if (p <= FADE_START) {
+      introBanner.style.opacity = '1';
+      introBanner.style.transform = 'translate3d(-50%, -50%, 0) scale(1)';
+      return;
     }
 
-    typingBanner.style.opacity = op.toFixed(3);
-    typingBanner.style.transform =
-      'translate3d(-50%, calc(-50% + ' + yGlide.toFixed(1) + 'px), 0) scale(' + sc.toFixed(3) + ')';
+    var progress = clamp((p - FADE_START) / (FADE_END - FADE_START));
+    var ease = progress * progress * (3 - 2 * progress);
+    var opacity = 1 - ease;
+    var yOffset = -22 * ease;
+    var scale = 1 - 0.04 * ease;
 
-    // Reset auto-typing when scrolling back to top so each new scroll re-triggers
-    if (p < 0.005 && lastScrollP >= 0.005) {
-      autoTicker = 0;
-      renderedCharCount = 0;
-    }
-    lastScrollP = p;
-
-    // Calculate target character count
-    var scrollCharTarget = Math.floor(clamp(p / 0.09) * FULL_TEXT.length);
-    var targetChars = Math.max(autoTicker, scrollCharTarget);
-
-    if (renderedCharCount < targetChars) {
-      renderedCharCount = Math.min(FULL_TEXT.length, renderedCharCount + Math.max(1, Math.ceil((targetChars - renderedCharCount) * 0.4)));
-    } else if (renderedCharCount > targetChars && p < DISAPPEAR_START) {
-      renderedCharCount = Math.max(0, targetChars);
-    }
-
-    // Split text: crisp black text + trailing vibrant yellow glow
-    var split = Math.max(0, renderedCharCount - TRAIL_LEN);
-    var blackPart = FULL_TEXT.substring(0, split);
-    var yellowPart = FULL_TEXT.substring(split, renderedCharCount);
-
-    if (typingBlack) typingBlack.textContent = blackPart;
-    if (typingYellow) typingYellow.textContent = yellowPart;
-
-    if (typingCaret) {
-      typingCaret.style.display = (renderedCharCount >= FULL_TEXT.length && p > DISAPPEAR_START) ? 'none' : 'inline-block';
-    }
+    introBanner.style.opacity = opacity.toFixed(3);
+    introBanner.style.transform =
+      'translate3d(-50%, calc(-50% + ' + yOffset.toFixed(1) + 'px), 0) scale(' + scale.toFixed(3) + ')';
   }
 
   function render(p) {
@@ -641,7 +540,7 @@
     renderTiles(P);
     renderVan(P, p);
     renderCards(p);
-    renderTypingBanner(p);
+    renderIntroBanner(p);
   }
 
   var target = 0, cur = 0, running = false;
@@ -662,14 +561,9 @@
     cur += (target - cur) * (reduce ? 1 : 0.14);
     if (Math.abs(target - cur) < 0.0004) cur = target;
 
-    // Advance autoTicker smoothly for character typing stream on scroll
-    if (autoTicker < FULL_TEXT.length && cur < 0.12) {
-      autoTicker = Math.min(FULL_TEXT.length, autoTicker + 3);
-    }
-
     render(cur);
 
-    if (cur !== target || (autoTicker < FULL_TEXT.length && cur < 0.12)) {
+    if (cur !== target) {
       requestAnimationFrame(frame);
     } else {
       running = false;
