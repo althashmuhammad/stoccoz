@@ -7085,3 +7085,782 @@ app-geometric-grid-background {
   }
 }
 
+/* ==========================================================================
+   ABOUT US - ENTERPRISE ACCORDION SECTION (Mission & Vision, Who We Are, etc.)
+   ========================================================================== */
+.about-accordion-section {
+  max-width: 960px;
+  margin: 0 auto clamp(60px, 8vh, 90px);
+  padding: 0 24px;
+}
+
+.about-accordion-section .about-header-centered {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto clamp(36px, 5vh, 48px);
+}
+
+.about-accordion-section .about-pill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #08122d;
+  background: #fff9e6;
+  border: 1px solid rgba(255, 196, 0, 0.4);
+  padding: 6px 18px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.about-accordion-section .about-title-large {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  font-weight: 800;
+  color: #08122d;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin: 0 0 16px;
+}
+
+.about-accordion-section .about-title-large .highlight-gold {
+  color: var(--yellow, #ffc400);
+  font-weight: 800;
+}
+
+.about-accordion-section .about-desc-lead {
+  font-size: clamp(0.98rem, 1.2vw, 1.12rem);
+  color: #64748b;
+  line-height: 1.62;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* Accordion Component */
+.about-accordion {
+  margin-top: clamp(40px, 5vh, 56px);
+  display: flex;
+  flex-direction: column;
+}
+
+.about-accordion-item {
+  border-bottom: 1px solid #edf2f7;
+  position: relative;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+  border-left: 3.5px solid transparent;
+  padding-left: 20px;
+}
+
+.about-accordion-item:not(.is-active):hover {
+  border-left-color: rgba(255, 196, 0, 0.4);
+}
+
+.about-accordion-item.is-active {
+  border-left: 3.5px solid var(--yellow, #ffc400);
+}
+
+.about-accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  padding: 24px 0;
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+}
+
+.about-accordion-item.is-active .about-accordion-trigger {
+  padding-bottom: 16px;
+}
+
+.about-accordion-heading {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  font-weight: 800;
+  color: #08122d;
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  transition: color 0.2s ease;
+}
+
+.about-accordion-trigger:hover .about-accordion-heading {
+  color: #08122d;
+}
+
+.about-accordion-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #08122d;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.about-accordion-item.is-active .about-accordion-chevron {
+  transform: rotate(180deg);
+}
+
+.about-accordion-body {
+  padding: 0 0 28px 0;
+  color: #475569;
+  font-size: clamp(0.96rem, 1.1vw, 1.05rem);
+  line-height: 1.7;
+  animation: fadeIn 0.35s ease;
+  max-width: 860px;
+}
+
+.about-accordion-body p {
+  margin: 0 0 14px 0;
+}
+
+.about-accordion-body p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .about-accordion-section {
+    padding: 0 16px;
+    margin-bottom: 48px;
+  }
+  .about-accordion-item {
+    padding-left: 14px;
+    border-left-width: 3px;
+  }
+  .about-accordion-trigger {
+    padding: 18px 0;
+  }
+  .about-accordion-heading {
+    font-size: 1.15rem;
+  }
+  .about-accordion-body {
+    padding-bottom: 22px;
+    font-size: 0.94rem;
+    line-height: 1.62;
+  }
+}
+
+/* ==========================================================================
+   WAREHOUSE EXPLORE DEDICATED PAGE
+   ========================================================================== */
+.explore-warehouse-wrapper {
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.warehouse-explore-page {
+  position: relative;
+  background: #f8fafc;
+  padding-bottom: 60px;
+}
+
+/* 1. Dedicated Floating Header */
+.explore-header-bar {
+  position: sticky;
+  top: 16px;
+  z-index: 100;
+  width: min(1360px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.explore-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(8, 18, 45, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(8, 18, 45, 0.05);
+}
+
+.explore-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: 'Manrope', sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  color: #08122d;
+}
+
+.explore-brand img {
+  height: 28px;
+  width: auto;
+}
+
+.explore-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.explore-nav-link {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.explore-nav-link:hover {
+  color: #08122d;
+}
+
+.explore-nav-link.is-active {
+  color: #08122d;
+  font-weight: 700;
+}
+
+.explore-nav-link.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: #ffc400;
+  border-radius: 2px;
+}
+
+.button-book-demo {
+  background: #08122d;
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 9px 18px;
+  font-size: 13.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button-book-demo:hover {
+  background: #0e204d;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(8, 18, 45, 0.18);
+}
+
+/* 2. Hero Section */
+.explore-hero-section {
+  position: relative;
+  min-height: clamp(480px, 54vh, 560px);
+  background: #08122d url('/assets/warehouse-explore-hero.png') no-repeat center top;
+  background-size: cover;
+  margin-top: -65px;
+  padding-top: 110px;
+  padding-bottom: 70px;
+  border-bottom: 1px solid rgba(8, 18, 45, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.explore-hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.9) 35%, rgba(255, 255, 255, 0.42) 62%, rgba(255, 255, 255, 0.05) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.explore-hero-shell {
+  position: relative;
+  z-index: 2;
+  width: min(1360px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+
+.explore-hero-copy {
+  max-width: 620px;
+}
+
+.explore-pill-tag {
+  display: inline-block;
+  background: #fff4d1;
+  color: #08122d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 196, 0, 0.45);
+}
+
+.explore-hero-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(2.3rem, 3.8vw, 3.3rem);
+  font-weight: 800;
+  color: #08122d;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin: 0 0 16px;
+}
+
+.hero-highlight-gold {
+  color: #ffc400;
+}
+
+.explore-hero-subtitle {
+  font-size: clamp(0.98rem, 1.2vw, 1.12rem);
+  color: #475569;
+  line-height: 1.62;
+  max-width: 540px;
+  margin: 0;
+}
+
+/* 3. Horizontal 9-Module Navigation Bar */
+.explore-tabs-outer {
+  position: relative;
+  z-index: 5;
+  width: min(1360px, calc(100% - 32px));
+  margin: -36px auto 0;
+  background: #ffffff;
+  border: 1px solid #edf0f5;
+  border-radius: 20px;
+  box-shadow: 0 12px 36px rgba(8, 18, 45, 0.06);
+  padding: 8px 12px;
+}
+
+.explore-tabs-scroll {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.explore-tabs-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.explore-module-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.explore-module-tab:hover {
+  background: #f8fafc;
+  color: #08122d;
+}
+
+.explore-module-tab.is-active {
+  background: #08122d;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(8, 18, 45, 0.15);
+}
+
+.explore-module-tab.is-active .tab-icon svg {
+  stroke: #ffc400;
+}
+
+/* 4. Main Expandable Accordions */
+.explore-content-container {
+  width: min(1360px, calc(100% - 32px));
+  margin: 48px auto 80px;
+}
+
+.explore-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 48px;
+}
+
+.explore-accordion-card {
+  background: #ffffff;
+  border: 1px solid #edf0f5;
+  border-radius: 22px;
+  box-shadow: 0 4px 20px rgba(8, 18, 45, 0.02);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.explore-accordion-card.is-expanded {
+  border-color: rgba(255, 196, 0, 0.5);
+  box-shadow: 0 16px 40px rgba(8, 18, 45, 0.06);
+}
+
+.explore-accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.explore-accordion-header:hover {
+  background: #fafbfc;
+}
+
+.module-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(1.35rem, 1.9vw, 1.7rem);
+  font-weight: 800;
+  color: #08122d;
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+
+.module-subtitle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.explore-yellow-bar {
+  width: 32px;
+  height: 3.5px;
+  background: #ffc400;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.module-subtitle {
+  font-size: 14.5px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.explore-chevron-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #08122d;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.explore-accordion-card.is-expanded .explore-chevron-icon {
+  transform: rotate(180deg);
+  background: #fff8e6;
+  border-color: rgba(255, 196, 0, 0.5);
+}
+
+/* Accordion Body */
+.explore-accordion-body {
+  padding: 4px 36px 36px;
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 32px;
+  animation: fadeIn 0.35s ease;
+}
+
+.features-2col-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.feature-item-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #fafbfc;
+  border: 1px solid #f1f3f7;
+  transition: all 0.2s ease;
+}
+
+.feature-item-box:hover {
+  background: #ffffff;
+  border-color: rgba(255, 196, 0, 0.45);
+  box-shadow: 0 6px 18px rgba(8, 18, 45, 0.04);
+  transform: translateY(-2px);
+}
+
+.feature-icon-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #fff8e6;
+  border: 1px solid rgba(255, 196, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 800;
+  color: #08122d;
+  flex-shrink: 0;
+}
+
+.feature-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #08122d;
+  margin: 0 0 4px;
+  line-height: 1.35;
+}
+
+.feature-desc {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Key Benefits Card ("Why It Matters?") */
+.benefits-card {
+  background: linear-gradient(145deg, #fffcf5 0%, #fff7e0 100%);
+  border: 1px solid rgba(255, 196, 0, 0.35);
+  border-radius: 20px;
+  padding: 30px 26px 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(255, 196, 0, 0.08);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.benefits-tag {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #08122d;
+  background: #fffaea;
+  border: 1px solid #ffd54f;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.benefits-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #08122d;
+  margin: 0 0 18px;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.45;
+}
+
+.benefit-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffc400;
+  color: #08122d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.benefits-pallet-art {
+  margin-top: auto;
+  align-self: flex-end;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.pallet-boxes-img {
+  width: 170px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgba(8, 18, 45, 0.12));
+}
+
+/* 5. Complete Warehouse Workflow Card */
+.explore-workflow-section {
+  margin-top: 24px;
+}
+
+.workflow-card {
+  background: #ffffff;
+  border: 1px solid #edf0f5;
+  border-radius: 22px;
+  padding: 24px 32px;
+  box-shadow: 0 8px 30px rgba(8, 18, 45, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.workflow-left-intro {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.workflow-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #fff8e6;
+  border: 1px solid rgba(255, 196, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.workflow-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: #08122d;
+  margin: 0 0 3px;
+}
+
+.workflow-desc {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+.workflow-steps-chain {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.workflow-step-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fafbfc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #08122d;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.workflow-step-btn:hover {
+  background: #08122d;
+  color: #ffffff;
+  border-color: #08122d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(8, 18, 45, 0.12);
+}
+
+.workflow-step-btn:hover .step-icon svg {
+  stroke: #ffc400;
+}
+
+.workflow-arrow {
+  color: #94a3b8;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+  .explore-accordion-body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .benefits-card {
+    min-height: 280px;
+  }
+  .benefits-pallet-art {
+    align-self: center;
+  }
+  .explore-header-bar {
+    width: calc(100% - 24px);
+  }
+  .explore-nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .features-2col-grid {
+    grid-template-columns: 1fr;
+  }
+  .explore-accordion-header {
+    padding: 20px 20px;
+  }
+  .explore-accordion-body {
+    padding: 0 20px 24px;
+  }
+  .workflow-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .workflow-steps-chain {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+
+

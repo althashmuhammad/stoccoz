@@ -91,248 +91,160 @@ import { Component, ElementRef, AfterViewInit, OnDestroy, signal } from '@angula
 
       <!-- ENTERPRISE CONTENT SECTIONS -->
       <div class="about-sections-wrapper">
-        <!-- 1. MISSION & VISION + WHO WE ARE -->
-        <section class="about-container">
+        <!-- ABOUT US ACCORDION SECTION (Mission & Vision, Who We Are, Expertise, Why Choose Us, Commitment) -->
+        <section class="about-container about-accordion-section">
           <div class="about-header-centered">
             <div class="about-pill-tag">
-              <span class="pill-dot"></span>
-              <span>About Stoccoz ERP</span>
+              <span>ABOUT STOCCOZ ERP</span>
             </div>
-            <h2 class="about-title-large">Empowering Modern Warehouses with <em>Intelligent ERP</em></h2>
+            <h2 class="about-title-large">
+              Empowering Modern Warehouses<br />
+              with <span class="highlight-gold">Intelligent ERP</span>
+            </h2>
             <p class="about-desc-lead">
               Transforming logistics, distribution, and supply chain operations through cloud-native automation.
             </p>
           </div>
 
-          <div class="about-split-cards">
-            <!-- Mission & Vision Card -->
-            <div class="about-split-card">
-              <span class="about-card-tag">Our Mission &amp; Vision</span>
-              <h3>Revolutionizing Logistics and Growth</h3>
-              <p>
-                At Stoccoz, we are dedicated to revolutionizing distribution and warehouse management through intelligent, cloud-native ERP solutions.
-              </p>
-              <p>
-                Our mission is to empower growing trade, wholesale, and van sales enterprises with technology that simplifies complex logistics, eliminates stock leakage, and powers profitable growth.
-              </p>
+          <div class="about-accordion" role="tablist" aria-label="About Stoccoz Overview">
+            <!-- 1. Our Mission & Vision -->
+            <div class="about-accordion-item" [class.is-active]="activeAccordion() === 'mission'">
+              <button
+                type="button"
+                class="about-accordion-trigger"
+                (click)="toggleAccordion('mission')"
+                [attr.aria-expanded]="activeAccordion() === 'mission'"
+              >
+                <h3 class="about-accordion-heading">Our Mission &amp; Vision</h3>
+                <span class="about-accordion-chevron" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </button>
+
+              @if (activeAccordion() === 'mission') {
+                <div class="about-accordion-body">
+                  <p>
+                    At Stoccoz, we are dedicated to revolutionizing distribution and warehouse management through intelligent, cloud-native ERP solutions.
+                  </p>
+                  <p>
+                    Our mission is to empower growing trade, wholesale, and van sales enterprises with technology that simplifies complex logistics, eliminates stock leakage, and powers profitable growth.
+                  </p>
+                </div>
+              }
             </div>
 
-            <!-- Who We Are Card -->
-            <div class="about-split-card">
-              <span class="about-card-tag">Who We Are</span>
-              <h3>Leading Provider of Warehouse ERP Solutions</h3>
-              <p>
-                Stoccoz is a leading provider of comprehensive ERP solutions specifically designed for modern warehouse management. Founded with a vision to transform how businesses handle inventory, sales, purchases, and production, we’ve built a platform that combines powerful automation with intuitive design.
-              </p>
-              <p>
-                Our team consists of experienced developers, logistics experts, and business strategists who understand the unique challenges faced by warehouse operations. We’re committed to continuous innovation and customer success.
-              </p>
-            </div>
-          </div>
+            <!-- 2. Who We Are -->
+            <div class="about-accordion-item" [class.is-active]="activeAccordion() === 'who'">
+              <button
+                type="button"
+                class="about-accordion-trigger"
+                (click)="toggleAccordion('who')"
+                [attr.aria-expanded]="activeAccordion() === 'who'"
+              >
+                <h3 class="about-accordion-heading">Who We Are</h3>
+                <span class="about-accordion-chevron" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </button>
 
-          <!-- 3 Stats Highlights -->
-          <div class="about-stats-grid">
-            <div class="about-stat-box">
-              <div class="about-stat-big">500+</div>
-              <div class="about-stat-title">Active Users</div>
-              <div class="about-stat-desc">Trusting Stoccoz across trade &amp; distribution</div>
-            </div>
-
-            <div class="about-stat-box">
-              <div class="about-stat-big">99.9%</div>
-              <div class="about-stat-title">Uptime Guarantee</div>
-              <div class="about-stat-desc">Reliable cloud-native enterprise service</div>
-            </div>
-
-            <div class="about-stat-box">
-              <div class="about-stat-big">24/7</div>
-              <div class="about-stat-title">Dedicated Support</div>
-              <div class="about-stat-desc">Always here to help your warehouse operations</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- 2. WHAT WE DO -->
-        <section class="about-container">
-          <div class="about-header-centered">
-            <div class="about-pill-tag">
-              <span class="pill-dot"></span>
-              <span>What We Do</span>
-            </div>
-            <h2 class="about-title-large">Complete ERP Solution for <em>Warehouse Management</em></h2>
-            <p class="about-desc-lead">
-              Stoccoz provides a comprehensive ERP solution that covers all aspects of warehouse and distribution operations.
-            </p>
-          </div>
-
-          <div class="about-modules-grid">
-            <!-- 1. Stock Management -->
-            <div class="about-module-card">
-              <div class="about-module-icon-wrap">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
-                  <path d="m3.3 7 8.7 5 8.7-5"/>
-                  <path d="M12 22V12"/>
-                </svg>
-              </div>
-              <h4>Stock Management</h4>
-              <p>Real-time inventory tracking, multi-warehouse batch controls, and automated stock reordering.</p>
+              @if (activeAccordion() === 'who') {
+                <div class="about-accordion-body">
+                  <p>
+                    Stoccoz is a leading provider of comprehensive ERP solutions specifically designed for modern warehouse management. Founded with a vision to transform how businesses handle inventory, sales, purchases, and production, we’ve built a platform that combines powerful automation with intuitive design.
+                  </p>
+                  <p>
+                    Our team consists of experienced developers, logistics experts, and business strategists who understand the unique challenges faced by warehouse operations. We’re committed to continuous innovation and customer success.
+                  </p>
+                </div>
+              }
             </div>
 
-            <!-- 2. Sales Management -->
-            <div class="about-module-card">
-              <div class="about-module-icon-wrap">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
-                  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-                </svg>
-              </div>
-              <h4>Sales Management</h4>
-              <p>Streamlined order processing, client-tier pricing, and customer relationship management.</p>
+            <!-- 3. Our Expertise -->
+            <div class="about-accordion-item" [class.is-active]="activeAccordion() === 'expertise'">
+              <button
+                type="button"
+                class="about-accordion-trigger"
+                (click)="toggleAccordion('expertise')"
+                [attr.aria-expanded]="activeAccordion() === 'expertise'"
+              >
+                <h3 class="about-accordion-heading">Our Expertise</h3>
+                <span class="about-accordion-chevron" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </button>
+
+              @if (activeAccordion() === 'expertise') {
+                <div class="about-accordion-body">
+                  <p>
+                    We specialize in end-to-end warehouse automation, real-time inventory tracking, procurement workflows, production management, and multi-warehouse distribution.
+                  </p>
+                  <p>
+                    Our cloud-native architecture delivers seamless van-route stock sync, automated reordering, and deep business analytics to eliminate operational bottlenecks and elevate fulfillment accuracy.
+                  </p>
+                </div>
+              }
             </div>
 
-            <!-- 3. Purchase Management -->
-            <div class="about-module-card">
-              <div class="about-module-icon-wrap">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
-                </svg>
-              </div>
-              <h4>Purchase Management</h4>
-              <p>Efficient procurement workflows, automated vendor comparisons, and purchase order tracking.</p>
+            <!-- 4. Why Choose Stoccoz -->
+            <div class="about-accordion-item" [class.is-active]="activeAccordion() === 'why'">
+              <button
+                type="button"
+                class="about-accordion-trigger"
+                (click)="toggleAccordion('why')"
+                [attr.aria-expanded]="activeAccordion() === 'why'"
+              >
+                <h3 class="about-accordion-heading">Why Choose Stoccoz</h3>
+                <span class="about-accordion-chevron" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </button>
+
+              @if (activeAccordion() === 'why') {
+                <div class="about-accordion-body">
+                  <p>
+                    With over 500+ active users trusting Stoccoz for their warehouse operations, we deliver an enterprise-grade platform that combines intuitive design with bank-grade security.
+                  </p>
+                  <p>
+                    Our 99.9% uptime guarantee, regular feature rollouts, and 24/7 dedicated support ensure your supply chain operates without interruption.
+                  </p>
+                </div>
+              }
             </div>
 
-            <!-- 4. Production Management -->
-            <div class="about-module-card">
-              <div class="about-module-icon-wrap">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
-                  <path d="M17 18h1"/>
-                  <path d="M12 18h1"/>
-                  <path d="M7 18h1"/>
-                </svg>
-              </div>
-              <h4>Production Management</h4>
-              <p>End-to-end production planning, bill of materials (BOM), batch tracking, and assembly execution.</p>
-            </div>
+            <!-- 5. Our Commitment -->
+            <div class="about-accordion-item" [class.is-active]="activeAccordion() === 'commitment'">
+              <button
+                type="button"
+                class="about-accordion-trigger"
+                (click)="toggleAccordion('commitment')"
+                [attr.aria-expanded]="activeAccordion() === 'commitment'"
+              >
+                <h3 class="about-accordion-heading">Our Commitment</h3>
+                <span class="about-accordion-chevron" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </button>
 
-            <!-- 5. Analytics & Reporting -->
-            <div class="about-module-card">
-              <div class="about-module-icon-wrap">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>
-                </svg>
-              </div>
-              <h4>Analytics &amp; Reporting</h4>
-              <p>Comprehensive insights, distribution profit analytics, and data-driven executive decision support.</p>
-            </div>
-
-            <!-- 6. Automation -->
-            <div class="about-module-card">
-              <div class="about-module-icon-wrap">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                </svg>
-              </div>
-              <h4>Automation</h4>
-              <p>Intelligent workflow triggers, van-route stock sync, and eliminating repetitive human error.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 3. OUR VALUES -->
-        <section class="about-container">
-          <div class="about-header-centered">
-            <div class="about-pill-tag">
-              <span class="pill-dot"></span>
-              <span>Our Values</span>
-            </div>
-            <h2 class="about-title-large">What Drives Us <em>Every Day</em></h2>
-            <p class="about-desc-lead">The principles that guide everything we build and deliver.</p>
-          </div>
-
-          <div class="about-values-grid">
-            <div class="about-value-card">
-              <div class="about-value-icon">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>
-                </svg>
-              </div>
-              <h4>Innovation</h4>
-              <p>We continuously push the boundaries of warehouse technology, staying ahead of industry trends and operational needs.</p>
-            </div>
-
-            <div class="about-value-card">
-              <div class="about-value-icon">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                </svg>
-              </div>
-              <h4>Reliability</h4>
-              <p>With 99.9% uptime, we ensure your operations run smoothly 24/7. Your business depends on us, and we honor that trust.</p>
-            </div>
-
-            <div class="about-value-card">
-              <div class="about-value-icon">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
-              </div>
-              <h4>Customer Success</h4>
-              <p>Your success is our success. We’re committed to providing proactive support ensuring you achieve maximum ROI.</p>
-            </div>
-
-            <div class="about-value-card">
-              <div class="about-value-icon">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/>
-                </svg>
-              </div>
-              <h4>Simplicity</h4>
-              <p>Complex logistics deserve clean solutions. We design our platform to be powerful yet intuitive, reducing onboarding friction.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 4. WHY CHOOSE US -->
-        <section class="about-container">
-          <div class="about-why-shell">
-            <div class="about-header-centered" style="margin-bottom: 24px;">
-              <div class="about-pill-tag">
-                <span class="pill-dot"></span>
-                <span>Why Choose Us</span>
-              </div>
-              <h2 class="about-title-large">What Sets Us <em>Apart</em></h2>
-            </div>
-            <p class="about-why-lead">
-              With over 500+ active users trusting Stoccoz for their warehouse operations, we’ve proven our commitment to excellence.
-            </p>
-
-            <div class="about-why-grid">
-              <div class="about-why-item">
-                <span class="about-why-check">✓</span>
-                <span class="about-why-text">Comprehensive solution covering all warehouse management needs</span>
-              </div>
-              <div class="about-why-item">
-                <span class="about-why-check">✓</span>
-                <span class="about-why-text">User-friendly interface designed for teams of all technical levels</span>
-              </div>
-              <div class="about-why-item">
-                <span class="about-why-check">✓</span>
-                <span class="about-why-text">Scalable platform that grows seamlessly with your business</span>
-              </div>
-              <div class="about-why-item">
-                <span class="about-why-check">✓</span>
-                <span class="about-why-text">24/7 customer support to assist your dispatch whenever you need it</span>
-              </div>
-              <div class="about-why-item">
-                <span class="about-why-check">✓</span>
-                <span class="about-why-text">Regular updates and new features based on real customer feedback</span>
-              </div>
-              <div class="about-why-item">
-                <span class="about-why-check">✓</span>
-                <span class="about-why-text">Bank-grade security and compliant with international industry standards</span>
-              </div>
+              @if (activeAccordion() === 'commitment') {
+                <div class="about-accordion-body">
+                  <p>
+                    We are committed to continuous innovation, unwavering system reliability, and customer success. Complex logistics deserve clean, transparent solutions.
+                  </p>
+                  <p>
+                    We design our platform to be powerful yet effortless to adopt, ensuring rapid time-to-value, zero stock leakage, and sustained growth for your business.
+                  </p>
+                </div>
+              }
             </div>
           </div>
         </section>
@@ -553,6 +465,11 @@ import { Component, ElementRef, AfterViewInit, OnDestroy, signal } from '@angula
 })
 export class AboutPageComponent implements AfterViewInit, OnDestroy {
   submitted = signal(false);
+  activeAccordion = signal<string>('mission');
+
+  toggleAccordion(id: string) {
+    this.activeAccordion.update(cur => (cur === id ? '' : id));
+  }
   private rafId: number | null = null;
   private pointerHandler: ((e: PointerEvent) => void) | null = null;
   private scrollHandler: (() => void) | null = null;

@@ -8,6 +8,7 @@ import { ConnectedOperationsComponent } from './components/connected-operations/
 import { ClientsComponent } from './components/clients/clients.component';
 import { PricingComponent } from './components/pricing/pricing.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
+import { WarehouseExploreComponent } from './components/warehouse-explore/warehouse-explore.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
@@ -23,6 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ClientsComponent,
     PricingComponent,
     AboutPageComponent,
+    WarehouseExploreComponent,
     FooterComponent
   ],
   templateUrl: './app.component.html'
@@ -30,7 +32,7 @@ import { FooterComponent } from './components/footer/footer.component';
 export class AppComponent implements OnDestroy {
   @ViewChild('mainRef') mainRef!: ElementRef<HTMLElement>;
 
-  activePage = signal<'home' | 'about' | 'pricing'>('home');
+  activePage = signal<'home' | 'about' | 'pricing' | 'explore-warehouse'>('home');
   private cleanups: (() => void)[] = [];
   private frame = 0;
 
@@ -41,7 +43,7 @@ export class AppComponent implements OnDestroy {
     });
   }
 
-  onNavigate(page: 'home' | 'about' | 'pricing') {
+  onNavigate(page: 'home' | 'about' | 'pricing' | 'explore-warehouse') {
     this.activePage.set(page);
     if (page === 'home') {
       setTimeout(() => this.initPageMotion(), 50);
@@ -56,6 +58,9 @@ export class AppComponent implements OnDestroy {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (h === '#pricing' || h === '#/pricing' || h === '#plans') {
         this.activePage.set('pricing');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (h === '#explore-warehouse' || h === '#/explore-warehouse' || h === '#warehouse-explore' || h === '#/warehouse') {
+        this.activePage.set('explore-warehouse');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (this.activePage() !== 'home') {
         this.activePage.set('home');
