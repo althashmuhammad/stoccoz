@@ -55,22 +55,26 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
                 @for (feat of exploreFeatures; track feat.title) {
                   <a
                     class="mega-feature"
-                    [href]="feat.title === 'VanSales' ? '#vansales' : '#warehouse'"
-                    (click)="handleSectionNav(feat.title === 'VanSales' ? 'vansales' : 'warehouse', $event)"
+                    [href]="feat.title === 'Warehouse Management' ? '#explore-warehouse' : (feat.title === 'VanSales' ? '#vansales' : '#warehouse')"
+                    (click)="feat.title === 'Warehouse Management' ? goToExploreWarehouse($event) : handleSectionNav(feat.title === 'VanSales' ? 'vansales' : 'warehouse', $event)"
                   >
                     <span class="mega-icon"><app-line-icon [name]="feat.icon"></app-line-icon></span>
                     <span><b>{{ feat.title }}</b><small>{{ feat.copy }}</small></span>
                     <span class="arrow">›</span>
                   </a>
                 }
-                <a class="text-link" href="#platform" (click)="handleSectionNav('platform', $event)">Explore the Platform <span>→</span></a>
+                <a class="text-link" href="#explore-warehouse" (click)="goToExploreWarehouse($event)">Explore the Platform <span>→</span></a>
               </div>
 
               <div class="mega-col">
                 <p class="eyebrow">Core capabilities</p>
                 <h3>Manage Your Operations</h3>
                 @for (item of operations; track item; let idx = $index) {
-                  <a class="mega-link" href="#warehouse" (click)="handleSectionNav('warehouse', $event)">
+                  <a
+                    class="mega-link"
+                    [href]="item === 'Multi-Warehouse Management' ? '#explore-warehouse' : '#warehouse'"
+                    (click)="item === 'Multi-Warehouse Management' ? goToExploreWarehouse($event) : handleSectionNav('warehouse', $event)"
+                  >
                     <app-line-icon [name]="idx === 5 ? 'chart' : idx === 3 ? 'order' : 'boxes'"></app-line-icon>
                     {{ item }}
                   </a>
@@ -110,7 +114,7 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
               (mouseenter)="onFeaturesEnter()"
               (mouseleave)="onFeaturesLeave()"
             >
-              <a href="#warehouse" (click)="featuresOpen.set(false); handleSectionNav('warehouse', $event)">
+              <a href="#explore-warehouse" (click)="featuresOpen.set(false); goToExploreWarehouse($event)">
                 <span><app-line-icon name="warehouse"></app-line-icon></span>
                 <div><b>Warehouse</b><small>Inventory and warehouse operations</small></div>
               </a>
@@ -290,6 +294,8 @@ export class NavbarComponent {
       targetEl = nav.querySelector<HTMLElement>('a[href="#pricing"]');
     } else if (this.activePage() === 'about') {
       targetEl = nav.querySelector<HTMLElement>('a[href="#about"]');
+    } else if (this.activePage() === 'explore-warehouse') {
+      targetEl = nav.querySelector<HTMLElement>('.platform-nav>button');
     }
 
     if (targetEl) {
@@ -310,6 +316,17 @@ export class NavbarComponent {
       this.navigatePage.emit('home');
       window.location.hash = '#top';
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => this.updateIndicatorToActive(), 50);
+  }
+
+  goToExploreWarehouse(e?: Event) {
+    if (e) e.preventDefault();
+    this.mobileOpen.set(false);
+    this.open.set(false);
+    this.featuresOpen.set(false);
+    this.navigatePage.emit('explore-warehouse');
+    window.location.hash = '#explore-warehouse';
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => this.updateIndicatorToActive(), 50);
   }
@@ -339,6 +356,10 @@ export class NavbarComponent {
   handleSectionNav(sectionId: string, e: Event) {
     this.open.set(false);
     this.featuresOpen.set(false);
+    if (sectionId === 'warehouse') {
+      this.goToExploreWarehouse(e);
+      return;
+    }
     if (this.activePage() !== 'home') {
       e.preventDefault();
       this.navigatePage.emit('home');

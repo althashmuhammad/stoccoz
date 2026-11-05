@@ -21,34 +21,7 @@ export interface ExploreModule {
   standalone: true,
   template: `
     <div class="warehouse-explore-page" id="warehouse-explore-top">
-      <!-- 1. Dedicated Floating Header for Explore Page -->
-      <header class="explore-header-bar">
-        <div class="explore-header-inner">
-          <a class="explore-brand" href="#top" (click)="onHomeClick($event)" aria-label="Stoccoz home">
-            <img class="brand-logo-image" src="/assets/stoccoz-mark.png" alt="" />
-            <span class="brand-name">STOCCOZ</span>
-          </a>
-
-          <nav class="explore-nav-links" aria-label="Explore page navigation">
-            <button type="button" class="explore-nav-link" (click)="scrollToSection('hero')">Overview</button>
-            <button type="button" class="explore-nav-link is-active" (click)="scrollToSection('accordion')">Features</button>
-            <button type="button" class="explore-nav-link" (click)="scrollToSection('workflow')">Workflow</button>
-            <button type="button" class="explore-nav-link" (click)="selectModuleAndScroll('reports')">Reports</button>
-          </nav>
-
-          <button type="button" class="button-book-demo" (click)="onBookDemoClick($event)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
-            <span>Book a Demo</span>
-          </button>
-        </div>
-      </header>
-
-      <!-- 2. Hero Section with Real 3D Warehouse Background -->
+      <!-- Hero Section with Real 3D Warehouse Background -->
       <section class="explore-hero-section" id="explore-hero">
         <div class="explore-hero-bg-overlay" aria-hidden="true"></div>
         <div class="explore-hero-shell">
