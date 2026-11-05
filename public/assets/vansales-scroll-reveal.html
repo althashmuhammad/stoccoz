@@ -229,30 +229,137 @@
   .stage { height: 100% !important; position: absolute !important; inset: 0; }
   .hint { display: none !important; }
 
-  /* Stoccoz Moving Van Carrier Logo */
-  .stoccoz-moving-logo {
+  /* Van Sales Management Scroll Typing Banner */
+  .vansales-typing-banner {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
-    z-index: 5;
+    z-index: 10;
     pointer-events: none;
-    will-change: transform, opacity, width;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: clamp(280px, 34vw, 440px);
+    width: min(90vw, 840px);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(203, 213, 225, 0.85);
+    border-left: 5px solid #f59e0b;
+    border-radius: 14px;
+    padding: clamp(20px, 3.5vw, 32px) clamp(22px, 4vw, 40px);
+    box-shadow:
+      0 24px 48px -12px rgba(10, 31, 82, 0.12),
+      0 4px 16px rgba(10, 31, 82, 0.04),
+      0 0 0 1px rgba(245, 158, 11, 0.1);
     opacity: 1;
     visibility: visible;
+    will-change: transform, opacity;
+    transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .stoccoz-moving-logo img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 6px 20px rgba(10, 31, 82, 0.12));
-    user-select: none;
-    pointer-events: none;
+
+  .typing-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b45309;
+    margin-bottom: 12px;
+  }
+
+  .typing-pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #f59e0b;
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+    animation: typingPulse 2s infinite ease-out;
+  }
+
+  @keyframes typingPulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+    70% { transform: scale(1.08); box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+  }
+
+  .typing-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .typing-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+    letter-spacing: -0.02em;
+    color: #0a1f52;
+    line-height: 1.15;
+  }
+
+  .typing-yellow-accent {
+    color: #f59e0b;
+  }
+
+  .typing-desc {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: clamp(0.95rem, 1.35vw, 1.12rem);
+    line-height: 1.62;
+    color: #0a142f;
+    min-height: 4.8em;
+  }
+
+  .typing-black-text {
+    color: #0f172a;
+    font-weight: 500;
+  }
+
+  .typing-yellow-text {
+    color: #d97706;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
+    background: linear-gradient(120deg, #f59e0b, #d97706);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.25s ease;
+  }
+
+  .typing-caret {
+    display: inline-block;
+    width: 3px;
+    height: 1.15em;
+    background: #f59e0b;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.9), 0 0 18px rgba(245, 158, 11, 0.4);
+    margin-left: 2px;
+    vertical-align: -2px;
+    border-radius: 2px;
+    animation: caretBlink 0.65s infinite alternate ease-in-out;
+  }
+
+  @keyframes caretBlink {
+    0% { opacity: 1; transform: scaleY(1); }
+    50% { opacity: 0.15; }
+    100% { opacity: 1; transform: scaleY(1); }
+  }
+
+  @media (max-width: 600px) {
+    .vansales-typing-banner {
+      width: calc(100% - 32px);
+      padding: 18px 20px;
+      border-radius: 12px;
+    }
+    .typing-desc {
+      min-height: 6.5em;
+      font-size: 0.95rem;
+    }
   }
 </style>
 
@@ -268,9 +375,18 @@
   <div class="stage" id="stage">
     <div class="tiles" id="tiles" aria-hidden="true"></div>
 
-    <!-- Stoccoz Moving Van Carrier Logo: starts centered in empty space, glides into van carrier, disappears when cards arrive -->
-    <div class="stoccoz-moving-logo" id="stoccozMovingLogo" aria-hidden="true">
-      <img src="stoccoz-logo-horizontal.png" onerror="this.onerror=null;this.src='/assets/stoccoz-logo-horizontal.png';" alt="Stoccoz" />
+    <!-- Van Sales Management Scroll Typing Element -->
+    <div class="vansales-typing-banner" id="vansalesTypingBanner" aria-live="polite">
+      <div class="typing-pill">
+        <span class="typing-pulse-dot"></span>
+        <span>ON-FIELD OPERATIONS</span>
+      </div>
+      <div class="typing-title-row">
+        <h3 class="typing-title">Van Sales Management <span class="typing-yellow-accent">—</span></h3>
+      </div>
+      <p class="typing-desc">
+        <span class="typing-black-text" id="typingBlack"></span><span class="typing-yellow-text" id="typingYellow"></span><span class="typing-caret" id="typingCaret"></span>
+      </p>
     </div>
 
     <div class="van" id="van">
@@ -342,7 +458,16 @@
   var tilesEl = document.getElementById('tiles');
   var van = document.getElementById('van');
   var hint = document.getElementById('hint');
-  var movingLogo = document.getElementById('stoccozMovingLogo');
+  var typingBanner = document.getElementById('vansalesTypingBanner');
+  var typingBlack = document.getElementById('typingBlack');
+  var typingYellow = document.getElementById('typingYellow');
+  var typingCaret = document.getElementById('typingCaret');
+
+  var FULL_TEXT = "Manage on-the-go sales directly from vehicles with real-time van inventory tracking, seamless stock transfers, driver assignments, route management, and efficient customer billing. Track every van's sales performance and stock movements from a centralized system.";
+  var TRAIL_LEN = 14;
+  var renderedCharCount = 0;
+  var autoTicker = 0;
+  var lastScrollP = 0;
   var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
 
   var SHADES = ['#0a1f52', '#0b2257', '#091c4c'];
@@ -448,55 +573,68 @@
     }
   }
 
-  function renderMovingLogo(P, p) {
-    if (!movingLogo) return;
+  function renderTypingBanner(p) {
+    if (!typingBanner) return;
 
-    var W = stage.clientWidth, H = stage.clientHeight;
-    var vw = Math.min(W - 32, 1180, H * 1.7);
-    var vh = vw * (835 / 1778);
+    // Disappear quickly and smoothly between p = 0.10 and p = 0.17
+    // Completely invisible for p >= 0.17 so van assembly proceeds with 100% clarity
+    var DISAPPEAR_START = 0.10;
+    var DISAPPEAR_END = 0.17;
 
-    var rise = reduce ? 0 : (1 - P) * 80 + (p - 0.5) * -30;
-    var scale = reduce ? 1 : 0.93 + 0.07 * P;
-
-    // Fully visible when reaching here (p <= 0.26)
-    // Smoothly fades out when van completely arrives and cards emerge (between p = 0.26 and p = 0.34)
-    var op = 1;
-    if (p > 0.26) {
-      var fadeOutProgress = clamp((p - 0.26) / 0.08);
-      op = 1 - fadeOutProgress * fadeOutProgress * (3 - 2 * fadeOutProgress);
-    }
-
-    if (op <= 0.002) {
-      movingLogo.style.opacity = '0';
-      movingLogo.style.visibility = 'hidden';
+    if (p >= DISAPPEAR_END) {
+      typingBanner.style.opacity = '0';
+      typingBanner.style.visibility = 'hidden';
+      typingBanner.style.transform = 'translate3d(-50%, -64%, 0) scale(0.95)';
       return;
     }
 
-    // Movement progress: starts centered when reaching here (p = 0), glides smoothly into van carrier by p = 0.24
-    var moveT = clamp(p / 0.24);
-    var ease = moveT * moveT * (3 - 2 * moveT);
+    typingBanner.style.visibility = 'visible';
 
-    // Van carrier center relative to stage center:
-    // Cargo body center is at 33% width, 44% height of the van.
-    // Relative to van center (50%, 50%):
-    // dX = (0.33 - 0.50) * vw * scale = -0.17 * vw * scale
-    // dY = (0.44 - 0.50) * vh * scale + rise = -0.06 * vh * scale + rise
-    var targetX = -0.17 * vw * scale;
-    var targetY = -0.06 * vh * scale + rise;
+    // Calculate quick smooth disappearance
+    var op = 1;
+    var yGlide = 0;
+    var sc = 1;
 
-    var curX = targetX * ease;
-    var curY = targetY * ease;
+    if (p > DISAPPEAR_START) {
+      var dProgress = clamp((p - DISAPPEAR_START) / (DISAPPEAR_END - DISAPPEAR_START));
+      var ease = dProgress * dProgress * (3 - 2 * dProgress);
+      op = 1 - ease;
+      yGlide = -28 * ease;
+      sc = 1 - 0.05 * ease;
+    }
 
-    // Size: starts at centered intro size (280-440px), then scales to carrier width (~30% of van)
-    var startW = narrowMQ.matches ? clamp(W * 0.70, 200, 320) : clamp(W * 0.34, 280, 440);
-    var endW = vw * scale * 0.30;
-    var curW = startW + (endW - startW) * ease;
+    typingBanner.style.opacity = op.toFixed(3);
+    typingBanner.style.transform =
+      'translate3d(-50%, calc(-50% + ' + yGlide.toFixed(1) + 'px), 0) scale(' + sc.toFixed(3) + ')';
 
-    movingLogo.style.visibility = 'visible';
-    movingLogo.style.opacity = op.toFixed(3);
-    movingLogo.style.width = curW.toFixed(1) + 'px';
-    movingLogo.style.transform =
-      'translate3d(calc(-50% + ' + curX.toFixed(1) + 'px), calc(-50% + ' + curY.toFixed(1) + 'px), 0)';
+    // Reset auto-typing when scrolling back to top so each new scroll re-triggers
+    if (p < 0.005 && lastScrollP >= 0.005) {
+      autoTicker = 0;
+      renderedCharCount = 0;
+    }
+    lastScrollP = p;
+
+    // Calculate target character count
+    var scrollCharTarget = Math.floor(clamp(p / 0.09) * FULL_TEXT.length);
+    var targetChars = Math.max(autoTicker, scrollCharTarget);
+
+    if (renderedCharCount < targetChars) {
+      renderedCharCount = Math.min(FULL_TEXT.length, renderedCharCount + Math.max(1, Math.ceil((targetChars - renderedCharCount) * 0.4)));
+    } else if (renderedCharCount > targetChars && p < DISAPPEAR_START) {
+      renderedCharCount = Math.max(0, targetChars);
+    }
+
+    // Split text: crisp black text + trailing vibrant yellow glow
+    var split = Math.max(0, renderedCharCount - TRAIL_LEN);
+    var blackPart = FULL_TEXT.substring(0, split);
+    var yellowPart = FULL_TEXT.substring(split, renderedCharCount);
+
+    if (typingBlack) typingBlack.textContent = blackPart;
+    if (typingYellow) typingYellow.textContent = yellowPart;
+
+    if (typingCaret) {
+      typingCaret.style.display = (renderedCharCount >= FULL_TEXT.length && p > DISAPPEAR_START) ? 'none' : 'inline-block';
+    }
   }
 
   function render(p) {
@@ -504,7 +642,7 @@
     renderTiles(P);
     renderVan(P, p);
     renderCards(p);
-    renderMovingLogo(P, p);
+    renderTypingBanner(p);
   }
 
   var target = 0, cur = 0, running = false;
@@ -524,8 +662,19 @@
   function frame() {
     cur += (target - cur) * (reduce ? 1 : 0.14);
     if (Math.abs(target - cur) < 0.0004) cur = target;
+
+    // Advance autoTicker smoothly for character typing stream on scroll
+    if (autoTicker < FULL_TEXT.length && cur < 0.12) {
+      autoTicker = Math.min(FULL_TEXT.length, autoTicker + 3);
+    }
+
     render(cur);
-    if (cur !== target) requestAnimationFrame(frame); else running = false;
+
+    if (cur !== target || (autoTicker < FULL_TEXT.length && cur < 0.12)) {
+      requestAnimationFrame(frame);
+    } else {
+      running = false;
+    }
   }
   function kick() {
     readTarget();

@@ -91,9 +91,9 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
             </button>
             @if (featuresOpen()) {
               <div class="features-dropdown">
-                <a href="#explore-warehouse" (click)="goToExploreWarehouse($event)">
+                <a href="#warehouse" (click)="featuresOpen.set(false); handleSectionNav('warehouse', $event)">
                   <span><app-line-icon name="warehouse"></app-line-icon></span>
-                  <div><b>Warehouse</b><small>Explore complete warehouse ERP</small></div>
+                  <div><b>Warehouse</b><small>Inventory and warehouse operations</small></div>
                 </a>
                 <a href="#vansales" (click)="featuresOpen.set(false); handleSectionNav('vansales', $event)">
                   <span><app-line-icon name="van"></app-line-icon></span>
@@ -151,16 +151,6 @@ export class NavbarComponent {
 
   toggleMobile() {
     this.mobileOpen.update((v) => !v);
-  }
-
-  goToExploreWarehouse(e: Event) {
-    e.preventDefault();
-    this.mobileOpen.set(false);
-    this.open.set(false);
-    this.featuresOpen.set(false);
-    this.navigatePage.emit('explore-warehouse');
-    window.location.hash = '#explore-warehouse';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   goToHome(e: Event) {
