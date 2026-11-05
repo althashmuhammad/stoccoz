@@ -228,77 +228,6 @@
   .track { height: 100% !important; }
   .stage { height: 100% !important; position: absolute !important; inset: 0; }
   .hint { display: none !important; }
-
-  /* Van Sales Management (Exact Image 1 Design: Centered, in upper blank space, fades away on scroll) */
-  .vansales-intro-banner {
-    position: absolute;
-    left: 50%;
-    top: 24%;
-    transform: translate3d(-50%, -50%, 0);
-    z-index: 10;
-    pointer-events: none;
-    width: min(92vw, 860px);
-    text-align: center;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    visibility: visible;
-    will-change: transform, opacity;
-    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .intro-eyebrow {
-    margin: 0 0 16px 0;
-    font-family: var(--font-body);
-    font-size: clamp(13px, 1.3vw, 15px);
-    font-weight: 500;
-    color: #94a3b8;
-    letter-spacing: 0.01em;
-  }
-
-  .intro-headline {
-    margin: 0 0 20px 0;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(2.3rem, 4.3vw, 3.5rem);
-    letter-spacing: -0.025em;
-    color: #08122d;
-    line-height: 1.14;
-    text-wrap: balance;
-  }
-
-  .intro-description {
-    margin: 0 auto;
-    max-width: 780px;
-    font-family: var(--font-body);
-    font-size: clamp(1.02rem, 1.35vw, 1.18rem);
-    line-height: 1.65;
-    color: #475569;
-    font-weight: 400;
-  }
-
-  .intro-description .highlight-yellow {
-    color: #f59e0b;
-    font-weight: 600;
-  }
-
-  @media (max-width: 768px) {
-    .vansales-intro-banner {
-      top: 22%;
-      width: calc(100% - 32px);
-    }
-    .intro-headline {
-      font-size: clamp(1.85rem, 6vw, 2.35rem);
-      margin-bottom: 14px;
-    }
-    .intro-description {
-      font-size: 0.95rem;
-      line-height: 1.55;
-    }
-  }
 </style>
 
 <header class="band intro">
@@ -312,19 +241,6 @@
 <section class="track" id="track" aria-label="Van reveal">
   <div class="stage" id="stage">
     <div class="tiles" id="tiles" aria-hidden="true"></div>
-
-    <!-- Van Sales Management Intro Banner (Matching 1st reference image exact design) -->
-    <div class="vansales-intro-banner" id="vansalesIntroBanner" aria-live="polite">
-      <p class="intro-eyebrow">On-Field Operations</p>
-      <h2 class="intro-headline">
-        Manage on-the-go sales<br />
-        from vehicles
-      </h2>
-      <p class="intro-description">
-        Track real-time van inventory, handle stock transfers, assign drivers, manage routes,
-        and streamline customer billing — all from a <span class="highlight-yellow">centralized system.</span>
-      </p>
-    </div>
 
     <div class="van" id="van">
       <div class="van-shape" aria-hidden="true"></div>
@@ -395,7 +311,6 @@
   var tilesEl = document.getElementById('tiles');
   var van = document.getElementById('van');
   var hint = document.getElementById('hint');
-  var introBanner = document.getElementById('vansalesIntroBanner');
   var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
 
   var SHADES = ['#0a1f52', '#0b2257', '#091c4c'];
@@ -501,46 +416,11 @@
     }
   }
 
-  function renderIntroBanner(p) {
-    if (!introBanner) return;
-
-    // Fades away smoothly as user scrolls and the van shape starts assembling
-    // Completely invisible by p = 0.08
-    var FADE_START = 0.01;
-    var FADE_END = 0.08;
-
-    if (p >= FADE_END) {
-      introBanner.style.opacity = '0';
-      introBanner.style.visibility = 'hidden';
-      introBanner.style.transform = 'translate3d(-50%, -64%, 0) scale(0.96)';
-      return;
-    }
-
-    introBanner.style.visibility = 'visible';
-
-    if (p <= FADE_START) {
-      introBanner.style.opacity = '1';
-      introBanner.style.transform = 'translate3d(-50%, -50%, 0) scale(1)';
-      return;
-    }
-
-    var progress = clamp((p - FADE_START) / (FADE_END - FADE_START));
-    var ease = progress * progress * (3 - 2 * progress);
-    var opacity = 1 - ease;
-    var yOffset = -22 * ease;
-    var scale = 1 - 0.04 * ease;
-
-    introBanner.style.opacity = opacity.toFixed(3);
-    introBanner.style.transform =
-      'translate3d(-50%, calc(-50% + ' + yOffset.toFixed(1) + 'px), 0) scale(' + scale.toFixed(3) + ')';
-  }
-
   function render(p) {
     var P = p < FILL_END ? p / FILL_END : (p > EXIT_START ? (1 - p) / (1 - EXIT_START) : 1);
     renderTiles(P);
     renderVan(P, p);
     renderCards(p);
-    renderIntroBanner(p);
   }
 
   var target = 0, cur = 0, running = false;

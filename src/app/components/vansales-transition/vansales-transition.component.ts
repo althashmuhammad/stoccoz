@@ -5,6 +5,12 @@ import { Component, ElementRef, ViewChild, afterNextRender, OnDestroy } from '@a
   standalone: true,
   template: `
     <section class="vansales-experience-section" id="vansales">
+      <div class="vansales-reveal-intro section-shell" data-reveal>
+        <p class="eyebrow">Van sales software</p>
+        <h2>STOCCOZ <em>VanSales</em></h2>
+        <p>Everything a sales van needs in the field, from the first route to the final payment.</p>
+      </div>
+
       <div class="van-transition" #trackRef>
         <div class="van-sticky">
           <iframe
