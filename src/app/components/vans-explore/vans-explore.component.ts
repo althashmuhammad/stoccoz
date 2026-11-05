@@ -21,7 +21,7 @@ interface VanModule {
   template: `
     <div class="warehouse-explore-page vans-explore-page" id="vans-explore-top">
       <!-- Hero Section with Background -->
-      <section class="explore-hero-section" id="explore-hero">
+      <section class="explore-hero-section vans-hero-section" id="explore-hero">
         <div class="explore-hero-bg-overlay" aria-hidden="true"></div>
         <div class="explore-hero-shell">
           <div class="explore-hero-copy">

@@ -7596,12 +7596,46 @@ app-geometric-grid-background {
   justify-content: space-between;
 }
 
+/* Van Sales & Fleet Dedicated Explore Hero Background */
+.vans-explore-page .explore-hero-section,
+.explore-hero-section.vans-hero-section {
+  background: #ffffff url('/assets/vansales-explore-hero.jpg') no-repeat center right !important;
+  background-size: cover !important;
+}
+
 .explore-hero-bg-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.9) 35%, rgba(255, 255, 255, 0.42) 62%, rgba(255, 255, 255, 0.05) 100%);
   z-index: 1;
   pointer-events: none;
+}
+
+.vans-explore-page .explore-hero-bg-overlay,
+.explore-hero-section.vans-hero-section .explore-hero-bg-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(255, 255, 255, 0.9) 36%,
+    rgba(255, 255, 255, 0.45) 58%,
+    rgba(255, 255, 255, 0.08) 100%
+  ) !important;
+}
+
+@media (max-width: 900px) {
+  .vans-explore-page .explore-hero-section,
+  .explore-hero-section.vans-hero-section {
+    background-position: 72% center !important;
+  }
+  .vans-explore-page .explore-hero-bg-overlay,
+  .explore-hero-section.vans-hero-section .explore-hero-bg-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.94) 0%,
+      rgba(255, 255, 255, 0.88) 55%,
+      rgba(255, 255, 255, 0.55) 100%
+    ) !important;
+  }
 }
 
 .explore-hero-shell {
