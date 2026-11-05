@@ -173,6 +173,8 @@ export class NavbarComponent {
   navigatePage = output<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans'>();
 
   @ViewChild('navLinksRef') navLinksRef?: ElementRef<HTMLElement>;
+  @ViewChild('featuresBtn') featuresBtn?: ElementRef<HTMLButtonElement>;
+  @ViewChild('platformBtn') platformBtn?: ElementRef<HTMLButtonElement>;
 
   open = signal(false);
   featuresOpen = signal(false);
@@ -221,6 +223,12 @@ export class NavbarComponent {
     clearTimeout(this.featuresTimer);
     this.featuresOpen.set(false);
     this.open.set(true);
+    if (this.platformBtn?.nativeElement) {
+      this.onNavHover(this.platformBtn.nativeElement);
+    } else if (this.navLinksRef) {
+      const btn = this.navLinksRef.nativeElement.querySelector<HTMLElement>('.platform-nav>button');
+      if (btn) this.onNavHover(btn);
+    }
   }
 
   onPlatformLeave() {
@@ -235,6 +243,12 @@ export class NavbarComponent {
     clearTimeout(this.platformTimer);
     this.open.set(false);
     this.featuresOpen.set(true);
+    if (this.featuresBtn?.nativeElement) {
+      this.onNavHover(this.featuresBtn.nativeElement);
+    } else if (this.navLinksRef) {
+      const btn = this.navLinksRef.nativeElement.querySelector<HTMLElement>('.features-nav>button');
+      if (btn) this.onNavHover(btn);
+    }
   }
 
   onFeaturesLeave() {
@@ -270,8 +284,12 @@ export class NavbarComponent {
 
   onNavHover(el: HTMLElement) {
     if (typeof window !== 'undefined' && window.innerWidth <= 900) return;
-    this.indicatorLeft.set(el.offsetLeft);
-    this.indicatorWidth.set(el.offsetWidth);
+    if (!this.navLinksRef || !el) return;
+    const nav = this.navLinksRef.nativeElement;
+    const navRect = nav.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    this.indicatorLeft.set(Math.round(elRect.left - navRect.left));
+    this.indicatorWidth.set(Math.round(elRect.width));
     this.indicatorOpacity.set(1);
   }
 
@@ -299,8 +317,10 @@ export class NavbarComponent {
     }
 
     if (targetEl) {
-      this.indicatorLeft.set(targetEl.offsetLeft);
-      this.indicatorWidth.set(targetEl.offsetWidth);
+      const navRect = nav.getBoundingClientRect();
+      const elRect = targetEl.getBoundingClientRect();
+      this.indicatorLeft.set(Math.round(elRect.left - navRect.left));
+      this.indicatorWidth.set(Math.round(elRect.width));
       this.indicatorOpacity.set(1);
     } else {
       this.indicatorOpacity.set(0);
