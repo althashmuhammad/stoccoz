@@ -1,0 +1,487 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>New Purchase Order</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: white page, one card floating in 3D. Scene (perspective) > tilt (auto sway) > card (flips front to back) > two faces. Fields, title and button sit at different depths so they shift against each other as the card moves. */
+:root{
+  --bg:transparent;
+  --card:#FFFFFF;
+  --navy:#0A1128;
+  --ink:#0F1730;
+  --label:#59607A;
+  --muted:#8A90A5;
+  --bd:#E2E5EE;
+  --bd-hi:#C9CEDC;
+  --chip:#EEF1F8;
+  --green:#12A150;
+  --green-soft:#E3F6EB;
+  --slab1:#E3E7F0;
+  --slab2:#CDD3E3;
+  --shadow:rgba(20,30,70,.24);
+  --edge:rgba(20,30,70,.08);
+  --spring:cubic-bezier(.2,.9,.3,1.4);
+  --ease:cubic-bezier(.2,.9,.3,1);
+  font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:transparent!important;color:var(--ink);font-size:13px;line-height:1.35;-webkit-font-smoothing:antialiased;overflow:hidden!important;margin:0;padding:0;scrollbar-width:none!important;-ms-overflow-style:none!important}
+html{background:transparent!important;overflow:hidden!important;scrollbar-width:none!important}
+::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+button,input,select{font-family:inherit}
+:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+
+.wrap{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow:hidden;
+  padding:4px;
+  height:100vh;
+  box-sizing:border-box;
+  background:transparent!important;
+}
+
+/* ---------- 3D rig ---------- */
+.scene{width:min(290px,94%);perspective:1300px;animation:sceneIn .8s ease backwards;transform-origin:center center}
+@keyframes sceneIn{from{opacity:0}}
+.tilt{transform-style:preserve-3d;will-change:transform}
+.card{
+  position:relative;display:grid;transform-style:preserve-3d;
+  transition:transform 1.05s cubic-bezier(.3,.85,.25,1.1);
+}
+.card[data-view="done"]{transform:rotateY(180deg)}
+.card.lift{animation:lift 1.05s ease}
+@keyframes lift{45%{scale:1.04}}
+/* stacked slabs behind the front face give the card a visible edge when it tilts */
+.card::before,.card::after{content:"";position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.card::before{background:var(--slab1);transform:translateZ(-6px)}
+.card::after{background:var(--slab2);transform:translateZ(-12px)}
+
+.face{
+  grid-area:1/1;min-width:0;padding:11px 13px 10px;border-radius:16px;background:var(--card);
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-style:preserve-3d;
+  box-shadow:0 16px 36px -14px var(--shadow),0 0 0 1px var(--edge);
+}
+.face.done{transform:rotateY(180deg)}
+
+/* depth layers */
+.face h1{transform:translateZ(18px)}
+.face .field{transform:translateZ(10px)}
+.face .cta-wrap{transform:translateZ(20px)}
+.done .badge{transform:translateZ(28px)}
+.done h2{transform:translateZ(18px)}
+.done .po{transform:translateZ(14px)}
+.done .sum{transform:translateZ(10px)}
+
+.stg{animation:rise .6s var(--ease) backwards;animation-delay:calc(var(--i,0)*70ms + .35s)}
+@keyframes rise{from{opacity:0;translate:0 10px}}
+.done .stg{opacity:0;translate:0 10px;transition:opacity .4s ease,translate .5s var(--spring)}
+.done.showing .stg{opacity:1;translate:0 0;transition-delay:calc(var(--i,0)*70ms + .45s)}
+
+h1{margin:0 0 5px;font-size:13px;font-weight:800;letter-spacing:-.015em}
+
+/* ---------- fields ---------- */
+.field{display:block;margin-bottom:4px}
+.field label{display:block;margin-bottom:2px;font-size:10px;font-weight:700;color:var(--label);transition:color .2s}
+.field:focus-within label{color:var(--navy)}
+.ctl{
+  position:relative;display:flex;align-items:center;min-height:27px;height:27px;padding:0 8px;
+  border:1px solid var(--bd);border-radius:7px;background:#fff;cursor:text;
+  transition:border-color .2s,box-shadow .25s,translate .25s var(--spring);
+}
+.ctl:hover{border-color:var(--bd-hi)}
+.ctl:focus-within{border-color:var(--navy);box-shadow:0 0 0 2px rgba(10,17,40,.08);translate:0 -1px}
+.ctl.flash{animation:flash .8s ease-out}
+@keyframes flash{0%{border-color:var(--green);box-shadow:0 0 0 0 rgba(18,161,80,.45)}100%{box-shadow:0 0 0 6px rgba(18,161,80,0)}}
+.ctl input,.ctl select{width:100%;height:25px;border:0;outline:0;background:transparent;font-size:11px;font-weight:500;color:var(--ink);min-width:0}
+.ctl input::placeholder{color:var(--muted);font-weight:400}
+.ctl select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:18px}
+.ctl select option{color:var(--ink)}
+.ctl .empty{color:var(--muted);font-weight:400}
+.ctl input[type="date"]{font-family:'DM Mono',ui-monospace,monospace;font-size:10.5px;cursor:pointer}
+.ctl input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.7;transition:opacity .2s,scale .25s var(--spring)}
+.ctl input[type="date"]::-webkit-calendar-picker-indicator:hover{opacity:1;scale:1.1}
+.chev{position:absolute;right:8px;top:50%;margin-top:-5px;pointer-events:none;color:var(--label);transition:rotate .3s var(--spring)}
+.ctl:focus-within .chev{rotate:180deg}
+
+.items{flex-wrap:wrap;gap:3px;padding:2px 5px;min-height:27px;height:auto}
+.items input{flex:1 1 50px;width:auto;min-width:50px;height:22px;font-size:10.5px}
+.chips{display:contents}
+.chip{display:inline-flex;align-items:center;gap:3px;max-width:100%;padding:1px 4px 1px 6px;border-radius:5px;background:var(--chip);
+  font-size:9.5px;font-weight:600;color:var(--ink);animation:chipIn .4s var(--spring)}
+.chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip button{flex:none;width:12px;height:12px;border:0;border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--label);cursor:pointer;
+  transition:background-color .2s,color .2s,rotate .3s var(--spring)}
+.chip button:hover{background:var(--navy);color:#fff;rotate:90deg}
+.chip.out{animation:chipOut .2s ease-in forwards}
+@keyframes chipIn{from{opacity:0;scale:.4}}
+@keyframes chipOut{to{opacity:0;scale:.5}}
+
+/* ---------- button ---------- */
+.cta-wrap{display:flex;justify-content:center;margin-top:6px}
+.cta{
+  position:relative;overflow:hidden;width:100%;height:30px;border:0;border-radius:8px;cursor:pointer;
+  background:var(--navy);color:#fff;font-size:11px;font-weight:700;
+  display:grid;place-items:center;
+  box-shadow:0 6px 14px -6px rgba(10,17,40,.5);
+  transition:width .55s var(--spring),border-radius .55s var(--spring),background-color .35s,transform .28s var(--spring),box-shadow .28s;
+}
+.cta::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.22) 50%,transparent 65%);translate:-120% 0}
+.cta[data-s="idle"]:is(:hover,.hov){transform:translateY(-2px) scale(1.02);box-shadow:0 12px 20px -10px rgba(10,17,40,.6)}
+.cta[data-s="idle"]:is(:hover,.hov)::after{translate:120% 0;transition:translate .8s ease}
+.cta[data-s="idle"]:is(:active,.prs){transform:translateY(0) scale(.96);box-shadow:0 4px 8px -6px rgba(10,17,40,.6)}
+.cta.pop{animation:ready .6s var(--spring)}
+@keyframes ready{40%{scale:1.05}}
+.lbl{display:inline-flex;align-items:center;transition:opacity .2s,scale .3s var(--ease)}
+.arrow{width:0;margin-left:0;opacity:0;translate:-8px 0;flex:none;transition:width .3s var(--ease),margin .3s var(--ease),opacity .25s,translate .3s var(--ease)}
+.cta[data-s="idle"]:is(:hover,.hov) .arrow{width:14px;margin-left:6px;opacity:1;translate:0 0}
+.spin,.ok{position:absolute;left:50%;top:50%;margin:-9px 0 0 -9px;width:18px;height:18px;opacity:0;scale:.4;transition:opacity .25s,scale .35s var(--spring)}
+.spin{border-radius:50%;border:2px solid rgba(255,255,255,.28);border-top-color:#fff;animation:turn .7s linear infinite}
+@keyframes turn{to{rotate:360deg}}
+.ok path{fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:26;stroke-dashoffset:26;transition:stroke-dashoffset .4s ease .15s}
+.cta[data-s="loading"],.cta[data-s="success"]{width:36px;border-radius:18px;pointer-events:none}
+.cta[data-s="loading"] .lbl,.cta[data-s="success"] .lbl{opacity:0;scale:.6}
+.cta[data-s="loading"] .spin{opacity:1;scale:1}
+.cta[data-s="success"]{background:var(--green);animation:okpop .5s var(--spring)}
+.cta[data-s="success"] .ok{opacity:1;scale:1}
+.cta[data-s="success"] .ok path{stroke-dashoffset:0}
+@keyframes okpop{40%{scale:1.2}}
+.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.35);pointer-events:none;scale:0;animation:rip .65s ease-out forwards}
+@keyframes rip{to{scale:1;opacity:0}}
+.busy .ctl,.busy .chip button{pointer-events:none}
+
+/* ---------- confirmation face ---------- */
+.done{text-align:center}
+.badge{position:relative;width:34px;height:34px;margin:1px auto 4px}
+.badge::before,.badge::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--green);opacity:0}
+.badge svg{position:relative;display:block;width:100%;height:100%;overflow:visible}
+.badge .bg{fill:var(--green-soft);transform-origin:center;scale:.3;transition:scale .55s var(--spring) .5s}
+.badge .ring{fill:none;stroke:var(--green);stroke-width:3;stroke-linecap:round;stroke-dasharray:190;stroke-dashoffset:190;transform:rotate(-90deg);transform-origin:center}
+.badge .tick{fill:none;stroke:var(--green);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40}
+.done.showing .badge .bg{scale:1}
+.done.showing .badge .ring{stroke-dashoffset:0;transition:stroke-dashoffset .7s var(--ease) .7s}
+.done.showing .badge .tick{stroke-dashoffset:0;transition:stroke-dashoffset .45s ease 1.25s}
+.done.showing .badge::before{animation:wave 1.6s ease-out 1.5s 2}
+.done.showing .badge::after{animation:wave 1.6s ease-out 1.9s 2}
+@keyframes wave{0%{opacity:.28;scale:.8}100%{opacity:0;scale:1.7}}
+.done h2{margin:0;font-size:13px;font-weight:800;letter-spacing:-.015em}
+.done h2:focus{outline:none}
+.po{display:inline-block;margin-top:2px;padding:2px 6px;border-radius:5px;background:var(--chip);font-family:'DM Mono',ui-monospace,monospace;font-size:9.5px;font-weight:500;color:var(--label)}
+.sum{margin:5px 0 0;padding:2px 8px;border:1px solid var(--bd);border-radius:8px;text-align:left}
+.sum div{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:3px 0;border-bottom:1px solid var(--bd)}
+.sum div:last-child{border-bottom:0}
+.sum dt{font-size:9.5px;font-weight:600;color:var(--label)}
+.sum dd{margin:0;min-width:0;font-size:10px;font-weight:700;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ---------- auto-demo cursor + toggle ---------- */
+.cur{display:none!important}
+.pill{display:none!important}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
+}
+</style>
+
+<main class="wrap">
+  <div class="scene" id="scene">
+    <div class="tilt" id="tilt">
+      <article class="card" id="card" data-view="form">
+
+        <form class="face" id="form" novalidate>
+          <h1 class="stg" style="--i:0">New Purchase Order</h1>
+
+          <div class="field stg" style="--i:1">
+            <label for="supplier">Supplier</label>
+            <div class="ctl" id="ctlSupplier">
+              <select id="supplier" class="empty" required>
+                <option value="" disabled selected>Select supplier</option>
+                <option value="Malabar Provisions">Malabar Provisions</option>
+                <option value="Kerala Spices Co">Kerala Spices Co</option>
+                <option value="Metro Wholesale">Metro Wholesale</option>
+                <option value="Green Leaf Organics">Green Leaf Organics</option>
+                <option value="Sunrise Foods Pvt Ltd">Sunrise Foods Pvt Ltd</option>
+              </select>
+              <svg class="chev" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+
+          <div class="field stg" style="--i:2">
+            <label for="date">Order Date</label>
+            <div class="ctl" id="ctlDate"><input type="date" id="date" class="empty" required></div>
+          </div>
+
+          <div class="field stg" style="--i:3">
+            <label for="items">Items</label>
+            <div class="ctl items" id="ctlItems"><span class="chips" id="chips"></span><input type="text" id="items" placeholder="Add items..." autocomplete="off" enterkeyhint="done"></div>
+          </div>
+
+          <div class="cta-wrap stg" style="--i:4">
+            <button class="cta" id="cta" type="submit" data-s="idle">
+              <span class="lbl">Create order<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="spin" aria-hidden="true"></span>
+              <svg class="ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+            </button>
+          </div>
+        </form>
+
+        <section class="face done" id="done" aria-live="polite">
+          <div class="badge stg" style="--i:0" aria-hidden="true">
+            <svg viewBox="0 0 76 76"><circle class="bg" cx="38" cy="38" r="34"/><circle class="ring" cx="38" cy="38" r="30"/><path class="tick" d="M25 39l9 9 18-19"/></svg>
+          </div>
+          <h2 class="stg" style="--i:1" id="doneTitle" tabindex="-1">Purchase order created</h2>
+          <span class="po stg" style="--i:2" id="poNo">PO-2041</span>
+          <dl class="sum stg" style="--i:3">
+            <div><dt>Supplier</dt><dd id="sSupplier">-</dd></div>
+            <div><dt>Order date</dt><dd id="sDate">-</dd></div>
+            <div><dt>Items</dt><dd id="sItems">-</dd></div>
+          </dl>
+          <div class="cta-wrap stg" style="--i:4">
+            <button class="cta" id="again" type="button" data-s="idle"><span class="lbl">Create another order<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+          </div>
+        </section>
+
+      </article>
+    </div>
+  </div>
+
+</main>
+
+<script>
+(function(){
+'use strict';
+var $=function(s){return document.querySelector(s)};
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var tilt=$('#tilt'),card=$('#card'),form=$('#form'),done=$('#done');
+var cta=$('#cta'),again=$('#again'),sup=$('#supplier'),date=$('#date'),itemsIn=$('#items'),chipsEl=$('#chips');
+var ctlSup=$('#ctlSupplier'),ctlDate=$('#ctlDate'),ctlItems=$('#ctlItems');
+var cur=$('#cur'),toggle=$('#auto'),toggleTxt=$('#autoTxt');
+var SAMPLE=['Basmati Rice 25 kg','Sunflower Oil 15 L'];
+window.addEventListener('scroll',function(){window.scrollTo(0,0)},{passive:false});
+var list=[],busy=false,ready=false,poNo=2041,autoOn=false,run=0;
+var CANCEL={};
+
+function wait(ms){return new Promise(function(r){setTimeout(r,reduce?Math.min(ms,40):ms)})}
+function sleep(ms,id){return new Promise(function(res,rej){setTimeout(function(){id!==run?rej(CANCEL):res()},reduce?Math.min(ms,40):ms)})}
+function todayISO(){var d=new Date(),p=function(n){return String(n).padStart(2,'0')};return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())}
+function prettyDate(v){var a=v.split('-');return new Date(+a[0],+a[1]-1,+a[2]).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}
+function flash(el){var c=el.closest('.ctl');c.classList.remove('flash');void c.offsetWidth;c.classList.add('flash')}
+document.addEventListener('animationend',function(e){
+  var n=e.animationName,t=e.target;
+  if(n==='flash')t.classList.remove('flash');
+  if(n==='ready')t.classList.remove('pop');
+  if(n==='lift')t.classList.remove('lift');
+  if(n==='cring')cur.classList.remove('clk');
+});
+
+/* ---------- field state ---------- */
+function check(){
+  sup.classList.toggle('empty',!sup.value);
+  date.classList.toggle('empty',!date.value);
+  var ok=!!(sup.value&&date.value&&list.length);
+  if(ok&&!ready){cta.classList.remove('pop');void cta.offsetWidth;cta.classList.add('pop')}
+  ready=ok;
+}
+sup.addEventListener('change',check);
+date.addEventListener('input',check);
+date.addEventListener('change',check);
+
+function addItem(text){
+  text=text.trim();
+  if(!text)return;
+  for(var i=0;i<list.length;i++)if(list[i].toLowerCase()===text.toLowerCase())return;
+  list.push(text);
+  var c=document.createElement('span');c.className='chip';c.dataset.v=text;
+  var t=document.createElement('span');t.textContent=text;
+  var x=document.createElement('button');x.type='button';x.setAttribute('aria-label','Remove '+text);
+  x.innerHTML='<svg width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
+  c.appendChild(t);c.appendChild(x);chipsEl.appendChild(c);
+  check();
+}
+function removeItem(chip){
+  var v=chip.dataset.v;
+  list=list.filter(function(n){return n!==v});
+  chip.classList.add('out');
+  setTimeout(function(){chip.remove()},reduce?0:190);
+  check();
+}
+chipsEl.addEventListener('click',function(e){var b=e.target.closest('button');if(b)removeItem(b.parentNode)});
+ctlItems.addEventListener('click',function(e){if(!e.target.closest('button'))itemsIn.focus()});
+itemsIn.addEventListener('keydown',function(e){
+  if(e.key==='Enter'||e.key===','){e.preventDefault();addItem(itemsIn.value);itemsIn.value=''}
+  else if(e.key==='Backspace'&&!itemsIn.value&&list.length){removeItem(chipsEl.lastElementChild)}
+});
+itemsIn.addEventListener('blur',function(){if(itemsIn.value.trim()){addItem(itemsIn.value);itemsIn.value=''}});
+
+/* ---------- ripple ---------- */
+function ripple(btn,e){
+  var r=btn.getBoundingClientRect(),s=Math.max(r.width,r.height)*2.2;
+  var el=document.createElement('span');el.className='rip';
+  el.style.width=el.style.height=s+'px';
+  el.style.left=(e.clientX-r.left-s/2)+'px';
+  el.style.top=(e.clientY-r.top-s/2)+'px';
+  btn.appendChild(el);
+  el.addEventListener('animationend',function(){el.remove()});
+}
+[cta,again].forEach(function(b){b.addEventListener('pointerdown',function(e){if(b.dataset.s==='idle')ripple(b,e)})});
+
+/* ---------- views (3D flip) ---------- */
+function show(which){
+  var f=which==='form';
+  card.dataset.view=which;
+  done.classList.toggle('showing',!f);
+  form.inert=!f;done.inert=f;
+  card.classList.remove('lift');void card.offsetWidth;card.classList.add('lift');
+}
+function resetData(){
+  sup.value='';date.value='';itemsIn.value='';
+  list=[];chipsEl.textContent='';ready=false;
+  cta.dataset.s='idle';cta.classList.remove('hov','prs');
+  form.classList.remove('busy');
+  check();
+}
+function toForm(){resetData();show('form')}
+
+/* ---------- create-order sequence (shared by manual and auto) ---------- */
+async function autofill(){
+  if(!sup.value){sup.value=SAMPLE_SUP;check();flash(sup);await wait(330)}
+  if(!date.value){date.value=todayISO();check();flash(date);await wait(330)}
+  if(!list.length){
+    for(var i=0;i<SAMPLE.length;i++){addItem(SAMPLE[i]);await wait(210)}
+    flash(itemsIn);await wait(280);
+  }
+}
+var SAMPLE_SUP='Malabar Provisions';
+async function runSubmit(){
+  if(busy)return;
+  busy=true;form.classList.add('busy');
+  if(itemsIn.value.trim()){addItem(itemsIn.value);itemsIn.value=''}
+  await autofill();
+  await wait(300);
+  cta.classList.remove('hov','prs');
+  cta.dataset.s='loading';
+  await wait(1200);
+  cta.dataset.s='success';
+  await wait(950);
+  $('#poNo').textContent='PO-'+(poNo++);
+  $('#sSupplier').textContent=sup.value;
+  $('#sDate').textContent=prettyDate(date.value);
+  $('#sItems').textContent=list.length+(list.length===1?' item':' items');
+  show('done');
+  await wait(1500);
+  if(!autoOn)$('#doneTitle').focus({preventScroll:true});
+  busy=false;
+}
+form.addEventListener('submit',function(e){e.preventDefault();runSubmit()});
+again.addEventListener('click',function(){
+  toForm();
+  if(!autoOn)setTimeout(function(){sup.focus({preventScroll:true})},reduce?0:900);
+});
+
+/* ---------- virtual cursor ---------- */
+var aim=null,fx=.5,fy=.5,curX=-100,curY=-100,curOn=false;
+function setAim(el,x,y){aim=el;fx=x;fy=y}
+function curShow(on){curOn=on;if(cur)cur.classList.toggle('on',on)}
+function clickFx(){if(cur){cur.classList.remove('clk');void cur.offsetWidth;cur.classList.add('clk')}}
+function startCursor(){
+  var r=card.getBoundingClientRect();
+  curX=r.right-20;curY=r.bottom+70;
+  if(cur)cur.style.transform='translate('+curX+'px,'+curY+'px)';
+  curShow(true);
+}
+
+/* ---------- auto demo ---------- */
+function setAutoUI(on){
+  autoOn=on;
+  if(toggle)toggle.setAttribute('aria-pressed',on?'true':'false');
+  if(toggleTxt)toggleTxt.textContent=on?'Pause auto demo':'Play auto demo';
+}
+function stopAuto(){
+  if(!autoOn)return;
+  run++;
+  setAutoUI(false);
+  curShow(false);aim=null;
+  cta.classList.remove('hov','prs');
+}
+async function autoLoop(){
+  if(autoOn)return;
+  var id=++run;
+  setAutoUI(true);
+  try{
+    await sleep(1000,id);
+    while(id===run){
+      if(!busy&&card.dataset.view!=='form')toForm();
+      await sleep(350,id);
+      sup.value=SAMPLE_SUP;check();flash(sup);await sleep(800,id);
+      date.value=todayISO();check();flash(date);await sleep(800,id);
+
+      for(var k=0;k<SAMPLE.length;k++){
+        var t=SAMPLE[k];
+        for(var c=1;c<=t.length;c++){itemsIn.value=t.slice(0,c);await sleep(25,id)}
+        await sleep(150,id);
+        addItem(t);itemsIn.value='';
+        await sleep(250,id);
+      }
+      itemsIn.blur();
+      await sleep(300,id);
+
+      cta.classList.add('hov');await sleep(500,id);
+      cta.classList.add('prs');
+      var br=cta.getBoundingClientRect();
+      ripple(cta,{clientX:br.left+br.width/2,clientY:br.top+br.height/2});
+      await sleep(180,id);
+      cta.classList.remove('prs','hov');
+      await runSubmit();
+      await sleep(2600,id);
+      toForm();
+      await sleep(1800,id);
+    }
+  }catch(e){if(e!==CANCEL)throw e}
+}
+if(toggle)toggle.addEventListener('click',function(){
+  if(autoOn){stopAuto();return}
+  if(!busy)toForm();
+  autoLoop();
+});
+/* a real click, tap or key press inside the card hands control to the person */
+['pointerdown','keydown'].forEach(function(ev){card.addEventListener(ev,function(){
+  stopAuto();
+  setTimeout(function(){ if(!autoOn) autoLoop(); }, 4000);
+},true)});
+
+/* ---------- 3D sway ---------- */
+var px=0,py=0,sx=0,sy=0,lastMove=-1e9,intro=0,over=false;
+window.addEventListener('pointermove',function(e){px=(e.clientX/window.innerWidth-.5)*2;py=(e.clientY/window.innerHeight-.5)*2;lastMove=performance.now()},{passive:true});
+card.addEventListener('pointerenter',function(){over=true});
+card.addEventListener('pointerleave',function(){over=false});
+var last=performance.now();
+function tick(now){
+  var dt=Math.min(.05,(now-last)/1000);last=now;
+  if(!reduce){
+    var t=now/1000,tY,tX;
+    if(now-lastMove<2500){var a=over?.5:1;tY=px*a;tX=py*a}
+    else{tY=Math.sin(t*.6);tX=Math.sin(t*.45+1.2)*.6}
+    sx+=(tX-sx)*Math.min(1,dt*3.5);sy+=(tY-sy)*Math.min(1,dt*3.5);
+    intro+=(1-intro)*Math.min(1,dt*2.2);
+    var k=1-intro;
+    var ry=sy*13-k*48,rx=-sx*8+k*22,rz=Math.sin(t*.5)*1.1,fyy=Math.sin(t*.9)*6,sc=.88+.12*intro;
+    tilt.style.transform='translateY('+fyy.toFixed(1)+'px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) rotateZ('+rz.toFixed(2)+'deg) scale('+sc.toFixed(3)+')';
+  }
+  if(curOn&&aim){
+    var r=aim.getBoundingClientRect();
+    var tx=r.left+r.width*fx,ty=r.top+r.height*fy,e=Math.min(1,dt*7);
+    curX+=(tx-curX)*e;curY+=(ty-curY)*e;
+    cur.style.transform='translate('+curX.toFixed(1)+'px,'+curY.toFixed(1)+'px)';
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+/* ---------- boot ---------- */
+show('form');
+card.classList.remove('lift');
+check();
+if(!reduce)autoLoop();
+})();
+</script>
+
+</body></html>

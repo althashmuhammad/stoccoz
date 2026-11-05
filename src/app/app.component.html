@@ -1,0 +1,27 @@
+<app-navbar [activePage]="activePage()" (navigatePage)="onNavigate($event)"></app-navbar>
+
+@if (activePage() === 'about') {
+  <main class="about-main-wrapper">
+    <app-about-page></app-about-page>
+  </main>
+} @else if (activePage() === 'pricing') {
+  <main class="pricing-main-wrapper">
+    <app-pricing (navigateAbout)="onNavigate('about')"></app-pricing>
+  </main>
+} @else {
+  <main #mainRef>
+    <app-hero (navigateAbout)="onNavigate('about')"></app-hero>
+    <app-warehouse-intro></app-warehouse-intro>
+    <app-warehouse-capabilities></app-warehouse-capabilities>
+    <app-vansales-transition></app-vansales-transition>
+    <app-connected-operations></app-connected-operations>
+    <app-clients></app-clients>
+  </main>
+}
+
+<app-footer
+  (navigateAbout)="onNavigate('about')"
+  (navigatePricing)="onNavigate('pricing')"
+  (navigateHome)="onNavigate('home')"
+></app-footer>
+
