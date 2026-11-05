@@ -254,15 +254,11 @@ import { Component, ElementRef, AfterViewInit, OnDestroy, signal } from '@angula
           <div class="about-shell">
             <!-- Left Column: Contact Channels & Context -->
             <div class="about-left-col">
-              <div class="about-pill-tag">
-                <span class="pill-dot"></span>
-                <span>Get in Touch</span>
-              </div>
+              <p class="about-eyebrow-simple">GET IN TOUCH</p>
 
               <h2 class="about-main-headline">
                 We’d love to<br />
-                hear from<br />
-                <span class="about-highlight">you.</span>
+                hear from you.
               </h2>
 
               <p class="about-lead-copy">
@@ -271,89 +267,46 @@ import { Component, ElementRef, AfterViewInit, OnDestroy, signal } from '@angula
 
               <!-- Direct Reach Channels -->
               <div class="about-contact-channels">
-                <div class="about-channel-card">
-                  <div class="about-channel-icon-box">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <div class="about-channel-row">
+                  <div class="about-channel-icon-box" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                       <rect x="2" y="4" width="20" height="16" rx="2" />
                       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                     </svg>
                   </div>
                   <div class="about-channel-details">
-                    <small>Email</small>
+                    <small>EMAIL</small>
                     <strong><a href="mailto:info@stoccoz.com">info&#64;stoccoz.com</a></strong>
                   </div>
                 </div>
 
-                <div class="about-channel-card">
-                  <div class="about-channel-icon-box">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <div class="about-channel-row">
+                  <div class="about-channel-icon-box" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                     </svg>
                   </div>
                   <div class="about-channel-details">
-                    <small>Phone</small>
+                    <small>PHONE</small>
                     <strong><a href="tel:+919633542550">+91 9633542550</a></strong>
                   </div>
                 </div>
 
-                <div class="about-channel-card">
-                  <div class="about-channel-icon-box">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <div class="about-channel-row">
+                  <div class="about-channel-icon-box" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                       <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
                     </svg>
                   </div>
                   <div class="about-channel-details">
-                    <small>LinkedIn</small>
+                    <small>LINKEDIN</small>
                     <strong><a href="https://linkedin.com/company/stoccoz" target="_blank" rel="noopener noreferrer">linkedin.com/company/stoccoz</a></strong>
                   </div>
                 </div>
               </div>
-
-              <!-- 3 Floating Badges along Curved Connection Path -->
-              <div class="about-nodes-container" aria-label="Core operational pillars">
-                <svg class="nodes-curved-arc" viewBox="0 0 160 280" fill="none" preserveAspectRatio="none" aria-hidden="true">
-                  <path d="M 30 20 Q 90 140 30 260" stroke="#E2E8F0" stroke-width="1.8" stroke-dasharray="4 4" />
-                  <circle cx="30" cy="20" r="4.5" fill="#FFC400" stroke="#FFFFFF" stroke-width="2" />
-                  <circle cx="75" cy="140" r="4.5" fill="#FFC400" stroke="#FFFFFF" stroke-width="2" />
-                  <circle cx="30" cy="260" r="4.5" fill="#FFC400" stroke="#FFFFFF" stroke-width="2" />
-                </svg>
-
-                <div class="about-node-item node-warehouse">
-                  <div class="node-icon-box">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#08122d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M3 10L12 3l9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10z" />
-                      <rect x="9" y="13" width="6" height="8" fill="#FFC400" stroke="#08122d" stroke-width="1.8" />
-                    </svg>
-                  </div>
-                  <span class="node-label">Warehouse<br />Management</span>
-                </div>
-
-                <div class="about-node-item node-fleet">
-                  <div class="node-icon-box">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#08122d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="7" r="4" fill="#FFEAA0" />
-                      <path d="M5.5 21v-2a6.5 6.5 0 0 1 13 0v2" fill="#FFC400" stroke="#08122d" />
-                      <path d="M8 7h8" stroke="#08122d" stroke-width="2" />
-                    </svg>
-                  </div>
-                  <span class="node-label">Drivers &amp;<br />Fleet</span>
-                </div>
-
-                <div class="about-node-item node-inventory">
-                  <div class="node-icon-box">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#08122d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M21 8l-9-5-9 5 9 5 9-5z" fill="#FFEAA0" />
-                      <path d="M3 8v8l9 5 9-5V8" />
-                      <path d="M12 13v8" />
-                      <path d="M7.5 5.5l9 5" stroke="#FFC400" stroke-width="2.5" />
-                    </svg>
-                  </div>
-                  <span class="node-label">Inventory &amp;<br />Distribution</span>
-                </div>
-              </div>
             </div>
 
-            <!-- Right Column: High-Impact Contact / Demo Form -->
+            <!-- Right Column: Simple Contact / Demo Form (Exact Reference Design) -->
             <div class="about-right-col">
               <div class="get-in-touch-card">
                 <h3 class="card-main-title">Send Us a Message</h3>
@@ -374,66 +327,40 @@ import { Component, ElementRef, AfterViewInit, OnDestroy, signal } from '@angula
                 <form class="about-contact-form" (submit)="onSubmit($event)">
                   <div class="form-row-2">
                     <div class="form-field">
-                      <label for="fname">First name <em>*</em></label>
+                      <label for="fname">First name *</label>
                       <input id="fname" type="text" required placeholder="Enter your first name" />
                     </div>
                     <div class="form-field">
-                      <label for="lname">Last name <em>*</em></label>
+                      <label for="lname">Last name *</label>
                       <input id="lname" type="text" required placeholder="Enter your last name" />
                     </div>
                   </div>
 
                   <div class="form-field">
-                    <label for="email">Work email <em>*</em></label>
-                    <div class="input-with-icon">
-                      <span class="input-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <rect x="2" y="4" width="20" height="16" rx="2" />
-                          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                        </svg>
-                      </span>
-                      <input id="email" type="email" required placeholder="name&#64;company.com" />
-                    </div>
+                    <label for="email">Work email *</label>
+                    <input id="email" type="email" required placeholder="Enter your work email" />
                   </div>
 
                   <div class="form-row-2">
                     <div class="form-field">
                       <label for="cname">Company name</label>
-                      <div class="input-with-icon">
-                        <span class="input-icon" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="4" y="2" width="16" height="20" rx="2" />
-                            <path d="M9 22v-4h6v4" />
-                            <path d="M8 6h.01M16 6h.01M8 10h.01M16 10h.01M8 14h.01M16 14h.01" />
-                          </svg>
-                        </span>
-                        <input id="cname" type="text" placeholder="Your company" />
-                      </div>
+                      <input id="cname" type="text" placeholder="Your company" />
                     </div>
 
                     <div class="form-field">
                       <label for="phone">Phone number</label>
-                      <div class="input-with-icon phone-input-group">
-                        <span class="input-icon" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                          </svg>
-                        </span>
-                        <div class="country-prefix">+91 <span>⌄</span></div>
-                        <input id="phone" type="tel" placeholder="96335 42550" />
-                      </div>
+                      <input id="phone" type="tel" placeholder="Enter phone number" />
                     </div>
                   </div>
 
                   <div class="form-field">
-                    <label for="message">How can we help? <em>*</em></label>
+                    <label for="message">How can we help? *</label>
                     <textarea id="message" required rows="4" placeholder="Tell us about your requirements, questions, or request a live demo..."></textarea>
                   </div>
 
                   <div class="form-checkbox-field">
                     <label class="checkbox-container">
                       <input type="checkbox" required />
-                      <span class="checkbox-custom"></span>
                       <span class="checkbox-text">
                         I agree to the <a href="#privacy">Privacy Policy</a> and <a href="#terms">Terms of Service</a>.
                       </span>

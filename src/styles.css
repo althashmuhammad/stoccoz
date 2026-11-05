@@ -5781,6 +5781,15 @@ app-geometric-grid-background {
   position: relative;
 }
 
+.about-eyebrow-simple {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #94a3b8;
+  text-transform: uppercase;
+  margin: 0 0 16px 0;
+}
+
 .about-contact-eyebrow {
   display: flex;
   align-items: center;
@@ -5800,25 +5809,25 @@ app-geometric-grid-background {
 }
 
 .about-main-headline {
-  font-size: clamp(38px, 4.3vw, 56px);
-  font-weight: 800;
-  line-height: 1.06;
+  font-size: clamp(34px, 3.8vw, 50px);
+  font-weight: 700;
+  line-height: 1.14;
   color: #08122d;
-  letter-spacing: -0.035em;
-  margin: 0 0 16px;
+  letter-spacing: -0.025em;
+  margin: 0 0 18px 0;
 }
 
 .about-highlight {
-  color: #F5B400;
+  color: #08122d;
   font-style: normal;
 }
 
 .about-lead-copy {
   font-size: 15px;
-  color: #4a5a85;
-  line-height: 1.6;
+  color: #64748b;
+  line-height: 1.65;
   max-width: 440px;
-  margin: 0 0 32px;
+  margin: 0 0 32px 0;
 }
 
 /* 3 Floating Badges Along Arc */
@@ -5932,29 +5941,29 @@ app-geometric-grid-background {
   display: block;
 }
 
-/* Right Column: Get in Touch Card */
+/* Right Column: Simple Modern Card (Exact Image Reference) */
 .get-in-touch-card {
   background: #ffffff;
-  border-radius: 28px;
-  border: 1px solid #edf0f5;
-  box-shadow: 0 24px 60px rgba(8, 18, 45, 0.08);
-  padding: 42px 46px;
+  border-radius: 24px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+  padding: clamp(28px, 3.8vw, 44px);
   position: relative;
 }
 
 .card-main-title {
-  font-size: clamp(28px, 2.5vw, 36px);
-  font-weight: 800;
+  font-size: clamp(24px, 2.2vw, 28px);
+  font-weight: 700;
   color: #08122d;
-  letter-spacing: -0.025em;
-  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px 0;
 }
 
 .card-subtitle {
   font-size: 14px;
   color: #64748b;
-  line-height: 1.5;
-  margin: 0 0 26px;
+  line-height: 1.55;
+  margin: 0 0 26px 0;
 }
 
 .form-row-2 {
@@ -5971,96 +5980,56 @@ app-geometric-grid-background {
 }
 
 .form-field label {
-  font-size: 12.5px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
   color: #08122d;
-  margin-bottom: 6px;
+  margin-bottom: 7px;
 }
 
 .form-field label em {
-  color: #ef4444;
+  color: #08122d;
   font-style: normal;
+  margin-left: 2px;
 }
 
 .form-field input,
 .form-field textarea {
   width: 100%;
   border: 1px solid #e2e8f0;
-  border-radius: 10px;
+  border-radius: 9px;
   background: #ffffff;
   color: #08122d;
-  font-size: 13.5px;
+  font-size: 14px;
   font-family: inherit;
   box-sizing: border-box;
+  padding: 0 16px;
+  height: 46px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.form-field input {
-  height: 44px;
-  padding: 0 14px;
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
 }
 
 .form-field textarea {
-  padding: 12px 14px;
+  padding: 12px 16px;
   resize: vertical;
-  min-height: 95px;
+  min-height: 100px;
+  height: auto;
+  line-height: 1.5;
 }
 
 .form-field input:focus,
 .form-field textarea:focus {
   outline: none;
-  border-color: #08122d;
-  box-shadow: 0 0 0 3px rgba(8, 18, 45, 0.08);
-}
-
-.input-with-icon {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.input-with-icon .input-icon {
-  position: absolute;
-  left: 14px;
-  color: #94a3b8;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  z-index: 2;
-}
-
-.input-with-icon input {
-  padding-left: 38px;
-}
-
-.phone-input-group .country-prefix {
-  position: absolute;
-  left: 38px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 12.5px;
-  font-weight: 600;
-  color: #08122d;
-  padding-right: 8px;
-  border-right: 1px solid #e2e8f0;
-  height: 24px;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.phone-input-group .country-prefix span {
-  font-size: 10px;
-  color: #94a3b8;
-}
-
-.phone-input-group input {
-  padding-left: 102px;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .form-checkbox-field {
-  margin: 4px 0 20px;
+  margin: 8px 0 22px;
 }
 
 .checkbox-container {
@@ -6069,44 +6038,51 @@ app-geometric-grid-background {
   gap: 10px;
   cursor: pointer;
   user-select: none;
-  font-size: 12.5px;
+  font-size: 13px;
   color: #475569;
 }
 
 .checkbox-container input {
   width: 16px;
   height: 16px;
-  accent-color: #FFC400;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  accent-color: #08122d;
   cursor: pointer;
+  margin: 0;
 }
 
 .checkbox-container a {
   color: #08122d;
   font-weight: 600;
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .button-submit-send {
   width: 100%;
-  height: 50px;
-  border-radius: 12px;
-  background: #FFC400;
-  color: #08122d;
-  font-size: 15px;
-  font-weight: 700;
+  height: 48px;
+  border-radius: 10px;
+  background: #1e2433;
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 600;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .button-submit-send:hover {
-  background: #f0b700;
+  background: #0f172a;
   transform: translateY(-1px);
-  box-shadow: 0 8px 22px rgba(245, 180, 0, 0.3);
+}
+
+.button-submit-send:active {
+  transform: translateY(0);
 }
 
 .direct-reach-divider {
@@ -6564,52 +6540,53 @@ app-geometric-grid-background {
   line-height: 1.45;
 }
 
-/* 5. GET IN TOUCH / CHANNELS */
+/* 5. GET IN TOUCH / CHANNELS (Simple Divided List matching reference image) */
 .about-contact-channels {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 28px;
+  max-width: 440px;
+  margin-bottom: 24px;
 }
 
-.about-channel-card {
-  background: #ffffff;
-  border: 1px solid rgba(8, 18, 45, 0.08);
-  border-radius: 14px;
-  padding: 16px 20px;
+.about-channel-row {
   display: flex;
   align-items: center;
   gap: 16px;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(8, 18, 45, 0.02);
+  padding: 16px 0;
+  border-bottom: 1px solid #f1f5f9;
 }
 
-.about-channel-card:hover {
-  transform: translateY(-2px);
-  border-color: #FFC400;
-  box-shadow: 0 10px 24px rgba(8, 18, 45, 0.05);
+.about-channel-row:last-child {
+  border-bottom: none;
 }
 
 .about-channel-icon-box {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(255, 196, 0, 0.16);
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   color: #08122d;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: none;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.about-channel-row:hover .about-channel-icon-box {
+  border-color: #cbd5e1;
+  background: #f8fafc;
 }
 
 .about-channel-details small {
   display: block;
-  font-size: 11.5px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #71717a;
-  margin-bottom: 2px;
+  color: #94a3b8;
+  margin-bottom: 3px;
 }
 
 .about-channel-details strong,
@@ -6618,11 +6595,11 @@ app-geometric-grid-background {
   font-weight: 700;
   color: #08122d;
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 .about-channel-details strong a:hover {
-  color: #dca100;
-  text-decoration: underline;
+  color: #2563eb;
 }
 
 @media (max-width: 1024px) {
