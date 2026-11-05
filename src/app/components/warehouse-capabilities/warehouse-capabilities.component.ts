@@ -221,142 +221,158 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
           role="region"
           aria-label="Purchasing"
         >
-          <div class="cap-heading">
-            <div>
-              <h3>Purchasing</h3>
-              <p>Manage suppliers, purchase orders and incoming stock with ease.</p>
+          <!-- Left Content (approx 42%) -->
+          <div class="purchasing-col-left">
+            <div class="cap-heading">
+              <div>
+                <h3>Purchasing</h3>
+                <p>Manage suppliers, purchase orders and incoming stock with ease.</p>
+              </div>
             </div>
+
+            <!-- DEFAULT / COLLAPSED STATE: 3 Feature Labels Vertically Aligned -->
+            <div class="purchasing-default-content">
+              <div class="purchasing-feature-list" aria-label="Core purchasing capabilities">
+                <div class="purchasing-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Purchase Order Management</span>
+                </div>
+                <div class="purchasing-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Supplier &amp; Vendor Management</span>
+                </div>
+                <div class="purchasing-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Purchase Invoice &amp; Payment Tracking</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- EXPANDED STATE: Interactive Accordion -->
+            <div class="purchasing-expanded-section">
+              <div class="inventory-dynamics-header">
+                <span class="dynamics-section-label">Core Capabilities Overview</span>
+              </div>
+
+              <div class="inventory-dynamics-accordion" role="tablist">
+                <!-- 1. Purchase Order Management -->
+                <div
+                  class="dynamics-item"
+                  [class.is-active]="activePurchasingItem() === 'po'"
+                  (click)="$event.stopPropagation(); setActivePurchasingItem('po')"
+                  role="tab"
+                  [attr.aria-selected]="activePurchasingItem() === 'po'"
+                >
+                  <div class="dynamics-header">
+                    <div class="dynamics-title-group">
+                      <span class="dynamics-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14 2 14 8 20 8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                          <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                      </span>
+                      <strong>Purchase Order Management</strong>
+                    </div>
+                    <span class="dynamics-badge">Automated POs</span>
+                    <span class="dynamics-arrow">{{ activePurchasingItem() === 'po' ? '−' : '+' }}</span>
+                  </div>
+                  @if (activePurchasingItem() === 'po') {
+                    <div class="dynamics-body">
+                      <p>Create, manage, and track purchase orders with streamlined workflows, supplier details, and accurate order tracking.</p>
+                    </div>
+                  }
+                </div>
+
+                <!-- 2. Supplier & Vendor Management -->
+                <div
+                  class="dynamics-item"
+                  [class.is-active]="activePurchasingItem() === 'vendor'"
+                  (click)="$event.stopPropagation(); setActivePurchasingItem('vendor')"
+                  role="tab"
+                  [attr.aria-selected]="activePurchasingItem() === 'vendor'"
+                >
+                  <div class="dynamics-header">
+                    <div class="dynamics-title-group">
+                      <span class="dynamics-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                          <circle cx="9" cy="7" r="4"/>
+                          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                      </span>
+                      <strong>Supplier &amp; Vendor Management</strong>
+                    </div>
+                    <span class="dynamics-badge">Vendor Catalog</span>
+                    <span class="dynamics-arrow">{{ activePurchasingItem() === 'vendor' ? '−' : '+' }}</span>
+                  </div>
+                  @if (activePurchasingItem() === 'vendor') {
+                    <div class="dynamics-body">
+                      <p>Maintain supplier information, manage vendor relationships, and track purchase history for better procurement control.</p>
+                    </div>
+                  }
+                </div>
+
+                <!-- 3. Purchase Invoice & Payment Tracking -->
+                <div
+                  class="dynamics-item"
+                  [class.is-active]="activePurchasingItem() === 'invoice'"
+                  (click)="$event.stopPropagation(); setActivePurchasingItem('invoice')"
+                  role="tab"
+                  [attr.aria-selected]="activePurchasingItem() === 'invoice'"
+                >
+                  <div class="dynamics-header">
+                    <div class="dynamics-title-group">
+                      <span class="dynamics-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="2" y="5" width="20" height="14" rx="2"/>
+                          <line x1="2" y1="10" x2="22" y2="10"/>
+                          <path d="m7 15 2 2 4-4"/>
+                        </svg>
+                      </span>
+                      <strong>Purchase Invoice &amp; Payment Tracking</strong>
+                    </div>
+                    <span class="dynamics-badge">3-Way Match</span>
+                    <span class="dynamics-arrow">{{ activePurchasingItem() === 'invoice' ? '−' : '+' }}</span>
+                  </div>
+                  @if (activePurchasingItem() === 'invoice') {
+                    <div class="dynamics-body">
+                      <p>Generate purchase invoices, manage supplier payments, and monitor outstanding balances with accurate financial records.</p>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Content (approx 58%) -->
+          <div class="purchasing-col-right">
             <button
               type="button"
-              class="cap-expand-btn"
+              class="cap-expand-btn purchasing-arrow-btn"
               (click)="$event.stopPropagation(); toggleCard('purchasing')"
               [attr.aria-expanded]="expandedCard() === 'purchasing'"
               [attr.aria-label]="expandedCard() === 'purchasing' ? 'Collapse purchasing details' : 'Expand purchasing'"
             >
               <span class="btn-icon">{{ expandedCard() === 'purchasing' ? '✕' : '↗' }}</span>
             </button>
-          </div>
 
-          <!-- DEFAULT / COLLAPSED STATE: 3 Core Capabilities -->
-          <div class="purchasing-default-content">
-            <div class="purchasing-quick-caps" aria-label="Core purchasing capabilities">
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Purchase Order Management</span>
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Supplier &amp; Vendor Management</span>
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Purchase Invoice &amp; Payment Tracking</span>
-            </div>
-          </div>
-
-          <!-- EXPANDED STATE: Interactive Accordion -->
-          <div class="purchasing-expanded-section">
-            <div class="inventory-dynamics-header">
-              <span class="dynamics-section-label">Core Capabilities Overview</span>
-            </div>
-
-            <div class="inventory-dynamics-accordion" role="tablist">
-              <!-- 1. Purchase Order Management -->
-              <div
-                class="dynamics-item"
-                [class.is-active]="activePurchasingItem() === 'po'"
-                (click)="$event.stopPropagation(); setActivePurchasingItem('po')"
-                role="tab"
-                [attr.aria-selected]="activePurchasingItem() === 'po'"
-              >
-                <div class="dynamics-header">
-                  <div class="dynamics-title-group">
-                    <span class="dynamics-icon">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10 9 9 9 8 9"/>
-                      </svg>
-                    </span>
-                    <strong>Purchase Order Management</strong>
-                  </div>
-                  <span class="dynamics-badge">Automated POs</span>
-                  <span class="dynamics-arrow">{{ activePurchasingItem() === 'po' ? '−' : '+' }}</span>
-                </div>
-                @if (activePurchasingItem() === 'po') {
-                  <div class="dynamics-body">
-                    <p>Create, manage, and track purchase orders with streamlined workflows, supplier details, and accurate order tracking.</p>
-                  </div>
-                }
-              </div>
-
-              <!-- 2. Supplier & Vendor Management -->
-              <div
-                class="dynamics-item"
-                [class.is-active]="activePurchasingItem() === 'vendor'"
-                (click)="$event.stopPropagation(); setActivePurchasingItem('vendor')"
-                role="tab"
-                [attr.aria-selected]="activePurchasingItem() === 'vendor'"
-              >
-                <div class="dynamics-header">
-                  <div class="dynamics-title-group">
-                    <span class="dynamics-icon">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                      </svg>
-                    </span>
-                    <strong>Supplier &amp; Vendor Management</strong>
-                  </div>
-                  <span class="dynamics-badge">Vendor Catalog</span>
-                  <span class="dynamics-arrow">{{ activePurchasingItem() === 'vendor' ? '−' : '+' }}</span>
-                </div>
-                @if (activePurchasingItem() === 'vendor') {
-                  <div class="dynamics-body">
-                    <p>Maintain supplier information, manage vendor relationships, and track purchase history for better procurement control.</p>
-                  </div>
-                }
-              </div>
-
-              <!-- 3. Purchase Invoice & Payment Tracking -->
-              <div
-                class="dynamics-item"
-                [class.is-active]="activePurchasingItem() === 'invoice'"
-                (click)="$event.stopPropagation(); setActivePurchasingItem('invoice')"
-                role="tab"
-                [attr.aria-selected]="activePurchasingItem() === 'invoice'"
-              >
-                <div class="dynamics-header">
-                  <div class="dynamics-title-group">
-                    <span class="dynamics-icon">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="5" width="20" height="14" rx="2"/>
-                        <line x1="2" y1="10" x2="22" y2="10"/>
-                        <path d="m7 15 2 2 4-4"/>
-                      </svg>
-                    </span>
-                    <strong>Purchase Invoice &amp; Payment Tracking</strong>
-                  </div>
-                  <span class="dynamics-badge">3-Way Match</span>
-                  <span class="dynamics-arrow">{{ activePurchasingItem() === 'invoice' ? '−' : '+' }}</span>
-                </div>
-                @if (activePurchasingItem() === 'invoice') {
-                  <div class="dynamics-body">
-                    <p>Generate purchase invoices, manage supplier payments, and monitor outstanding balances with accurate financial records.</p>
-                  </div>
-                }
-              </div>
+            <div class="purchase-live-stage-embed">
+              <iframe
+                class="purchase-live-iframe"
+                src="/assets/purchase-orders-live.html"
+                title="New Purchase Order Live Simulation"
+                loading="eager"
+                scrolling="no"
+              ></iframe>
             </div>
           </div>
 
           <!-- Subtle vertical divider in expanded state -->
           <div class="purchasing-v-divider" aria-hidden="true"></div>
-
-          <div class="purchase-live-stage-embed">
-            <iframe
-              class="purchase-live-iframe"
-              src="/assets/purchase-orders-live.html"
-              title="New Purchase Order Live Simulation"
-              loading="eager"
-              scrolling="no"
-            ></iframe>
-          </div>
         </article>
 
         <!-- 3. Sales Orders Card with 3D Live Simulation -->

@@ -33,15 +33,16 @@ button,input,select{font-family:inherit}
 :focus-visible{outline:2px solid var(--navy);outline-offset:3px}
 
 .wrap{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow:hidden;
-  padding:4px;
-  height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow:visible;
+  padding:10px;
+  height:100%;
+  min-height:100%;
   box-sizing:border-box;
   background:transparent!important;
 }
 
 /* ---------- 3D rig ---------- */
-.scene{width:min(290px,94%);perspective:1300px;animation:sceneIn .8s ease backwards;transform-origin:center center}
+.scene{width:min(326px,96%);perspective:1200px;animation:sceneIn .8s ease backwards;transform-origin:center center}
 @keyframes sceneIn{from{opacity:0}}
 .tilt{transform-style:preserve-3d;will-change:transform}
 .card{
@@ -52,14 +53,14 @@ button,input,select{font-family:inherit}
 .card.lift{animation:lift 1.05s ease}
 @keyframes lift{45%{scale:1.04}}
 /* stacked slabs behind the front face give the card a visible edge when it tilts */
-.card::before,.card::after{content:"";position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.card::before,.card::after{content:"";position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .card::before{background:var(--slab1);transform:translateZ(-6px)}
 .card::after{background:var(--slab2);transform:translateZ(-12px)}
 
 .face{
-  grid-area:1/1;min-width:0;padding:11px 13px 10px;border-radius:16px;background:var(--card);
+  grid-area:1/1;min-width:0;padding:14px 17px 13px;border-radius:18px;background:var(--card);
   backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-style:preserve-3d;
-  box-shadow:0 16px 36px -14px var(--shadow),0 0 0 1px var(--edge);
+  box-shadow:0 18px 40px -12px var(--shadow),0 0 0 1px var(--edge);
 }
 .face.done{transform:rotateY(180deg)}
 
@@ -77,39 +78,40 @@ button,input,select{font-family:inherit}
 .done .stg{opacity:0;translate:0 10px;transition:opacity .4s ease,translate .5s var(--spring)}
 .done.showing .stg{opacity:1;translate:0 0;transition-delay:calc(var(--i,0)*70ms + .45s)}
 
-h1{margin:0 0 5px;font-size:13px;font-weight:800;letter-spacing:-.015em}
+h1{margin:0 0 7px;font-size:15px;font-weight:800;letter-spacing:-.015em;color:var(--navy)}
 
 /* ---------- fields ---------- */
-.field{display:block;margin-bottom:4px}
-.field label{display:block;margin-bottom:2px;font-size:10px;font-weight:700;color:var(--label);transition:color .2s}
+.field{display:block;margin-bottom:5px}
+.field label{display:block;margin-bottom:3px;font-size:10.5px;font-weight:700;color:var(--label);transition:color .2s}
 .field:focus-within label{color:var(--navy)}
 .ctl{
-  position:relative;display:flex;align-items:center;min-height:27px;height:27px;padding:0 8px;
-  border:1px solid var(--bd);border-radius:7px;background:#fff;cursor:text;
+  position:relative;display:flex;align-items:center;min-height:30px;height:30px;padding:0 9px;
+  border:1px solid var(--bd);border-radius:8px;background:#fff;cursor:text;
   transition:border-color .2s,box-shadow .25s,translate .25s var(--spring);
 }
 .ctl:hover{border-color:var(--bd-hi)}
 .ctl:focus-within{border-color:var(--navy);box-shadow:0 0 0 2px rgba(10,17,40,.08);translate:0 -1px}
 .ctl.flash{animation:flash .8s ease-out}
 @keyframes flash{0%{border-color:var(--green);box-shadow:0 0 0 0 rgba(18,161,80,.45)}100%{box-shadow:0 0 0 6px rgba(18,161,80,0)}}
-.ctl input,.ctl select{width:100%;height:25px;border:0;outline:0;background:transparent;font-size:11px;font-weight:500;color:var(--ink);min-width:0}
+.ctl input,.ctl select{width:100%;height:27px;border:0;outline:0;background:transparent;font-size:11.5px;font-weight:500;color:var(--ink);min-width:0}
 .ctl input::placeholder{color:var(--muted);font-weight:400}
 .ctl select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:18px}
 .ctl select option{color:var(--ink)}
 .ctl .empty{color:var(--muted);font-weight:400}
-.ctl input[type="date"]{font-family:'DM Mono',ui-monospace,monospace;font-size:10.5px;cursor:pointer}
+.ctl input[type="date"]{font-family:'DM Mono',ui-monospace,monospace;font-size:11px;cursor:pointer}
 .ctl input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.7;transition:opacity .2s,scale .25s var(--spring)}
 .ctl input[type="date"]::-webkit-calendar-picker-indicator:hover{opacity:1;scale:1.1}
-.chev{position:absolute;right:8px;top:50%;margin-top:-5px;pointer-events:none;color:var(--label);transition:rotate .3s var(--spring)}
+#ctlDate{border-color:#10b981;box-shadow:0 0 0 1px rgba(16,185,129,.15)}
+.chev{position:absolute;right:9px;top:50%;margin-top:-5px;pointer-events:none;color:var(--label);transition:rotate .3s var(--spring)}
 .ctl:focus-within .chev{rotate:180deg}
 
-.items{flex-wrap:wrap;gap:3px;padding:2px 5px;min-height:27px;height:auto}
-.items input{flex:1 1 50px;width:auto;min-width:50px;height:22px;font-size:10.5px}
+.items{flex-wrap:wrap;gap:4px;padding:2px 6px;min-height:30px;height:auto}
+.items input{flex:1 1 50px;width:auto;min-width:50px;height:24px;font-size:11px}
 .chips{display:contents}
-.chip{display:inline-flex;align-items:center;gap:3px;max-width:100%;padding:1px 4px 1px 6px;border-radius:5px;background:var(--chip);
-  font-size:9.5px;font-weight:600;color:var(--ink);animation:chipIn .4s var(--spring)}
+.chip{display:inline-flex;align-items:center;gap:3px;max-width:100%;padding:2px 5px 2px 7px;border-radius:6px;background:var(--chip);
+  font-size:10px;font-weight:600;color:var(--ink);animation:chipIn .4s var(--spring)}
 .chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.chip button{flex:none;width:12px;height:12px;border:0;border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--label);cursor:pointer;
+.chip button{flex:none;width:13px;height:13px;border:0;border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--label);cursor:pointer;
   transition:background-color .2s,color .2s,rotate .3s var(--spring)}
 .chip button:hover{background:var(--navy);color:#fff;rotate:90deg}
 .chip.out{animation:chipOut .2s ease-in forwards}
@@ -117,10 +119,10 @@ h1{margin:0 0 5px;font-size:13px;font-weight:800;letter-spacing:-.015em}
 @keyframes chipOut{to{opacity:0;scale:.5}}
 
 /* ---------- button ---------- */
-.cta-wrap{display:flex;justify-content:center;margin-top:6px}
+.cta-wrap{display:flex;justify-content:center;margin-top:7px}
 .cta{
-  position:relative;overflow:hidden;width:100%;height:30px;border:0;border-radius:8px;cursor:pointer;
-  background:var(--navy);color:#fff;font-size:11px;font-weight:700;
+  position:relative;overflow:hidden;width:100%;height:33px;border:0;border-radius:8px;cursor:pointer;
+  background:var(--navy);color:#fff;font-size:12px;font-weight:700;
   display:grid;place-items:center;
   box-shadow:0 6px 14px -6px rgba(10,17,40,.5);
   transition:width .55s var(--spring),border-radius .55s var(--spring),background-color .35s,transform .28s var(--spring),box-shadow .28s;
@@ -477,6 +479,8 @@ function tick(now){
 requestAnimationFrame(tick);
 
 /* ---------- boot ---------- */
+sup.value=SAMPLE_SUP;
+date.value=todayISO();
 show('form');
 card.classList.remove('lift');
 check();
