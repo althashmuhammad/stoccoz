@@ -3426,26 +3426,21 @@ app-geometric-grid-background {
     height: auto;
   }
 
-  .capability-grid {
-    height: auto !important;
-    grid-template-areas:
-      'inventory'
-      'purchasing'
-      'sales'
-      'movements'
-      'reports' !important;
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto !important;
-    gap: 16px !important;
-  }
-
+  .capability-grid,
+  .capability-grid.has-expanded-card,
   .capability-grid.expanded-inventory,
   .capability-grid.expanded-purchasing,
   .capability-grid.expanded-sales,
   .capability-grid.expanded-movements,
   .capability-grid.expanded-reports {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-areas: none !important;
     grid-template-columns: 1fr !important;
     grid-template-rows: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    gap: 16px !important;
   }
 
   .cap-card {
@@ -7657,15 +7652,245 @@ app-geometric-grid-background {
 }
 
 @media (max-width: 991px) {
-  .cap-card.cap-purchasing,
-  .cap-card.cap-sales,
-  .cap-card.cap-inventory,
-  .cap-card.cap-movements,
-  .cap-card.cap-reports {
+  /* Capability grid strictly stacks downward in single column on mobile */
+  .capability-grid,
+  .capability-grid.has-expanded-card,
+  .capability-grid.expanded-inventory,
+  .capability-grid.expanded-purchasing,
+  .capability-grid.expanded-sales,
+  .capability-grid.expanded-movements,
+  .capability-grid.expanded-reports {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-areas: none !important;
     grid-template-columns: 1fr !important;
-    gap: 18px;
-    padding: 20px;
+    grid-template-rows: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    gap: 16px !important;
   }
+
+  /* When expanded, the card expands downwards naturally in 1 column */
+  .cap-card.is-expanded,
+  .cap-card.cap-purchasing.is-expanded,
+  .cap-card.cap-sales.is-expanded,
+  .cap-card.cap-inventory.is-expanded,
+  .cap-card.cap-movements.is-expanded,
+  .cap-card.cap-reports.is-expanded {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 22px 18px 24px !important;
+    gap: 16px !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+  /* Left column (heading + accordion): full width, flows downwards */
+  .cap-card.is-expanded .inventory-col-left,
+  .cap-card.is-expanded .purchasing-col-left,
+  .cap-card.is-expanded .sales-col-left,
+  .cap-card.is-expanded .movements-col-left,
+  .cap-card.is-expanded .reports-col-left {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding-right: 38px !important; /* space for close button */
+    box-sizing: border-box !important;
+  }
+
+  .cap-card.is-expanded .cap-heading {
+    margin-bottom: 6px !important;
+    width: 100% !important;
+  }
+
+  .cap-card.is-expanded .cap-heading h3 {
+    font-size: clamp(19px, 4.8vw, 22px) !important;
+    line-height: 1.2 !important;
+  }
+
+  .cap-card.is-expanded .cap-heading p {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 10px !important;
+    max-width: 100% !important;
+  }
+
+  /* Dynamics Accordion items: full width, easy to tap on mobile */
+  .cap-card.is-expanded .inventory-dynamics-header {
+    margin-bottom: 6px !important;
+  }
+
+  .cap-card.is-expanded .inventory-dynamics-accordion,
+  .cap-card.is-expanded .purchasing-expanded-section,
+  .cap-card.is-expanded .sales-expanded-section,
+  .cap-card.is-expanded .movements-expanded-section,
+  .cap-card.is-expanded .reports-expanded-section {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .cap-card.is-expanded .dynamics-item {
+    width: 100% !important;
+    padding: 10px 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  .cap-card.is-expanded .dynamics-header strong {
+    font-size: 13px !important;
+    white-space: normal !important;
+  }
+
+  .cap-card.is-expanded .dynamics-body p {
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Right column (preview / simulation): stacks downwards under the accordion */
+  .cap-card.is-expanded .inventory-col-right,
+  .cap-card.is-expanded .purchasing-col-right,
+  .cap-card.is-expanded .sales-col-right,
+  .cap-card.is-expanded .movements-col-right,
+  .cap-card.is-expanded .reports-col-right {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 140px !important;
+    margin-top: 6px !important;
+    padding-top: 14px !important;
+    border-top: 1px dashed #e2e8f0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Preview graphics inside right column on mobile */
+  .cap-card.cap-inventory.is-expanded .inventory-preview-embed {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 4px !important;
+  }
+
+  .cap-card.cap-inventory.is-expanded .inventory-asset {
+    max-height: 190px !important;
+    max-width: 230px !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+
+  .cap-card.cap-purchasing.is-expanded .purchase-live-stage-embed {
+    width: 100% !important;
+    max-width: 360px !important;
+    height: auto !important;
+    min-height: 250px !important;
+    margin: 0 auto !important;
+  }
+
+  .cap-card.cap-sales.is-expanded .sales-preview-embed {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .cap-card.cap-sales.is-expanded .sales-asset {
+    max-height: 190px !important;
+    max-width: 230px !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+
+  .cap-card.cap-movements.is-expanded .movements-preview-embed {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .cap-card.cap-movements.is-expanded .movement-asset,
+  .cap-card.cap-movements.is-expanded .movements-asset {
+    max-height: 180px !important;
+    max-width: 230px !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+
+  .cap-card.cap-reports.is-expanded .reports-preview-embed {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .cap-card.cap-reports.is-expanded .reports-preview-art,
+  .cap-card.cap-reports.is-expanded .reports-analytics-combo {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  /* Close button [✕] at top-right */
+  .cap-card.is-expanded .purchasing-arrow-btn,
+  .cap-card.is-expanded .sales-arrow-btn,
+  .cap-card.is-expanded .inventory-arrow-btn,
+  .cap-card.is-expanded .movements-arrow-btn,
+  .cap-card.is-expanded .reports-arrow-btn,
+  .cap-card.is-expanded .cap-expand-btn {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
+    z-index: 20 !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Compact shrinked cards on mobile */
+  .cap-card.is-compact {
+    min-height: 68px !important;
+    padding: 14px 18px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-radius: 14px !important;
+  }
+
+  .cap-card.is-compact .cap-heading {
+    margin-bottom: 0 !important;
+  }
+
+  .cap-card.is-compact .cap-heading h3 {
+    font-size: 16px !important;
+    margin: 0 !important;
+  }
+
+  .cap-card.is-compact .cap-heading p {
+    display: none !important;
+  }
+
   .cap-card .purchasing-arrow-btn,
   .cap-card .sales-arrow-btn,
   .cap-card .inventory-arrow-btn,
