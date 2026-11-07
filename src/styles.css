@@ -7562,11 +7562,119 @@ app-geometric-grid-background {
   justify-content: space-between;
 }
 
-/* Van Sales & Fleet Dedicated Explore Hero Background */
+/* ==========================================================================
+   VANSALES EXPLORE HERO - CLEAN WHITE DESIGN WITH PHONE VISUAL
+   Matches media_1794030150770_fe478765.jpg exactly
+   ========================================================================== */
 .vans-explore-page .explore-hero-section,
 .explore-hero-section.vans-hero-section {
-  background: #ffffff url('/assets/vansales-explore-hero.jpg') no-repeat center right !important;
-  background-size: cover !important;
+  background: #ffffff !important;
+  background-image: none !important;
+  min-height: 480px !important;
+  max-height: none !important;
+  padding-top: 104px !important;
+  padding-bottom: 40px !important;
+  border-bottom: 1px solid #edf0f5 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.vans-explore-page .explore-hero-bg-overlay,
+.explore-hero-section.vans-hero-section .explore-hero-bg-overlay {
+  display: none !important;
+}
+
+.vans-hero-shell {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 36px !important;
+  width: min(1280px, calc(100% - 48px)) !important;
+  margin: 0 auto !important;
+  padding: 0 16px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.vans-hero-copy {
+  flex: 1 1 55% !important;
+  max-width: 580px !important;
+  text-align: left !important;
+}
+
+.vans-hero-eyebrow {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.16em !important;
+  color: #08122d !important;
+  text-transform: uppercase !important;
+  margin: 0 0 18px 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+}
+
+.vans-hero-title {
+  font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif !important;
+  font-size: clamp(38px, 4.3vw, 56px) !important;
+  font-weight: 800 !important;
+  color: #08122d !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.035em !important;
+  margin: 0 0 20px 0 !important;
+}
+
+.vans-hero-subtitle {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-size: 15.5px !important;
+  color: #4a5a85 !important;
+  line-height: 1.62 !important;
+  max-width: 510px !important;
+  margin: 0 !important;
+}
+
+.vans-hero-visual {
+  flex: 1 1 45% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  min-height: 420px !important;
+}
+
+.vans-hero-phone-img {
+  max-height: 460px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 20px 40px rgba(8, 18, 45, 0.14)) !important;
+  transform: translateY(8px) !important;
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+@media (max-width: 991px) {
+  .vans-hero-shell {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 28px !important;
+  }
+  .vans-hero-copy {
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+  .vans-hero-subtitle {
+    margin: 0 auto !important;
+  }
+  .vans-hero-visual {
+    min-height: 300px !important;
+  }
+  .vans-hero-phone-img {
+    max-height: 350px !important;
+  }
 }
 
 /* 3PL Dedicated Explore Hero Background */
@@ -7574,41 +7682,6 @@ app-geometric-grid-background {
 .explore-hero-section.three-pl-hero-section {
   background: #08122d url('/assets/final-cta-warehouse.jpg') no-repeat center center !important;
   background-size: cover !important;
-}
-
-.explore-hero-bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.9) 35%, rgba(255, 255, 255, 0.42) 62%, rgba(255, 255, 255, 0.05) 100%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.vans-explore-page .explore-hero-bg-overlay,
-.explore-hero-section.vans-hero-section .explore-hero-bg-overlay {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.96) 0%,
-    rgba(255, 255, 255, 0.9) 36%,
-    rgba(255, 255, 255, 0.45) 58%,
-    rgba(255, 255, 255, 0.08) 100%
-  ) !important;
-}
-
-@media (max-width: 900px) {
-  .vans-explore-page .explore-hero-section,
-  .explore-hero-section.vans-hero-section {
-    background-position: 72% center !important;
-  }
-  .vans-explore-page .explore-hero-bg-overlay,
-  .explore-hero-section.vans-hero-section .explore-hero-bg-overlay {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.94) 0%,
-      rgba(255, 255, 255, 0.88) 55%,
-      rgba(255, 255, 255, 0.55) 100%
-    ) !important;
-  }
 }
 
 .explore-hero-shell {

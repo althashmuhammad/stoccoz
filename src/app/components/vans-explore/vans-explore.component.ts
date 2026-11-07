@@ -20,21 +20,29 @@ interface VanModule {
   standalone: true,
   template: `
     <div class="warehouse-explore-page vans-explore-page" id="vans-explore-top">
-      <!-- Hero Section with Background -->
+      <!-- Hero Section: Clean White 2-Column Design with Hand-Held Phone Visual -->
       <section class="explore-hero-section vans-hero-section" id="explore-hero">
-        <div class="explore-hero-bg-overlay" aria-hidden="true"></div>
-        <div class="explore-hero-shell">
-          <div class="explore-hero-copy">
-            <div class="explore-pill-tag">
-              <span>VANSALES &amp; FLEET ERP</span>
-            </div>
-            <h1 class="explore-hero-title">
+        <div class="explore-hero-shell vans-hero-shell">
+          <!-- Left Column: Copy -->
+          <div class="vans-hero-copy">
+            <p class="vans-hero-eyebrow">VANSALES &amp; FLEET ERP</p>
+            <h1 class="vans-hero-title">
               Explore the Complete<br />
-              <span class="hero-highlight-gold">Van Sales &amp; Fleet Solution</span>
+              Van Sales &amp; Fleet<br />
+              Solution
             </h1>
-            <p class="explore-hero-subtitle">
+            <p class="vans-hero-subtitle">
               A unified system to manage fleet vehicles, driver assignments, route distribution, van stock, on-the-go invoicing, and real-time payment collections — all in one connected platform.
             </p>
+          </div>
+
+          <!-- Right Column: Hand Holding Smartphone Visual -->
+          <div class="vans-hero-visual" aria-hidden="true">
+            <img
+              src="/assets/about-hero-hand-phone.png"
+              alt="VanSales mobile app dashboard held in hand"
+              class="vans-hero-phone-img"
+            />
           </div>
         </div>
 
