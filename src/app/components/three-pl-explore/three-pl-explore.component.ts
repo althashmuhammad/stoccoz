@@ -224,38 +224,6 @@ export interface ThreePLModule {
             </article>
           }
         </div>
-
-        <!-- 4. Connected 12-Step 3PL Logistics Workflow Section -->
-        <section class="explore-workflow-section" id="explore-workflow">
-          <div class="workflow-card">
-            <div class="workflow-left-intro">
-              <div class="workflow-icon-box" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#08122d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                  <polyline points="2 17 12 22 22 17"></polyline>
-                  <polyline points="2 12 12 17 22 12"></polyline>
-                </svg>
-              </div>
-              <div class="workflow-text">
-                <h3 class="workflow-title">Complete 12-Step 3PL Logistics Lifecycle</h3>
-                <p class="workflow-desc">Seamless operational connectivity from client onboarding and stock receiving to billing and reporting.</p>
-              </div>
-            </div>
-
-            <!-- Clickable Workflow Steps Chain -->
-            <div class="workflow-steps-chain" role="navigation" aria-label="Connected 3PL workflow steps">
-              @for (step of lifecycleSteps; track step.num; let last = $last) {
-                <button type="button" class="workflow-step-btn" (click)="selectModuleAndScroll(step.modId)">
-                  <span class="step-num">{{ step.num }}</span>
-                  <span class="step-title">{{ step.name }}</span>
-                </button>
-                @if (!last) {
-                  <span class="workflow-arrow" aria-hidden="true">→</span>
-                }
-              }
-            </div>
-          </div>
-        </section>
       </section>
     </div>
   `,
@@ -276,21 +244,6 @@ export class ThreePLExploreComponent {
 
   // Initially expand 3PL Client Management (first module)
   activeModule = signal<string>('clients');
-
-  lifecycleSteps = [
-    { num: '01', name: 'Client Onboard', modId: 'clients' },
-    { num: '02', name: 'Facility Setup', modId: 'warehouse' },
-    { num: '03', name: 'Inbound & ASN', modId: 'inbound' },
-    { num: '04', name: 'Client Inventory', modId: 'inventory' },
-    { num: '05', name: 'Replenishment', modId: 'replenishment' },
-    { num: '06', name: 'Wave Picking', modId: 'fulfilment' },
-    { num: '07', name: 'Fleet Dispatch', modId: 'fleet' },
-    { num: '08', name: 'Returns & QC', modId: 'returns' },
-    { num: '09', name: '3PL Billing', modId: 'billing' },
-    { num: '10', name: 'Client Portal', modId: 'portal' },
-    { num: '11', name: 'API Sync', modId: 'api' },
-    { num: '12', name: 'Analytics', modId: 'analytics' }
-  ];
 
   modules: ThreePLModule[] = [
     {
