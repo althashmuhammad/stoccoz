@@ -45,7 +45,11 @@ export interface ThreePLModule {
   template: `
     <div class="warehouse-explore-page three-pl-explore-page" id="three-pl-explore-top">
       <!-- 1. Hero Section with Logistics & 3PL Background (Matches Image 2 UI Header) -->
-      <section class="explore-hero-section three-pl-hero-section" id="explore-hero">
+      <section
+        class="explore-hero-section three-pl-hero-section"
+        id="explore-hero"
+        style="background: #ffffff url('/assets/three-pl-distribution-center.jpg') no-repeat right bottom / cover !important;"
+      >
         <div class="explore-hero-bg-overlay" aria-hidden="true"></div>
         <div class="explore-hero-shell">
           <div class="explore-hero-copy">
