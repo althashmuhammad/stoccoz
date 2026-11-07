@@ -1184,34 +1184,64 @@ app-geometric-grid-background {
   will-change: grid-template-columns, grid-template-rows;
 }
 
-/* 1. Inventory Expanded: expands towards RIGHT */
+/* 1. Inventory Expanded: expands on left (rows 1 & 2), matching reference UI */
 .capability-grid.expanded-inventory {
-  grid-template-columns: 1.55fr 0.45fr;
-  grid-template-rows: 380px 140px 140px;
+  grid-template-areas:
+    'inventory purchasing'
+    'inventory movements'
+    'sales reports' !important;
+  grid-template-columns: 1.42fr 0.58fr !important;
+  grid-template-rows: minmax(170px, auto) minmax(170px, auto) minmax(170px, auto) !important;
+  height: auto !important;
+  min-height: 570px;
 }
 
-/* 2. Purchasing Expanded: expands towards LEFT */
+/* 2. Purchasing Expanded: expands on right (rows 1 & 2) */
 .capability-grid.expanded-purchasing {
-  grid-template-columns: 0.48fr 1.52fr;
-  grid-template-rows: 380px 140px 140px;
+  grid-template-areas:
+    'inventory purchasing'
+    'movements purchasing'
+    'sales reports' !important;
+  grid-template-columns: 0.58fr 1.42fr !important;
+  grid-template-rows: minmax(170px, auto) minmax(170px, auto) minmax(170px, auto) !important;
+  height: auto !important;
+  min-height: 570px;
 }
 
-/* 3. Sales Orders Expanded: expands towards RIGHT */
+/* 3. Sales Orders Expanded: expands on left (rows 2 & 3) */
 .capability-grid.expanded-sales {
-  grid-template-columns: 1.58fr 0.42fr;
-  grid-template-rows: 160px 250px 250px;
+  grid-template-areas:
+    'inventory purchasing'
+    'sales movements'
+    'sales reports' !important;
+  grid-template-columns: 1.42fr 0.58fr !important;
+  grid-template-rows: minmax(170px, auto) minmax(170px, auto) minmax(170px, auto) !important;
+  height: auto !important;
+  min-height: 570px;
 }
 
-/* 4. Stock Movements Expanded: expands towards LEFT */
+/* 4. Stock Movements Expanded: expands on right (rows 2 & 3) */
 .capability-grid.expanded-movements {
-  grid-template-columns: 0.48fr 1.52fr;
-  grid-template-rows: 170px 340px 150px;
+  grid-template-areas:
+    'inventory purchasing'
+    'sales movements'
+    'reports movements' !important;
+  grid-template-columns: 0.58fr 1.42fr !important;
+  grid-template-rows: minmax(170px, auto) minmax(170px, auto) minmax(170px, auto) !important;
+  height: auto !important;
+  min-height: 570px;
 }
 
-/* 5. Reports & Insights Expanded: expands towards LEFT */
+/* 5. Reports & Insights Expanded: expands on right (rows 2 & 3) */
 .capability-grid.expanded-reports {
-  grid-template-columns: 0.48fr 1.52fr;
-  grid-template-rows: 170px 150px 340px;
+  grid-template-areas:
+    'inventory purchasing'
+    'sales reports'
+    'movements reports' !important;
+  grid-template-columns: 0.58fr 1.42fr !important;
+  grid-template-rows: minmax(170px, auto) minmax(170px, auto) minmax(170px, auto) !important;
+  height: auto !important;
+  min-height: 570px;
 }
 
 .cap-card {
@@ -1296,11 +1326,15 @@ app-geometric-grid-background {
 }
 
 .cap-card.is-compact .cap-heading h3 {
-  font-size: 16px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 170px;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: #08122d !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.02em !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  max-width: 100% !important;
 }
 
 .cap-heading p {
@@ -1314,10 +1348,16 @@ app-geometric-grid-background {
 }
 
 .cap-card.is-compact .cap-heading p {
-  opacity: 0;
-  max-height: 0;
-  margin-top: 0;
-  pointer-events: none;
+  display: block !important;
+  opacity: 1 !important;
+  max-height: none !important;
+  font-size: 13px !important;
+  color: #64748b !important;
+  line-height: 1.45 !important;
+  margin-top: 6px !important;
+  max-width: 100% !important;
+  pointer-events: auto !important;
+  overflow: visible !important;
 }
 
 .cap-heading>a,
@@ -6665,15 +6705,9 @@ app-geometric-grid-background {
    INVENTORY MANAGEMENT CARD CONTENT ENHANCEMENT (Microsoft Dynamics Style)
    ========================================================================== */
 
-/* 1. Inventory Expanded Grid Row: expand downward with generous breathing room */
 .capability-grid.has-expanded-card {
   height: auto !important;
-  min-height: 760px;
-}
-
-.capability-grid.expanded-inventory {
-  grid-template-columns: 1.55fr 0.45fr;
-  grid-template-rows: minmax(470px, auto) 140px 140px;
+  min-height: 580px;
 }
 
 /* Heading description max-width in Inventory */
@@ -6910,28 +6944,6 @@ app-geometric-grid-background {
   }
 }
 
-/* ==========================================================================
-   PURCHASING CARD - 3 CORE CAPABILITIES (DEFAULT & EXPANDED)
-   ========================================================================== */
-.capability-grid.expanded-purchasing {
-  grid-template-columns: 0.42fr 1.58fr;
-  grid-template-rows: minmax(440px, auto) 140px 140px;
-}
-
-.capability-grid.expanded-sales {
-  grid-template-columns: 1.58fr 0.42fr;
-  grid-template-rows: 150px minmax(380px, auto) minmax(190px, auto);
-}
-
-.capability-grid.expanded-movements {
-  grid-template-columns: 0.48fr 1.52fr;
-  grid-template-rows: 140px minmax(380px, auto) 140px;
-}
-
-.capability-grid.expanded-reports {
-  grid-template-columns: 0.48fr 1.52fr;
-  grid-template-rows: 140px 140px minmax(380px, auto);
-}
 
 /* ==========================================================================
    UNIFIED TWO-COLUMN CSS GRID FOR ALL FEATURE SECTIONS (42% Left / 58% Right)
@@ -7639,38 +7651,192 @@ app-geometric-grid-background {
   background: #ffffff !important;
 }
 
-/* Compact States for All Cards */
+/* ==========================================================================
+   COMPACT CARDS PRESENTATION (MATCHES USER UI SCREENSHOT EXACTLY)
+   ========================================================================== */
 .cap-card.is-compact {
-  grid-template-columns: 1fr !important;
-  padding: 14px 18px;
+  display: block !important;
+  background: #ffffff !important;
+  border: 1px solid #edf0f5 !important;
+  border-radius: 18px !important;
+  box-shadow: 0 4px 18px rgba(8, 18, 45, 0.035) !important;
+  padding: 18px 22px !important;
+  position: relative !important;
+  cursor: pointer !important;
+  min-height: 165px !important;
+  box-sizing: border-box !important;
+  opacity: 1 !important;
+  overflow: hidden !important;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease !important;
 }
 
-.cap-card.is-compact .purchasing-default-content,
-.cap-card.is-compact .sales-default-content,
-.cap-card.is-compact .inventory-default-content,
-.cap-card.is-compact .movements-default-content,
-.cap-card.is-compact .reports-default-content {
-  display: none !important;
+.cap-card.is-compact:hover {
+  background: #fbfbfc !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 8px 26px rgba(8, 18, 45, 0.07) !important;
+  transform: translateY(-2px);
 }
 
-.cap-card.is-compact .purchase-live-stage-embed,
-.cap-card.is-compact .sales-live-stage-embed,
+.cap-card.is-compact .cap-heading {
+  display: block !important;
+  max-width: calc(100% - 85px) !important;
+  margin: 0 !important;
+}
+
+/* Small illustrations in compact state */
 .cap-card.is-compact .inventory-preview-embed,
+.cap-card.is-compact .purchasing-preview-embed,
+.cap-card.is-compact .sales-preview-embed,
 .cap-card.is-compact .movements-preview-embed,
 .cap-card.is-compact .reports-preview-embed {
-  display: none !important;
+  display: flex !important;
+  position: absolute !important;
+  top: 18px !important;
+  right: 18px !important;
+  width: 72px !important;
+  height: 60px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
 }
 
+.cap-card.is-compact .cap-asset,
+.cap-card.is-compact .inventory-asset,
+.cap-card.is-compact .purchasing-asset,
+.cap-card.is-compact .sales-asset,
+.cap-card.is-compact .movement-asset {
+  max-width: 68px !important;
+  max-height: 58px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 3px 8px rgba(8, 18, 45, 0.08)) !important;
+}
+
+.cap-card.is-compact .reports-preview-art {
+  display: flex !important;
+  align-items: flex-end !important;
+  gap: 8px !important;
+  transform: scale(0.68) !important;
+  transform-origin: right top !important;
+}
+
+/* Yellow expand button [↗] at bottom-right corner of compact cards */
+.cap-card.is-compact .cap-expand-btn,
 .cap-card.is-compact .purchasing-arrow-btn,
 .cap-card.is-compact .sales-arrow-btn,
 .cap-card.is-compact .inventory-arrow-btn,
 .cap-card.is-compact .movements-arrow-btn,
 .cap-card.is-compact .reports-arrow-btn {
-  top: 10px;
-  right: 10px;
-  width: 30px;
-  height: 30px;
-  font-size: 13px;
+  position: absolute !important;
+  bottom: 16px !important;
+  right: 18px !important;
+  top: auto !important;
+  left: auto !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 8px !important;
+  background: #ffc400 !important;
+  color: #08122d !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 3px 10px rgba(255, 196, 0, 0.28) !important;
+  z-index: 5 !important;
+  transition: transform 0.2s ease, background-color 0.2s ease !important;
+}
+
+.cap-card.is-compact .cap-expand-btn:hover,
+.cap-card.is-compact .purchasing-arrow-btn:hover,
+.cap-card.is-compact .sales-arrow-btn:hover,
+.cap-card.is-compact .inventory-arrow-btn:hover,
+.cap-card.is-compact .movements-arrow-btn:hover,
+.cap-card.is-compact .reports-arrow-btn:hover {
+  background: #e6b000 !important;
+  transform: scale(1.08);
+}
+
+/* Hide pills, simulation iframes, and accordions inside compact cards */
+.cap-card.is-compact .inventory-default-content,
+.cap-card.is-compact .purchasing-default-content,
+.cap-card.is-compact .sales-default-content,
+.cap-card.is-compact .inventory-expanded-section,
+.cap-card.is-compact .purchasing-expanded-section,
+.cap-card.is-compact .sales-expanded-section,
+.cap-card.is-compact .movements-expanded-section,
+.cap-card.is-compact .reports-expanded-section,
+.cap-card.is-compact .purchase-live-stage-embed,
+.cap-card.is-compact .sales-live-stage-embed,
+.cap-card.is-compact .inventory-v-divider,
+.cap-card.is-compact .purchasing-v-divider,
+.cap-card.is-compact .sales-v-divider,
+.cap-card.is-compact .movements-v-divider,
+.cap-card.is-compact .reports-v-divider {
+  display: none !important;
+}
+
+/* ==========================================================================
+   EXPANDED CARD PRESENTATION
+   ========================================================================== */
+.cap-card.is-expanded {
+  display: grid !important;
+  grid-template-columns: 55% 45% !important;
+  gap: 20px !important;
+  align-items: stretch !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(255, 196, 0, 0.45) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 14px 40px rgba(8, 18, 45, 0.07) !important;
+  padding: 26px 30px !important;
+  position: relative !important;
+  z-index: 8 !important;
+  overflow: visible !important;
+}
+
+/* Close button [✕] at top-right of expanded card */
+.cap-card.is-expanded .cap-expand-btn,
+.cap-card.is-expanded .inventory-arrow-btn,
+.cap-card.is-expanded .purchasing-arrow-btn,
+.cap-card.is-expanded .sales-arrow-btn,
+.cap-card.is-expanded .movements-arrow-btn,
+.cap-card.is-expanded .reports-arrow-btn {
+  position: absolute !important;
+  top: 20px !important;
+  right: 22px !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 8px !important;
+  background: #08122d !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(8, 18, 45, 0.18) !important;
+  z-index: 10 !important;
+  transition: transform 0.2s ease, background-color 0.2s ease !important;
+}
+
+.cap-card.is-expanded .cap-expand-btn:hover,
+.cap-card.is-expanded .inventory-arrow-btn:hover,
+.cap-card.is-expanded .purchasing-arrow-btn:hover,
+.cap-card.is-expanded .sales-arrow-btn:hover,
+.cap-card.is-expanded .movements-arrow-btn:hover,
+.cap-card.is-expanded .reports-arrow-btn:hover {
+  background: #1e293b !important;
+  transform: scale(1.08);
 }
 
 @media (max-width: 991px) {

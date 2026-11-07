@@ -379,15 +379,25 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
               <span class="btn-icon">{{ expandedCard() === 'purchasing' ? '✕' : '↗' }}</span>
             </button>
 
-            <div class="purchase-live-stage-embed">
-              <iframe
-                class="purchase-live-iframe"
-                src="/assets/purchase-orders-live.html"
-                title="New Purchase Order Live Simulation"
-                loading="eager"
-                scrolling="no"
-              ></iframe>
-            </div>
+            @if (expandedCard() === 'purchasing') {
+              <div class="purchase-live-stage-embed">
+                <iframe
+                  class="purchase-live-iframe"
+                  src="/assets/purchase-orders-live.html"
+                  title="New Purchase Order Live Simulation"
+                  loading="eager"
+                  scrolling="no"
+                ></iframe>
+              </div>
+            } @else {
+              <div class="purchasing-preview-embed">
+                <img
+                  class="cap-asset purchasing-asset"
+                  src="/assets/capability-cart.png"
+                  alt="Purchasing shopping cart with boxes"
+                />
+              </div>
+            }
           </div>
 
           <!-- Subtle vertical divider in expanded state -->
@@ -539,15 +549,25 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
               <span class="btn-icon">{{ expandedCard() === 'sales' ? '✕' : '↗' }}</span>
             </button>
 
-            <div class="sales-live-stage-embed">
-              <iframe
-                class="sales-live-iframe"
-                src="/assets/sales-orders-live.html"
-                title="Sales Orders Live Simulation"
-                loading="eager"
-                scrolling="no"
-              ></iframe>
-            </div>
+            @if (expandedCard() === 'sales') {
+              <div class="sales-live-stage-embed">
+                <iframe
+                  class="sales-live-iframe"
+                  src="/assets/sales-orders-live.html"
+                  title="Sales Orders Live Simulation"
+                  loading="eager"
+                  scrolling="no"
+                ></iframe>
+              </div>
+            } @else {
+              <div class="sales-preview-embed">
+                <img
+                  class="cap-asset sales-asset"
+                  src="/assets/capability-orders.png"
+                  alt="Sales orders checklist with boxes"
+                />
+              </div>
+            }
           </div>
 
           <!-- Subtle vertical divider in expanded state -->
