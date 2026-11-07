@@ -8657,13 +8657,13 @@ app-geometric-grid-background {
 
 /* ==========================================================================
    HOME PAGE: 3PL INTRO SECTION (Third-Party Logistics Operations)
-   Matches media_1794031488414_ae414da9.jpg exactly
+   Matches media_1794034245228_b02453d5.jpg seamlessly
    ========================================================================== */
 .three-pl-intro-section {
   position: relative;
-  background: #ffffff;
-  padding: 110px 0 90px;
-  border-bottom: 1px solid #edf0f5;
+  background: #ffffff !important;
+  padding: 100px 0 80px;
+  border-bottom: none !important;
   overflow: hidden;
 }
 
@@ -8677,7 +8677,7 @@ app-geometric-grid-background {
 
 .three-pl-header-center {
   text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: 52px;
 }
 
 .three-pl-center-eyebrow {
@@ -8696,8 +8696,8 @@ app-geometric-grid-background {
 
 .three-pl-content-row {
   display: grid;
-  grid-template-columns: 44% 56%;
-  gap: 52px;
+  grid-template-columns: 46% 54%;
+  gap: 48px;
   align-items: center;
 }
 
@@ -8757,33 +8757,75 @@ app-geometric-grid-background {
   color: #08122d;
 }
 
+/* Right Column: Seamless Stage Container (No card border, no shadow, blended canvas) */
 .three-pl-visual-col {
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 0;
+  position: relative;
 }
 
+.three-pl-media-stage,
 .three-pl-media-card {
   position: relative;
   width: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #ffffff;
-  border: 1px solid #edf0f5;
-  box-shadow: 0 16px 48px rgba(8, 18, 45, 0.07);
+  max-width: 660px;
   aspect-ratio: 16 / 9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: #ffffff !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+  margin: 0 auto;
+  /* Seamless subtle edge blend into surrounding white canvas */
+  -webkit-mask-image: radial-gradient(ellipse 98% 95% at 50% 50%, #000 84%, transparent 100%);
+  mask-image: radial-gradient(ellipse 98% 95% at 50% 50%, #000 84%, transparent 100%);
 }
 
-.three-pl-video-element,
+/* Base Still Image (Always Present, Zero Flashing, Clean White Background) */
 .three-pl-still-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
+  background-color: #ffffff !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  z-index: 1;
+}
+
+/* Video Layer (Zero Black Decoder Flash, Smooth Fade-In on Active Frames) */
+.three-pl-video-element {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  background-color: #ffffff !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+
+.three-pl-video-element.is-playing {
+  opacity: 1;
+}
+
+video.three-pl-video-element::-webkit-media-controls,
+video.three-pl-video-element::-webkit-media-controls-enclosure {
+  display: none !important;
 }
 
 @media (max-width: 991px) {
@@ -8806,6 +8848,10 @@ app-geometric-grid-background {
   }
   .three-pl-action-wrap {
     justify-content: center;
+  }
+  .three-pl-media-stage,
+  .three-pl-media-card {
+    max-width: 520px;
   }
 }
 

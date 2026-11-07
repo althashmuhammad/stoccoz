@@ -36,26 +36,33 @@ import { Component, ElementRef, ViewChild, afterNextRender, signal, output } fro
             </div>
           </div>
 
-          <!-- Right Column: Visual Stage (Video plays once -> still image) -->
+          <!-- Right Column: Seamless Integrated Media Stage (No card frame, No border, No shadow) -->
           <div class="three-pl-visual-col">
-            <div class="three-pl-media-card">
+            <div class="three-pl-media-stage">
+              <!-- Base Still Image: Always in DOM, zero flicker, instantaneous paint -->
+              <img
+                src="/assets/three-pl-hub.jpg"
+                alt="Third-Party Logistics operations hub with delivery vehicles and docking bays"
+                class="three-pl-still-img"
+                loading="eager"
+                decoding="sync"
+              />
+
+              <!-- Overlaid Video: Initialized silently, fades in only when active frames render, fades out on end -->
               @if (!videoEnded()) {
                 <video
                   #videoPlayer
                   class="three-pl-video-element"
+                  [class.is-playing]="videoPlaying() && !videoEnded()"
                   src="/assets/three-pl-animation.mp4"
                   poster="/assets/three-pl-hub.jpg"
                   muted
                   playsinline
+                  preload="auto"
                   [loop]="false"
+                  (playing)="onVideoPlaying()"
                   (ended)="onVideoEnded()"
                 ></video>
-              } @else {
-                <img
-                  src="/assets/three-pl-hub.jpg"
-                  alt="Third-Party Logistics operations hub with delivery vehicles and docking bays"
-                  class="three-pl-still-img"
-                />
               }
             </div>
           </div>
@@ -70,28 +77,53 @@ export class ThreePlIntroComponent {
   @ViewChild('sectionRef') sectionRef?: ElementRef<HTMLElement>;
   @ViewChild('videoPlayer') videoPlayer?: ElementRef<HTMLVideoElement>;
 
+  videoPlaying = signal<boolean>(false);
   videoEnded = signal<boolean>(false);
   private hasPlayed = false;
 
   constructor() {
+    try {
+      if (typeof window !== 'undefined' && sessionStorage.getItem('stoccoz_3pl_video_played') === 'true') {
+        this.videoEnded.set(true);
+        this.hasPlayed = true;
+      }
+    } catch {}
+
     afterNextRender(() => {
       this.initIntersectionPlayback();
     });
   }
 
+  onVideoPlaying() {
+    if (!this.videoEnded()) {
+      this.videoPlaying.set(true);
+    }
+  }
+
   onVideoEnded() {
-    this.videoEnded.set(true);
+    // Smoothly fade video out to show underlying base image with zero flash
+    this.videoPlaying.set(false);
+    setTimeout(() => {
+      this.videoEnded.set(true);
+      try {
+        sessionStorage.setItem('stoccoz_3pl_video_played', 'true');
+      } catch {}
+    }, 350);
   }
 
   onExploreClick(e: Event) {
     e.preventDefault();
+    try {
+      sessionStorage.setItem('stoccoz_3pl_video_played', 'true');
+    } catch {}
     window.location.hash = '#explore-3pl';
     this.navigateExplore.emit();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
   private initIntersectionPlayback() {
     if (typeof window === 'undefined') return;
+    if (this.videoEnded()) return;
 
     if ('IntersectionObserver' in window && this.sectionRef?.nativeElement) {
       const observer = new IntersectionObserver(
@@ -119,4 +151,3 @@ export class ThreePlIntroComponent {
     }
   }
 }
-
