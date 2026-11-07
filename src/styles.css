@@ -1633,12 +1633,12 @@ app-geometric-grid-background {
 
 .cap-card.cap-purchasing .cap-heading>div,
 .cap-card.cap-sales .cap-heading>div {
-  max-width: 230px;
+  max-width: 100%;
 }
 
 .cap-card.cap-purchasing .cap-heading p,
 .cap-card.cap-sales .cap-heading p {
-  max-width: 210px;
+  max-width: 100%;
 }
 
 /* Live 3D animation embeds (Right side, transparent, unclipped) */
@@ -6946,8 +6946,8 @@ app-geometric-grid-background {
 
 
 /* ==========================================================================
-   UNIFIED TWO-COLUMN CSS GRID FOR ALL FEATURE SECTIONS (42% Left / 58% Right)
-   Preserves 100% of interactive 3D parallax physics, tilt, controls and layouts
+   FEATURE MODULE CARDS: BALANCED TWO-COLUMN COLLAPSED & EXPANDED PRESENTATION
+   Strictly preserves 100% of working animations, easing, grid layout & interactions
    ========================================================================== */
 .cap-card.cap-purchasing,
 .cap-card.cap-sales,
@@ -6955,12 +6955,12 @@ app-geometric-grid-background {
 .cap-card.cap-movements,
 .cap-card.cap-reports {
   display: grid !important;
-  grid-template-columns: 42% 58% !important;
+  grid-template-columns: 50% 50% !important;
   gap: 16px;
   align-items: center;
   position: relative;
-  overflow: visible !important; /* Preserves 3D perspective and unclipped tilt */
-  padding: 24px 26px;
+  overflow: visible !important;
+  padding: 20px 24px;
   background: #ffffff;
   border: 1px solid #edf0f5;
   border-radius: 20px;
@@ -6968,7 +6968,37 @@ app-geometric-grid-background {
   cursor: default;
 }
 
-/* Left Column (approx 42%) */
+/* 1. Inventory Management Collapsed: room for all 4 capability items without clipping */
+.cap-card.cap-inventory:not(.is-expanded) {
+  grid-template-columns: 52% 48% !important;
+  padding: 18px 24px !important;
+}
+
+/* 2. Purchasing Collapsed: room for full 3 capability labels & shopping cart illustration */
+.cap-card.cap-purchasing:not(.is-expanded) {
+  grid-template-columns: 54% 46% !important;
+  padding: 20px 24px !important;
+}
+
+/* 3. Sales Orders Collapsed: room for all 3 capabilities & order checklist illustration */
+.cap-card.cap-sales:not(.is-expanded) {
+  grid-template-columns: 51% 49% !important;
+  padding: 22px 26px !important;
+}
+
+/* 4. Stock Movements Collapsed: consistent internal padding, vertically centered pallet truck */
+.cap-card.cap-movements:not(.is-expanded) {
+  grid-template-columns: 52% 48% !important;
+  padding: 20px 24px !important;
+}
+
+/* 5. Reports & Insights Collapsed: consistent padding, properly contained bar & donut charts */
+.cap-card.cap-reports:not(.is-expanded) {
+  grid-template-columns: 52% 48% !important;
+  padding: 20px 24px !important;
+}
+
+/* Left Column for All Cards */
 .cap-card .purchasing-col-left,
 .cap-card .sales-col-left,
 .cap-card .inventory-col-left,
@@ -6990,36 +7020,28 @@ app-geometric-grid-background {
 
 .cap-card .cap-heading h3 {
   font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(22px, 2.3vw, 30px);
+  font-size: clamp(20px, 2.1vw, 26px);
   font-weight: 800;
   color: #08122d;
-  margin: 0 0 6px 0;
+  margin: 0 0 5px 0;
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
 
 .cap-card .cap-heading p {
   color: #64748b;
-  font-size: 13px;
-  line-height: 1.45;
-  margin: 0 0 13px 0;
-  max-width: 100%;
+  font-size: 12.5px;
+  line-height: 1.4;
+  margin: 0 0 10px 0;
+  max-width: 100% !important;
 }
 
 .cap-card.cap-movements:not(.is-expanded) .cap-heading p,
 .cap-card.cap-reports:not(.is-expanded) .cap-heading p {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
-.cap-card.cap-inventory .inventory-feature-list {
-  gap: 6px;
-}
-
-.cap-card.cap-inventory .inventory-feature-pill {
-  padding: 5.5px 12px;
-}
-
-/* Vertically Aligned Feature Labels with Consistent Spacing */
+/* Collapsed Feature Capabilities Lists & Pills */
 .cap-card .purchasing-default-content,
 .cap-card .sales-default-content,
 .cap-card .inventory-default-content,
@@ -7036,46 +7058,41 @@ app-geometric-grid-background {
 
 .cap-card .purchasing-feature-list,
 .cap-card .sales-feature-list,
-.cap-card .inventory-feature-list,
-.cap-card .movements-feature-list,
-.cap-card .reports-feature-list {
+.cap-card .inventory-feature-list {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 5.5px;
   width: 100%;
 }
 
 .cap-card .purchasing-feature-pill,
 .cap-card .sales-feature-pill,
-.cap-card .inventory-feature-pill,
-.cap-card .movements-feature-pill,
-.cap-card .reports-feature-pill {
+.cap-card .inventory-feature-pill {
   display: flex;
   align-items: center;
   gap: 8px;
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 6.5px 12px;
+  border-radius: 9px;
+  padding: 5px 11px;
   box-shadow: 0 1px 3px rgba(8, 18, 45, 0.02);
   transition: all 0.2s ease;
   width: 100%;
   box-sizing: border-box;
+  min-height: 28px;
 }
 
 .cap-card .purchasing-feature-pill:hover,
 .cap-card .sales-feature-pill:hover,
-.cap-card .inventory-feature-pill:hover,
-.cap-card .movements-feature-pill:hover,
-.cap-card .reports-feature-pill:hover {
+.cap-card .inventory-feature-pill:hover {
   border-color: #cbd5e1;
   background: #f8fafc;
   transform: translateX(2px);
 }
 
 .cap-card .pill-dot {
-  width: 7.5px;
-  height: 7.5px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #f59e0b;
   flex-shrink: 0;
@@ -7083,7 +7100,7 @@ app-geometric-grid-background {
 
 .cap-card .pill-text {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 600;
   color: #0f172a;
   white-space: nowrap;
@@ -7113,8 +7130,8 @@ app-geometric-grid-background {
 .cap-card .movements-arrow-btn,
 .cap-card .reports-arrow-btn {
   position: absolute;
-  top: -8px;
-  right: -6px;
+  top: 14px;
+  right: 14px;
   z-index: 10;
   background: var(--yellow, #f59e0b);
   color: #08122d;
@@ -7141,7 +7158,7 @@ app-geometric-grid-background {
   box-shadow: 0 6px 18px rgba(245, 158, 11, 0.45);
 }
 
-/* Live 3D Embed Stages (Purchasing PO & Sales Orders) - Unclipped with Sufficient Dimensions */
+/* Live 3D Embed Stages (Purchasing PO & Sales Orders) */
 .cap-card.cap-purchasing .purchase-live-stage-embed,
 .cap-card.cap-sales .sales-live-stage-embed {
   position: relative !important;
@@ -7169,7 +7186,7 @@ app-geometric-grid-background {
   overflow: visible !important;
 }
 
-/* Inventory Preview Embed */
+/* 1. Inventory Preview Embed (Boxes Illustration) */
 .cap-card.cap-inventory .inventory-preview-embed {
   position: relative;
   display: flex;
@@ -7177,13 +7194,14 @@ app-geometric-grid-background {
   justify-content: center;
   width: 100%;
   height: 100%;
-  min-height: 200px;
 }
 
 .cap-card.cap-inventory .inventory-preview-embed .inventory-asset {
   position: static !important;
-  max-width: 86%;
-  max-height: 220px;
+  max-width: 90%;
+  max-height: 175px;
+  width: auto;
+  height: auto;
   object-fit: contain;
   filter: drop-shadow(0 14px 28px rgba(8, 18, 45, 0.08));
   transition: transform 0.35s ease;
@@ -7193,7 +7211,57 @@ app-geometric-grid-background {
   transform: translateY(-4px) scale(1.02);
 }
 
-/* Movements Preview Embed */
+/* 2. Purchasing Preview Embed (Shopping Cart with Boxes Illustration) */
+.cap-card.cap-purchasing .purchasing-preview-embed {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.cap-card.cap-purchasing .purchasing-preview-embed .purchasing-asset {
+  position: static !important;
+  max-width: 145px;
+  max-height: 145px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 28px rgba(8, 18, 45, 0.08));
+  transition: transform 0.35s ease;
+}
+
+.cap-card.cap-purchasing:hover .purchasing-preview-embed .purchasing-asset {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* 3. Sales Orders Preview Embed (Order Checklist with Boxes Illustration) */
+.cap-card.cap-sales .sales-preview-embed {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.cap-card.cap-sales .sales-preview-embed .sales-asset {
+  position: static !important;
+  max-width: 165px;
+  max-height: 170px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 28px rgba(8, 18, 45, 0.08));
+  transition: transform 0.35s ease;
+}
+
+.cap-card.cap-sales:hover .sales-preview-embed .sales-asset {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* 4. Movements Preview Embed (Pallet Truck with Boxes) - Clean Padding & No Boundary Overflow */
 .cap-card.cap-movements .movements-preview-embed {
   position: relative;
   display: flex;
@@ -7201,23 +7269,25 @@ app-geometric-grid-background {
   justify-content: center;
   width: 100%;
   height: 100%;
-  min-height: 190px;
+  min-height: 0 !important;
 }
 
 .cap-card.cap-movements .movements-preview-embed .movement-asset {
   position: static !important;
-  max-width: 86%;
-  max-height: 190px;
+  max-width: 120px;
+  max-height: 100px;
+  width: auto;
+  height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 14px 28px rgba(8, 18, 45, 0.08));
+  filter: drop-shadow(0 12px 24px rgba(8, 18, 45, 0.08));
   transition: transform 0.35s ease;
 }
 
 .cap-card.cap-movements:hover .movements-preview-embed .movement-asset {
-  transform: translateY(-4px) scale(1.02);
+  transform: translateY(-3px) scale(1.02);
 }
 
-/* Reports Preview Embed */
+/* 5. Reports & Insights Preview Embed (Bar Chart + Donut Chart) - Clean Padding & No Boundary Overflow */
 .cap-card.cap-reports .reports-preview-embed {
   position: relative;
   display: flex;
@@ -7225,7 +7295,7 @@ app-geometric-grid-background {
   justify-content: center;
   width: 100%;
   height: 100%;
-  min-height: 190px;
+  min-height: 0 !important;
 }
 
 .cap-card.cap-reports .reports-preview-embed .reports-preview-art {
@@ -7233,8 +7303,42 @@ app-geometric-grid-background {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 16px;
 }
+
+.cap-card.cap-reports .chart-bars-art {
+  height: 46px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.cap-card.cap-reports .chart-bars-art span {
+  width: 8.5px;
+  border-radius: 3px 3px 0 0;
+  background: var(--yellow, #ffc400);
+  display: block;
+}
+
+.cap-card.cap-reports .chart-donut-art {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: conic-gradient(var(--yellow, #ffc400) 0 74%, #eef1f6 74%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cap-card.cap-reports .chart-donut-art::after {
+  content: '';
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
 
 /* Expanded States for All Cards */
 .cap-card .purchasing-expanded-section,
