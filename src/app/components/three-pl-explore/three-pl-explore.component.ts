@@ -44,20 +44,18 @@ export interface ThreePLModule {
   standalone: true,
   template: `
     <div class="warehouse-explore-page three-pl-explore-page" id="three-pl-explore-top">
-      <!-- 1. Hero Section with Logistics & 3PL Background -->
+      <!-- 1. Hero Section with Logistics & 3PL Background (Matches Image 2 UI Header) -->
       <section class="explore-hero-section three-pl-hero-section" id="explore-hero">
         <div class="explore-hero-bg-overlay" aria-hidden="true"></div>
         <div class="explore-hero-shell">
           <div class="explore-hero-copy">
-            <div class="explore-pill-tag">
-              <span>3PL &amp; CONTRACT LOGISTICS ERP</span>
-            </div>
             <h1 class="explore-hero-title">
               Explore the Complete<br />
-              <span class="hero-highlight-gold">Third-Party Logistics (3PL) Solution</span>
+              Third-Party Logistics<br />
+              (3PL) Solution
             </h1>
             <p class="explore-hero-subtitle">
-              From multi-client onboarding and dock receiving to segregated WMS inventory, wave fulfillment, delivery fleet costing, automated rate-card billing, and 24/7 client portal access.
+              From multi-client onboarding and dock receiving to segregated WMS inventory, wave fulfillment, delivery fleet costing, automated rate-card
             </p>
           </div>
         </div>
