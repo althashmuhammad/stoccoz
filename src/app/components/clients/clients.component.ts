@@ -57,6 +57,7 @@ export class ClientsComponent implements OnDestroy {
     { name: 'Black and White KSA', src: '/assets/clients/client-black-white.png' },
     { name: 'Delight Distributors', src: '/assets/clients/client-delight-distributors.png' },
     { name: 'Milkana', src: '/assets/clients/client-milkana.png' },
+    { name: 'Moto Master Car Care', src: '/assets/clients/client-moto-master.png' },
   ];
 
   readonly visibleClients: ClientLogo[] = this.allClients.slice(0, 6);

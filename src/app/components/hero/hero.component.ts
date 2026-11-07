@@ -81,6 +81,7 @@ export class HeroComponent implements OnDestroy {
     { name: 'Black and White', src: '/assets/clients/client-black-white.png' },
     { name: 'Delight Distributors', src: '/assets/clients/client-delight-distributors.png' },
     { name: 'Milkana', src: '/assets/clients/client-milkana.png' },
+    { name: 'Moto Master Car Care', src: '/assets/clients/client-moto-master.png' },
   ];
 
   duplicatedLogos = [...this.logos, ...this.logos];
