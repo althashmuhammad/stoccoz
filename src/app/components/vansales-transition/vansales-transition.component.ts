@@ -93,7 +93,14 @@ export class VanSalesTransitionComponent implements OnDestroy {
       if (reduceMotion.matches) return;
       const rect = track.getBoundingClientRect();
       const available = track.offsetHeight - window.innerHeight;
-      target = clamp(-rect.top / Math.max(available, 1));
+      if (available <= 10) {
+        // Non-pinned mobile / tablet view
+        const totalDist = window.innerHeight + track.offsetHeight;
+        const scrolledDist = window.innerHeight - rect.top;
+        target = clamp(scrolledDist / totalDist);
+      } else {
+        target = clamp(-rect.top / available);
+      }
       if (!this.frame) this.frame = requestAnimationFrame(render);
     };
 

@@ -111,14 +111,16 @@
   .van {
     --vw: min(
       calc(100% - var(--gl) - var(--gr)),
-      1180px,
-      calc(100svh * 1.7)
+      1140px,
+      calc(100svh * 1.55),
+      calc(100vh * 1.55)
     );
     position: absolute;
     left: 50%;
     top: 50%;
-    translate: -50% -50%;
+    transform: translate(-50%, -50%);
     width: var(--vw);
+    max-height: 82vh;
     aspect-ratio: 1778 / 835;
     container-type: inline-size;
     filter: drop-shadow(0 18px 30px rgba(2, 8, 28, calc(var(--sh, 0) * 0.5)));
@@ -314,8 +316,8 @@
   var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
 
   var SHADES = ['#0a1f52', '#0b2257', '#091c4c'];
-  var FILL_END = 0.34;    // tiles finish arriving
-  var EXIT_START = 0.68;  // tiles start leaving
+  var FILL_END = 0.28;    // tiles finish arriving
+  var EXIT_START = 0.88;  // tiles start leaving near the end of scroll
   var MAXD = 0.5;         // spread of per-tile start delays
   var DEPTH = [1, 1.6, 0.8];
 
@@ -388,9 +390,9 @@
   }
 
   function renderVan(P, p) {
-    var rise = reduce ? 0 : (1 - P) * 80 + (p - 0.5) * -30;
-    var scale = reduce ? 1 : 0.93 + 0.07 * P;
-    van.style.transform = 'translate3d(0,' + rise.toFixed(1) + 'px,0) scale(' + scale.toFixed(3) + ')';
+    var rise = reduce ? 0 : (1 - P) * 45 + (p - 0.5) * -20;
+    var scale = reduce ? 1 : 0.94 + 0.06 * P;
+    van.style.transform = 'translate(-50%, -50%) translate3d(0,' + rise.toFixed(1) + 'px,0) scale(' + scale.toFixed(3) + ')';
     van.style.setProperty('--sh', P.toFixed(3));
     hint.style.opacity = (1 - clamp(P * 5)).toFixed(3);
   }
@@ -404,9 +406,9 @@
         var ctr = 0.34 + (i + 0.5) * span;
         r = clamp((half - Math.abs(p - ctr)) / (half * 0.3));
       } else {
-        // arrive in order, leave in reverse order
-        var s = 0.22 + i * 0.03, a = 0.74 - i * 0.025;
-        r = Math.min(clamp((p - s) / 0.10), clamp((a - p) / 0.08));
+        // arrive in sequence, stay fully visible until scroll exit
+        var s = 0.18 + i * 0.035, a = 0.94 - i * 0.012;
+        r = Math.min(clamp((p - s) / 0.08), clamp((a - p) / 0.06));
       }
       var d = DEPTH[i % DEPTH.length];
       var ty = reduce ? 0 : (narrow ? (1 - r) * 14 : (1 - r) * 44 * d + (p - 0.5) * -36 * d);
