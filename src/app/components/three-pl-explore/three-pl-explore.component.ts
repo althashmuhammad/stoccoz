@@ -959,6 +959,7 @@ export interface ThreePLModule {
 })
 export class ThreePLExploreComponent {
   navigateAbout = output<void>();
+  navigateDemo = output<void>();
   navigateHome = output<void>();
   navigatePricing = output<void>();
   navigateWarehouse = output<void>();

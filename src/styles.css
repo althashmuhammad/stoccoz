@@ -5385,6 +5385,58 @@ app-geometric-grid-background {
   background: #ffffff;
 }
 
+/* ==========================================================================
+   BOOK A DEMO & CONTACT PAGE (Dedicated Clean Layout matching Image 2)
+   ========================================================================== */
+.demo-main-wrapper {
+  min-height: calc(100vh - 80px);
+  background: #f8fafc;
+}
+
+.demo-page-root {
+  min-height: calc(100vh - 80px);
+  background-color: #fafbfc;
+  background-image: 
+    radial-gradient(circle at 12% 18%, rgba(255, 196, 0, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 88% 65%, rgba(79, 70, 229, 0.04) 0%, transparent 40%),
+    linear-gradient(rgba(226, 232, 240, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 232, 240, 0.5) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  padding-top: clamp(120px, 14vh, 160px);
+  padding-bottom: clamp(80px, 10vh, 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.demo-page-container {
+  width: 100%;
+}
+
+.demo-shell {
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(36px, 5vw, 64px);
+  align-items: center;
+}
+
+.nav-cta.is-demo-active {
+  background: #08122d;
+  color: #ffc400 !important;
+  box-shadow: 0 0 0 2px #ffc400, 0 4px 14px rgba(8, 18, 45, 0.25);
+}
+
+@media (max-width: 1024px) {
+  .demo-shell {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
 /* About Us / Contact Us Page Layout */
 .about-page-root {
   min-height: calc(100vh - 100px);

@@ -86,7 +86,7 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
                 <p class="eyebrow">Get started</p>
                 <h3>About Stoccoz</h3>
                 @for (item of started; track item; let idx = $index) {
-                  <a class="mega-link" [href]="idx > 3 ? '#about' : '#platform'" (click)="idx > 3 ? goToAbout($event) : handleSectionNav('platform', $event)">
+                  <a class="mega-link" [href]="idx > 3 ? '#demo' : '#about'" (click)="idx > 3 ? goToDemo($event) : goToAbout($event)">
                     <app-line-icon [name]="idx > 3 ? 'user' : 'warehouse'"></app-line-icon>
                     {{ item }}
                   </a>
@@ -158,7 +158,7 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
           ></span>
         </nav>
 
-        <a class="button button-navy nav-cta" href="#about" (click)="goToAbout($event)">Book a Demo <span>→</span></a>
+        <a class="button button-navy nav-cta" href="#demo" [class.is-demo-active]="activePage() === 'demo'" (click)="goToDemo($event)">Book a Demo <span>→</span></a>
 
         <button
           class="menu-toggle"
@@ -172,8 +172,8 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
   `
 })
 export class NavbarComponent {
-  activePage = input<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl'>('home');
-  navigatePage = output<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl'>();
+  activePage = input<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl' | 'demo'>('home');
+  navigatePage = output<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl' | 'demo'>();
 
   @ViewChild('navLinksRef') navLinksRef?: ElementRef<HTMLElement>;
   @ViewChild('homeLink') homeLink?: ElementRef<HTMLAnchorElement>;
@@ -375,6 +375,17 @@ export class NavbarComponent {
     this.featuresOpen.set(false);
     this.navigatePage.emit('explore-3pl');
     window.location.hash = '#explore-3pl';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => this.updateIndicatorToActive(), 50);
+  }
+
+  goToDemo(e?: Event) {
+    if (e) e.preventDefault();
+    this.mobileOpen.set(false);
+    this.open.set(false);
+    this.featuresOpen.set(false);
+    this.navigatePage.emit('demo');
+    window.location.hash = '#demo';
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => this.updateIndicatorToActive(), 50);
   }

@@ -8,6 +8,7 @@ import { ConnectedOperationsComponent } from './components/connected-operations/
 import { ClientsComponent } from './components/clients/clients.component';
 import { PricingComponent } from './components/pricing/pricing.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
+import { BookDemoPageComponent } from './components/book-demo-page/book-demo-page.component';
 import { WarehouseExploreComponent } from './components/warehouse-explore/warehouse-explore.component';
 import { VansExploreComponent } from './components/vans-explore/vans-explore.component';
 import { ThreePLExploreComponent } from './components/three-pl-explore/three-pl-explore.component';
@@ -26,6 +27,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ClientsComponent,
     PricingComponent,
     AboutPageComponent,
+    BookDemoPageComponent,
     WarehouseExploreComponent,
     VansExploreComponent,
     ThreePLExploreComponent,
@@ -36,7 +38,7 @@ import { FooterComponent } from './components/footer/footer.component';
 export class AppComponent implements OnDestroy {
   @ViewChild('mainRef') mainRef!: ElementRef<HTMLElement>;
 
-  activePage = signal<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl'>('home');
+  activePage = signal<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl' | 'demo'>('home');
   private cleanups: (() => void)[] = [];
   private frame = 0;
 
@@ -47,7 +49,7 @@ export class AppComponent implements OnDestroy {
     });
   }
 
-  onNavigate(page: 'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl') {
+  onNavigate(page: 'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl' | 'demo') {
     this.activePage.set(page);
     if (page === 'home') {
       setTimeout(() => this.initPageMotion(), 50);
@@ -57,7 +59,10 @@ export class AppComponent implements OnDestroy {
   private initHashRouting() {
     const handleHash = () => {
       const h = window.location.hash;
-      if (h === '#about' || h === '#/about' || h === '#about-us' || h === '#contact' || h === '#demo') {
+      if (h === '#demo' || h === '#/demo' || h === '#book-a-demo' || h === '#/book-a-demo' || h === '#contact' || h === '#/contact' || h === '#book-demo') {
+        this.activePage.set('demo');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (h === '#about' || h === '#/about' || h === '#about-us') {
         this.activePage.set('about');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (h === '#pricing' || h === '#/pricing' || h === '#plans') {

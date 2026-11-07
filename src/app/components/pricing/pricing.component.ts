@@ -282,7 +282,7 @@ const PLANS: PricingPlan[] = [
                       >
                         {{ stampedPlan() === plan.id ? 'Plan selected ✓' : plan.cta + ' →' }}
                       </button>
-                      <a href="#about" class="act ghost" (click)="goToAbout($event)">
+                      <a href="#demo" class="act ghost" (click)="goToDemo($event)">
                         Book a demo →
                       </a>
                     </div>
@@ -378,6 +378,15 @@ const PLANS: PricingPlan[] = [
 })
 export class PricingComponent {
   navigateAbout = output<void>();
+  navigateDemo = output<void>();
+
+  goToDemo(e: Event) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.navigateDemo.emit();
+    window.location.hash = '#demo';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   goToAbout(e: Event) {
     e.preventDefault();

@@ -297,6 +297,7 @@ interface VanModule {
 })
 export class VansExploreComponent {
   navigateAbout = output<void>();
+  navigateDemo = output<void>();
   navigateHome = output<void>();
   navigatePricing = output<void>();
   navigateWarehouse = output<void>();

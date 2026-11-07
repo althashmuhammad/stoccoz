@@ -23,7 +23,7 @@ import { Component, ElementRef, ViewChild, afterNextRender, OnDestroy, output } 
           <p>The intelligence behind connected logistics.</p>
           <div class="button-row">
             <a class="button button-yellow" href="#warehouse">Enter warehouse <span>→</span></a>
-            <a class="button button-outline" href="#about" (click)="goToAbout($event)">Book a demo <span>→</span></a>
+            <a class="button button-outline" href="#demo" (click)="goToDemo($event)">Book a demo <span>→</span></a>
           </div>
           <div class="hero-benefits">
             <span><i>✓</i>Real-time stock visibility</span>
@@ -53,6 +53,14 @@ import { Component, ElementRef, ViewChild, afterNextRender, OnDestroy, output } 
 })
 export class HeroComponent implements OnDestroy {
   navigateAbout = output<void>();
+  navigateDemo = output<void>();
+
+  goToDemo(e: Event) {
+    e.preventDefault();
+    this.navigateDemo.emit();
+    window.location.hash = '#demo';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   goToAbout(e: Event) {
     e.preventDefault();

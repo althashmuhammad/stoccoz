@@ -20,7 +20,7 @@ interface PixelTile {
       <div class="inner">
         <div class="logo">TRIASOFT</div>
         <h2>Ready to transform your business?</h2>
-        <a class="cta" href="#about" (click)="goToAbout($event)">Contact us</a>
+        <a class="cta" href="#demo" (click)="goToDemo($event)">Contact us</a>
         <div class="cols">
           <div>
             <h3>Newsletter</h3>
@@ -38,7 +38,7 @@ interface PixelTile {
               <li><a href="#warehouse">Our Services</a></li>
               <li><a href="#vansales">Our Products</a></li>
               <li><a href="#pricing" (click)="goToPricing($event)">Pricing</a></li>
-              <li><a href="#about" (click)="goToAbout($event)">Contact Us</a></li>
+              <li><a href="#demo" (click)="goToDemo($event)">Contact Us</a></li>
             </ul>
           </div>
           <div>
@@ -61,6 +61,14 @@ export class FooterComponent implements OnDestroy {
   navigateAbout = output<void>();
   navigatePricing = output<void>();
   navigateHome = output<void>();
+  navigateDemo = output<void>();
+
+  goToDemo(e: Event) {
+    e.preventDefault();
+    this.navigateDemo.emit();
+    window.location.hash = '#demo';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   goToHome(e: Event) {
     e.preventDefault();

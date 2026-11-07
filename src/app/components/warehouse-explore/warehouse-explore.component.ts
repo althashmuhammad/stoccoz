@@ -303,6 +303,7 @@ export interface ExploreModule {
 })
 export class WarehouseExploreComponent {
   navigateAbout = output<void>();
+  navigateDemo = output<void>();
   navigateHome = output<void>();
   navigatePricing = output<void>();
 
@@ -347,8 +348,8 @@ export class WarehouseExploreComponent {
 
   onBookDemoClick(e: Event) {
     e.preventDefault();
-    window.location.hash = '#about';
-    this.navigateAbout.emit();
+    window.location.hash = '#demo';
+    this.navigateDemo.emit();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
