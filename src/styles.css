@@ -7549,12 +7549,12 @@ app-geometric-grid-background {
 /* Hero Section */
 .explore-hero-section {
   position: relative;
-  min-height: 380px;
-  max-height: 440px;
+  min-height: 420px;
+  max-height: 490px;
   background: #08122d url('/assets/warehouse-explore-hero.png') no-repeat center top;
   background-size: cover;
   margin-top: 0;
-  padding-top: 108px;
+  padding-top: 112px;
   padding-bottom: 46px;
   border-bottom: 1px solid rgba(8, 18, 45, 0.06);
   display: flex;
@@ -7620,30 +7620,30 @@ app-geometric-grid-background {
 }
 
 .explore-hero-copy {
-  max-width: 500px;
+  max-width: 660px;
 }
 
 .explore-pill-tag {
   display: inline-block;
   background: #fff4d1;
   color: #08122d;
-  font-size: 10px;
+  font-size: 11.5px;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  padding: 4px 10px;
+  letter-spacing: 0.16em;
+  padding: 5px 14px;
   border-radius: 999px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   border: 1px solid rgba(255, 196, 0, 0.45);
 }
 
 .explore-hero-title {
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  font-size: clamp(34px, 3.8vw, 50px);
   font-weight: 800;
   color: #08122d;
-  line-height: 1.16;
-  letter-spacing: -0.025em;
-  margin: 0 0 10px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin: 0 0 14px;
 }
 
 .hero-highlight-gold {
@@ -7651,10 +7651,10 @@ app-geometric-grid-background {
 }
 
 .explore-hero-subtitle {
-  font-size: 13px;
-  color: #475569;
-  line-height: 1.5;
-  max-width: 460px;
+  font-size: 16px;
+  color: #4a5a85;
+  line-height: 1.6;
+  max-width: 580px;
   margin: 0;
 }
 
@@ -7663,12 +7663,12 @@ app-geometric-grid-background {
   position: relative;
   z-index: 5;
   width: min(1280px, calc(100% - 32px));
-  margin: -24px auto 0;
+  margin: -26px auto 0;
   background: #ffffff;
   border: 1px solid #edf0f5;
   border-radius: 999px;
   box-shadow: 0 8px 24px rgba(8, 18, 45, 0.06);
-  padding: 4px 6px;
+  padding: 5px 8px;
 }
 
 .explore-tabs-scroll {
@@ -7688,13 +7688,13 @@ app-geometric-grid-background {
 .explore-module-tab {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
+  gap: 7px;
+  padding: 8px 15px;
   border-radius: 999px;
   background: transparent;
   border: none;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: #475569;
   cursor: pointer;
@@ -7760,7 +7760,7 @@ app-geometric-grid-background {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 13px 22px;
+  padding: 16px 26px;
   background: none;
   border: none;
   cursor: pointer;
@@ -7775,10 +7775,10 @@ app-geometric-grid-background {
 
 .module-title {
   font-family: 'Manrope', sans-serif;
-  font-size: 16.5px;
-  font-weight: 700;
+  font-size: clamp(19px, 2vw, 22px);
+  font-weight: 800;
   color: #08122d;
-  margin: 0 0 3px;
+  margin: 0 0 4px;
   line-height: 1.25;
 }
 
@@ -7789,23 +7789,23 @@ app-geometric-grid-background {
 }
 
 .explore-yellow-bar {
-  width: 20px;
-  height: 2.5px;
+  width: 22px;
+  height: 3px;
   background: #ffc400;
   border-radius: 2px;
   flex-shrink: 0;
 }
 
 .module-subtitle {
-  font-size: 12px;
-  color: #64748b;
+  font-size: 14px;
+  color: #4a5a85;
   margin: 0;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .explore-chevron-icon {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -7818,8 +7818,8 @@ app-geometric-grid-background {
 }
 
 .explore-chevron-icon svg {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
 }
 
 .explore-accordion-card.is-expanded .explore-chevron-icon {
@@ -7830,25 +7830,25 @@ app-geometric-grid-background {
 
 /* Accordion Body */
 .explore-accordion-body {
-  padding: 0 22px 20px;
+  padding: 4px 26px 24px;
   display: grid;
   grid-template-columns: 1.35fr 0.85fr;
-  gap: 20px;
+  gap: 22px;
   animation: fadeIn 0.3s ease;
 }
 
 .features-2col-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 12px;
 }
 
 .feature-item-box {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
+  gap: 12px;
+  padding: 13px 15px;
+  border-radius: 12px;
   background: #fafbfc;
   border: 1px solid #f1f3f7;
   transition: all 0.2s ease;
@@ -7862,33 +7862,33 @@ app-geometric-grid-background {
 }
 
 .feature-icon-badge {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
   background: #fff8e6;
   border: 1px solid rgba(255, 196, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
   color: #08122d;
   flex-shrink: 0;
 }
 
 .feature-name {
-  font-size: 13px;
+  font-size: 14.5px;
   font-weight: 700;
   color: #08122d;
-  margin: 0 0 2px;
-  line-height: 1.3;
+  margin: 0 0 3px;
+  line-height: 1.35;
 }
 
 .feature-desc {
-  font-size: 11.5px;
-  color: #64748b;
-  line-height: 1.45;
+  font-size: 13px;
+  color: #4a5a85;
+  line-height: 1.55;
   margin: 0;
 }
 
@@ -7896,8 +7896,8 @@ app-geometric-grid-background {
 .benefits-card {
   background: linear-gradient(145deg, #fffcf5 0%, #fff7e0 100%);
   border: 1px solid rgba(255, 196, 0, 0.35);
-  border-radius: 14px;
-  padding: 18px 18px 14px;
+  border-radius: 16px;
+  padding: 22px 22px 18px;
   position: relative;
   overflow: hidden;
   box-shadow: 0 6px 20px rgba(255, 196, 0, 0.08);
@@ -7907,33 +7907,33 @@ app-geometric-grid-background {
 }
 
 .benefits-tag {
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: #08122d;
   background: #fffaea;
   border: 1px solid #ffd54f;
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: 999px;
   display: inline-block;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .benefits-title {
   font-family: 'Manrope', sans-serif;
-  font-size: 17px;
+  font-size: clamp(20px, 2vw, 24px);
   font-weight: 800;
   color: #08122d;
-  margin: 0 0 12px;
+  margin: 0 0 14px;
 }
 
 .benefits-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 16px;
+  margin: 0 0 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   position: relative;
   z-index: 2;
 }
@@ -7941,23 +7941,23 @@ app-geometric-grid-background {
 .benefit-item {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  font-size: 12px;
+  gap: 10px;
+  font-size: 13.5px;
   font-weight: 600;
-  color: #1e293b;
-  line-height: 1.4;
+  color: #08122d;
+  line-height: 1.5;
 }
 
 .benefit-check {
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: #ffc400;
   color: #08122d;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 900;
   flex-shrink: 0;
   margin-top: 1px;
