@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, afterNextRender, OnDestroy, output } from '@angular/core';
+import { Component, ElementRef, ViewChild, afterNextRender, OnDestroy, output, signal } from '@angular/core';
 
 interface PixelTile {
   x: number;
@@ -25,9 +25,16 @@ interface PixelTile {
           <div>
             <h3>Newsletter</h3>
             <p>We’d love to share product updates, practical ideas, and company news with you.</p>
-            <form class="news" (submit)="$event.preventDefault()">
-              <input type="email" placeholder="Enter your email" aria-label="Email address" />
-              <button type="button">Subscribe</button>
+            <form class="news" (submit)="onSubscribe($event)">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                aria-label="Email address"
+                [value]="subscriberEmail()"
+                (input)="subscriberEmail.set($any($event.target).value)"
+                required
+              />
+              <button type="submit">Subscribe</button>
             </form>
           </div>
           <div>
@@ -35,8 +42,6 @@ interface PixelTile {
             <ul>
               <li><a href="#top" (click)="goToHome($event)">Home</a></li>
               <li><a href="#about" (click)="goToAbout($event)">About Us</a></li>
-              <li><a href="#warehouse">Our Services</a></li>
-              <li><a href="#vansales">Our Products</a></li>
               <li><a href="#pricing" (click)="goToPricing($event)">Pricing</a></li>
               <li><a href="#demo" (click)="goToDemo($event)">Contact Us</a></li>
             </ul>
@@ -62,6 +67,20 @@ export class FooterComponent implements OnDestroy {
   navigatePricing = output<void>();
   navigateHome = output<void>();
   navigateDemo = output<void>();
+
+  subscriberEmail = signal('');
+
+  onSubscribe(e: Event) {
+    e.preventDefault();
+    const email = this.subscriberEmail().trim();
+    const subject = encodeURIComponent('Newsletter Subscription');
+    const body = encodeURIComponent(
+      email
+        ? `Hello Triasoft Team,\n\nPlease subscribe my email (${email}) to your product updates and newsletter.\n\nThank you!`
+        : `Hello Triasoft Team,\n\nPlease subscribe me to your product updates and newsletter.\n\nThank you!`
+    );
+    window.location.href = `mailto:info@triasoftware.com?subject=${subject}&body=${body}`;
+  }
 
   goToDemo(e: Event) {
     e.preventDefault();
