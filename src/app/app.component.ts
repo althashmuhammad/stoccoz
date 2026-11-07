@@ -12,6 +12,7 @@ import { BookDemoPageComponent } from './components/book-demo-page/book-demo-pag
 import { WarehouseExploreComponent } from './components/warehouse-explore/warehouse-explore.component';
 import { VansExploreComponent } from './components/vans-explore/vans-explore.component';
 import { ThreePLExploreComponent } from './components/three-pl-explore/three-pl-explore.component';
+import { ThreePlIntroComponent } from './components/three-pl-intro/three-pl-intro.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
@@ -23,6 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
     WarehouseIntroComponent,
     WarehouseCapabilitiesComponent,
     VanSalesTransitionComponent,
+    ThreePlIntroComponent,
     ConnectedOperationsComponent,
     ClientsComponent,
     PricingComponent,

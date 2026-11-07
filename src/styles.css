@@ -8303,6 +8303,161 @@ app-geometric-grid-background {
   }
 }
 
+/* ==========================================================================
+   HOME PAGE: 3PL INTRO SECTION (Third-Party Logistics Operations)
+   Matches media_1794031488414_ae414da9.jpg exactly
+   ========================================================================== */
+.three-pl-intro-section {
+  position: relative;
+  background: #ffffff;
+  padding: 110px 0 90px;
+  border-bottom: 1px solid #edf0f5;
+  overflow: hidden;
+}
+
+.three-pl-intro-shell {
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 0 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.three-pl-header-center {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.three-pl-center-eyebrow {
+  font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(26px, 2.9vw, 38px);
+  font-weight: 800;
+  color: #08122d;
+  letter-spacing: -0.025em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.three-pl-center-eyebrow .highlight-yellow {
+  color: #ffc400;
+}
+
+.three-pl-content-row {
+  display: grid;
+  grid-template-columns: 44% 56%;
+  gap: 52px;
+  align-items: center;
+}
+
+.three-pl-copy-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.three-pl-main-heading {
+  font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(34px, 3.8vw, 48px);
+  font-weight: 800;
+  color: #08122d;
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px 0;
+}
+
+.three-pl-lead-text {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 15.5px;
+  color: #4a5a85;
+  line-height: 1.65;
+  max-width: 490px;
+  margin: 0 0 32px 0;
+}
+
+.three-pl-action-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.three-pl-explore-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffc400;
+  color: #08122d;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 13px 34px;
+  box-shadow: 0 6px 20px rgba(255, 196, 0, 0.4);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+}
+
+.three-pl-explore-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: #e6b000;
+  box-shadow: 0 8px 24px rgba(255, 196, 0, 0.5);
+  color: #08122d;
+}
+
+.three-pl-visual-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.three-pl-media-card {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #edf0f5;
+  box-shadow: 0 16px 48px rgba(8, 18, 45, 0.07);
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.three-pl-video-element,
+.three-pl-still-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 991px) {
+  .three-pl-intro-section {
+    padding: 80px 0 60px;
+  }
+  .three-pl-header-center {
+    margin-bottom: 36px;
+  }
+  .three-pl-content-row {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+  .three-pl-copy-col {
+    align-items: center;
+  }
+  .three-pl-lead-text {
+    margin: 0 auto 28px auto;
+  }
+  .three-pl-action-wrap {
+    justify-content: center;
+  }
+}
+
+
 
 
 
