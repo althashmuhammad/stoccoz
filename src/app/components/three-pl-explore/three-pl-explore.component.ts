@@ -44,23 +44,28 @@ export interface ThreePLModule {
   standalone: true,
   template: `
     <div class="warehouse-explore-page three-pl-explore-page" id="three-pl-explore-top">
-      <!-- 1. Hero Section with Logistics & 3PL Background (Matches Image 2 UI Header) -->
+      <!-- 1. Hero Section with Clean White Design & Engineer Visual (Matches Image 1 UI Header) -->
       <section
         class="explore-hero-section three-pl-hero-section"
         id="explore-hero"
-        style="background: #ffffff url('/assets/three-pl-distribution-hub.jpg') no-repeat right bottom / cover !important;"
       >
-        <div class="explore-hero-bg-overlay" aria-hidden="true"></div>
-        <div class="explore-hero-shell">
-          <div class="explore-hero-copy">
-            <h1 class="explore-hero-title">
+        <div class="explore-hero-shell three-pl-hero-shell">
+          <div class="explore-hero-copy three-pl-hero-copy">
+            <h1 class="explore-hero-title three-pl-hero-title">
               Explore the Complete<br />
               Third-Party Logistics<br />
               (3PL) Solution
             </h1>
-            <p class="explore-hero-subtitle">
+            <p class="explore-hero-subtitle three-pl-hero-subtitle">
               From multi-client onboarding and dock receiving to segregated WMS inventory, wave fulfillment, delivery fleet costing, automated rate-card
             </p>
+          </div>
+          <div class="three-pl-hero-visual" aria-hidden="true">
+            <img
+              src="/assets/three-pl-engineer-tablet.png"
+              alt="3PL Logistics Manager with Warehouse Tablet"
+              class="three-pl-hero-img"
+            />
           </div>
         </div>
 

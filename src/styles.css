@@ -8119,13 +8119,14 @@ app-geometric-grid-background {
 
 /* ==========================================================================
    3PL DEDICATED EXPLORE HERO SECTION
-   Matches Image 2 (media_1794034884364_38972690.jpg) exactly
+   Matches Image 1 (clean white design with engineer holding tablet) exactly
    ========================================================================== */
 .three-pl-explore-page .explore-hero-section,
 .explore-hero-section.three-pl-hero-section {
-  background: #ffffff url('/assets/three-pl-distribution-hub.jpg') no-repeat right bottom !important;
-  background-size: cover !important;
+  background: #ffffff !important;
+  background-image: none !important;
   min-height: 480px !important;
+  max-height: none !important;
   padding-top: 104px !important;
   padding-bottom: 24px !important;
   display: flex !important;
@@ -8141,41 +8142,70 @@ app-geometric-grid-background {
   display: none !important;
 }
 
+.three-pl-hero-shell,
 .three-pl-explore-page .explore-hero-shell {
-  position: relative !important;
-  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 36px !important;
   width: min(1280px, calc(100% - 48px)) !important;
   margin: 0 auto !important;
   padding: 0 16px !important;
+  position: relative !important;
+  z-index: 2 !important;
   flex: 1 0 auto !important;
-  display: flex !important;
-  align-items: center !important;
 }
 
+.three-pl-hero-copy,
 .three-pl-explore-page .explore-hero-copy {
+  flex: 0 1 540px !important;
   max-width: 540px !important;
   text-align: left !important;
+  z-index: 2 !important;
 }
 
+.three-pl-hero-title,
 .three-pl-explore-page .explore-hero-title {
   font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif !important;
-  font-size: clamp(34px, 3.8vw, 48px) !important;
+  font-size: clamp(38px, 4.3vw, 54px) !important;
   font-weight: 800 !important;
   color: #08122d !important;
-  line-height: 1.15 !important;
-  letter-spacing: -0.03em !important;
-  margin: 0 0 16px 0 !important;
+  line-height: 1.14 !important;
+  letter-spacing: -0.035em !important;
+  margin: 0 0 18px 0 !important;
 }
 
+.three-pl-hero-subtitle,
 .three-pl-explore-page .explore-hero-subtitle {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
-  font-size: 14.5px !important;
-  color: #08122d !important;
-  line-height: 1.6 !important;
-  max-width: 470px !important;
+  font-size: 15px !important;
+  color: #4a5a85 !important;
+  line-height: 1.62 !important;
+  max-width: 480px !important;
   margin: 0 !important;
   font-weight: 500 !important;
-  opacity: 0.9 !important;
+  opacity: 1 !important;
+}
+
+.three-pl-hero-visual {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: flex-end !important;
+  position: relative !important;
+  min-height: 380px !important;
+  padding-right: clamp(10px, 3vw, 40px) !important;
+  z-index: 2 !important;
+}
+
+.three-pl-hero-img {
+  max-height: 420px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 16px 36px rgba(8, 18, 45, 0.08)) !important;
+  transform: translateY(6px) !important;
+  pointer-events: none !important;
+  user-select: none !important;
 }
 
 .three-pl-explore-page .explore-tabs-outer {
@@ -8198,14 +8228,35 @@ app-geometric-grid-background {
     min-height: 440px !important;
     padding-top: 88px !important;
     padding-bottom: 20px !important;
-    background-position: 75% bottom !important;
   }
-  .three-pl-explore-page .explore-hero-title {
-    font-size: 30px !important;
+  .three-pl-hero-shell,
+  .three-pl-explore-page .explore-hero-shell {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 24px !important;
   }
-  .three-pl-explore-page .explore-hero-subtitle {
-    font-size: 13.5px !important;
+  .three-pl-hero-copy,
+  .three-pl-explore-page .explore-hero-copy {
+    text-align: center !important;
     max-width: 100% !important;
+  }
+  .three-pl-hero-title,
+  .three-pl-explore-page .explore-hero-title {
+    font-size: 32px !important;
+  }
+  .three-pl-hero-subtitle,
+  .three-pl-explore-page .explore-hero-subtitle {
+    font-size: 14px !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+  }
+  .three-pl-hero-visual {
+    min-height: 280px !important;
+    justify-content: center !important;
+    padding-right: 0 !important;
+  }
+  .three-pl-hero-img {
+    max-height: 320px !important;
   }
 }
 
