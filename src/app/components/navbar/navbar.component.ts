@@ -95,41 +95,6 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
             </div>
           </div>
 
-          <!-- Features Dropdown Trigger -->
-          <div
-            class="features-nav"
-            (mouseenter)="onFeaturesEnter()"
-            (mouseleave)="onFeaturesLeave()"
-          >
-            <button
-              #featuresBtn
-              (click)="toggleFeatures()"
-              (mouseenter)="onNavHover(featuresBtn)"
-              [attr.aria-expanded]="featuresOpen()"
-            >
-              Features <span>⌄</span>
-            </button>
-            <div
-              class="features-dropdown"
-              [class.is-open]="featuresOpen()"
-              (mouseenter)="onFeaturesEnter()"
-              (mouseleave)="onFeaturesLeave()"
-            >
-              <a href="#explore-warehouse" (click)="featuresOpen.set(false); goToExploreWarehouse($event)">
-                <span><app-line-icon name="warehouse"></app-line-icon></span>
-                <div><b>Warehouse</b><small>Inventory and warehouse operations</small></div>
-              </a>
-              <a href="#explore-vans" (click)="featuresOpen.set(false); goToExploreVans($event)">
-                <span><app-line-icon name="van"></app-line-icon></span>
-                <div><b>VanSales</b><small>Field sales and distribution</small></div>
-              </a>
-              <a href="#explore-3pl" (click)="featuresOpen.set(false); goToExplore3pl($event)">
-                <span><app-line-icon name="boxes"></app-line-icon></span>
-                <div><b>3PL</b><small>Third-party logistics management</small></div>
-              </a>
-            </div>
-          </div>
-
           <a
             #pricingLink
             class="nav-root-link"
@@ -320,7 +285,7 @@ export class NavbarComponent {
     } else if (this.activePage() === 'about') {
       targetEl = this.aboutLink?.nativeElement || nav.querySelector<HTMLElement>('a.nav-root-link[href="#about"]') || nav.querySelector<HTMLElement>(':scope > a[href="#about"]');
     } else if (this.activePage() === 'explore-warehouse' || this.activePage() === 'explore-vans' || this.activePage() === 'explore-3pl') {
-      targetEl = this.featuresBtn?.nativeElement || this.platformBtn?.nativeElement || nav.querySelector<HTMLElement>(':scope > .features-nav>button');
+      targetEl = this.platformBtn?.nativeElement || nav.querySelector<HTMLElement>(':scope > .platform-nav>button');
     }
 
     if (targetEl) {
