@@ -160,54 +160,60 @@ interface VanModule {
                 </div>
               </button>
 
-              <!-- Accordion Body (Expanded Content) -->
-              @if (activeModule() === mod.id) {
-                <div class="explore-accordion-body">
-                  <!-- Left Side: 2-Column Responsive Features Grid -->
-                  <div class="explore-features-col">
-                    <div class="features-2col-grid">
-                      @for (feat of mod.features; track feat.title; let idx = $index) {
-                        <div class="feature-item-box">
-                          <div class="feature-icon-badge" aria-hidden="true">
-                            <span class="badge-index">{{ (idx + 1) < 10 ? '0' + (idx + 1) : (idx + 1) }}</span>
+              <!-- Accordion Body (Expanded Content with Apple iOS-Inspired Smooth Grid Animation) -->
+              <div
+                class="explore-accordion-collapse"
+                [class.is-open]="activeModule() === mod.id"
+                [attr.aria-hidden]="activeModule() !== mod.id"
+              >
+                <div class="explore-accordion-collapse-inner">
+                  <div class="explore-accordion-body">
+                    <!-- Left Side: 2-Column Responsive Features Grid -->
+                    <div class="explore-features-col">
+                      <div class="features-2col-grid">
+                        @for (feat of mod.features; track feat.title; let idx = $index) {
+                          <div class="feature-item-box">
+                            <div class="feature-icon-badge" aria-hidden="true">
+                              <span class="badge-index">{{ (idx + 1) < 10 ? '0' + (idx + 1) : (idx + 1) }}</span>
+                            </div>
+                            <div class="feature-text">
+                              <h4 class="feature-name">{{ feat.title }}</h4>
+                              <p class="feature-desc">{{ feat.desc }}</p>
+                            </div>
                           </div>
-                          <div class="feature-text">
-                            <h4 class="feature-name">{{ feat.title }}</h4>
-                            <p class="feature-desc">{{ feat.desc }}</p>
-                          </div>
-                        </div>
-                      }
-                    </div>
-                  </div>
-
-                  <!-- Right Side: Key Benefits Card ("Why It Matters?") -->
-                  <aside class="explore-benefits-col" aria-label="Module key benefits">
-                    <div class="benefits-card">
-                      <div class="benefits-card-header">
-                        <span class="benefits-tag">KEY BENEFITS</span>
-                        <h3 class="benefits-title">Why It Matters?</h3>
-                      </div>
-
-                      <ul class="benefits-list">
-                        @for (ben of mod.benefits; track ben) {
-                          <li class="benefit-item">
-                            <span class="benefit-check" aria-hidden="true">✓</span>
-                            <span class="benefit-text">{{ ben }}</span>
-                          </li>
                         }
-                      </ul>
-
-                      <div class="benefits-pallet-art" aria-hidden="true">
-                        <img
-                          src="/assets/capability-pallet.png"
-                          alt="Van distribution stock ready for dispatch"
-                          class="pallet-boxes-img"
-                        />
                       </div>
                     </div>
-                  </aside>
+
+                    <!-- Right Side: Key Benefits Card ("Why It Matters?") -->
+                    <aside class="explore-benefits-col" aria-label="Module key benefits">
+                      <div class="benefits-card">
+                        <div class="benefits-card-header">
+                          <span class="benefits-tag">KEY BENEFITS</span>
+                          <h3 class="benefits-title">Why It Matters?</h3>
+                        </div>
+
+                        <ul class="benefits-list">
+                          @for (ben of mod.benefits; track ben) {
+                            <li class="benefit-item">
+                              <span class="benefit-check" aria-hidden="true">✓</span>
+                              <span class="benefit-text">{{ ben }}</span>
+                            </li>
+                          }
+                        </ul>
+
+                        <div class="benefits-pallet-art" aria-hidden="true">
+                          <img
+                            src="/assets/capability-pallet.png"
+                            alt="Van distribution stock ready for dispatch"
+                            class="pallet-boxes-img"
+                          />
+                        </div>
+                      </div>
+                    </aside>
+                  </div>
                 </div>
-              }
+              </div>
             </article>
           }
         </div>

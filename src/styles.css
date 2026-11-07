@@ -8360,12 +8360,16 @@ app-geometric-grid-background {
   border-radius: 14px;
   box-shadow: 0 2px 10px rgba(8, 18, 45, 0.02);
   overflow: hidden;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    border-color var(--ios-duration-expand) var(--ios-spring-expand),
+    box-shadow var(--ios-duration-expand) var(--ios-spring-expand),
+    background-color var(--ios-duration-expand) var(--ios-spring-expand) !important;
+  will-change: border-color, box-shadow;
 }
 
 .explore-accordion-card.is-expanded {
-  border-color: rgba(255, 196, 0, 0.5);
-  box-shadow: 0 10px 28px rgba(8, 18, 45, 0.05);
+  border-color: rgba(255, 196, 0, 0.5) !important;
+  box-shadow: 0 10px 28px rgba(8, 18, 45, 0.06) !important;
 }
 
 .explore-accordion-header {
@@ -8379,7 +8383,7 @@ app-geometric-grid-background {
   cursor: pointer;
   text-align: left;
   gap: 16px;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.24s ease;
 }
 
 .explore-accordion-header:hover {
@@ -8426,28 +8430,126 @@ app-geometric-grid-background {
   align-items: center;
   justify-content: center;
   color: #08122d;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease;
   flex-shrink: 0;
+  transition:
+    transform var(--ios-duration-expand) var(--ios-spring-expand),
+    background-color 350ms ease,
+    border-color 350ms ease,
+    color 350ms ease !important;
+  will-change: transform;
 }
 
 .explore-chevron-icon svg {
   width: 16px;
   height: 16px;
+  transition: stroke 350ms ease;
 }
 
 .explore-accordion-card.is-expanded .explore-chevron-icon {
-  transform: rotate(180deg);
-  background: #fff8e6;
-  border-color: rgba(255, 196, 0, 0.5);
+  transform: rotate(180deg) !important;
+  background: #fff8e6 !important;
+  border-color: rgba(255, 196, 0, 0.5) !important;
+  color: #ffc400 !important;
 }
 
-/* Accordion Body */
+/* ==========================================================================
+   CSS Grid Dynamic Height Collapse System (Hardware-Accelerated 0fr <-> 1fr)
+   ========================================================================== */
+.explore-accordion-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows var(--ios-duration-collapse) var(--ios-spring-expand),
+    visibility var(--ios-duration-collapse) var(--ios-spring-expand);
+  visibility: hidden;
+  will-change: grid-template-rows;
+}
+
+.explore-accordion-collapse.is-open,
+.explore-accordion-card.is-expanded .explore-accordion-collapse {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition:
+    grid-template-rows var(--ios-duration-expand) var(--ios-spring-expand),
+    visibility 0ms linear;
+}
+
+.explore-accordion-collapse-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Accordion Body & Smooth Content Reveal */
 .explore-accordion-body {
   padding: 4px 26px 24px;
   display: grid;
   grid-template-columns: 1.35fr 0.85fr;
   gap: 22px;
-  animation: fadeIn 0.3s ease;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity var(--ios-duration-fadeout) var(--ios-spring-expand),
+    transform 320ms var(--ios-spring-expand);
+  will-change: opacity, transform;
+}
+
+.explore-accordion-collapse.is-open .explore-accordion-body,
+.explore-accordion-card.is-expanded .explore-accordion-body {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--ios-duration-fadein) var(--ios-spring-expand) 100ms,
+    transform 450ms var(--ios-spring-expand) 90ms;
+}
+
+/* Left Column: Features Grid Staggered Reveal */
+.explore-features-col {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 260ms var(--ios-spring-expand),
+    transform 280ms var(--ios-spring-expand);
+  will-change: opacity, transform;
+}
+
+.explore-accordion-collapse.is-open .explore-features-col,
+.explore-accordion-card.is-expanded .explore-features-col {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--ios-duration-fadein) var(--ios-spring-expand) 120ms,
+    transform 460ms var(--ios-spring-expand) 110ms;
+}
+
+/* Right Column: Key Benefits Card Staggered Reveal */
+.explore-benefits-col {
+  opacity: 0;
+  transform: translateY(10px) scale(0.99);
+  transition:
+    opacity 240ms var(--ios-spring-expand),
+    transform 260ms var(--ios-spring-expand);
+  will-change: opacity, transform;
+}
+
+.explore-accordion-collapse.is-open .explore-benefits-col,
+.explore-accordion-card.is-expanded .explore-benefits-col {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity 460ms var(--ios-spring-expand) 160ms,
+    transform 500ms var(--ios-spring-expand) 140ms;
+}
+
+/* Pallet Boxes & Supporting Artwork Gentle Arrival */
+.benefits-pallet-art img {
+  transform: translateY(4px);
+  transition: transform 600ms var(--ios-spring-expand) 140ms;
+  will-change: transform;
+}
+
+.explore-accordion-collapse.is-open .benefits-pallet-art img,
+.explore-accordion-card.is-expanded .benefits-pallet-art img {
+  transform: translateY(0);
 }
 
 .features-2col-grid {
@@ -8952,9 +9054,14 @@ video.three-pl-video-element::-webkit-media-controls-enclosure {
   --ios-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ios-spring: cubic-bezier(0.2, 0.9, 0.3, 1);
   --ios-ease-out: cubic-bezier(0.32, 0.72, 0, 1);
+  --ios-spring-expand: cubic-bezier(0.22, 1, 0.36, 1);
   --ios-duration-fast: 0.18s;
   --ios-duration-base: 0.28s;
   --ios-duration-page: 0.32s;
+  --ios-duration-expand: 720ms;
+  --ios-duration-collapse: 620ms;
+  --ios-duration-fadein: 420ms;
+  --ios-duration-fadeout: 280ms;
 }
 
 /* 1. Page Navigation Transitions: Smooth fade-in + 8px translateY entrance */
@@ -9031,23 +9138,20 @@ video.three-pl-video-element::-webkit-media-controls-enclosure {
   }
 }
 
-/* 4. Accordion Smooth Expansion & Chevron Rotation */
+/* 4. Accordion Smooth Expansion & Chevron Rotation (Apple iOS Fluid Motion) */
 .explore-accordion-card {
   transition:
-    border-color var(--ios-duration-base) var(--ios-ease),
-    box-shadow var(--ios-duration-base) var(--ios-ease),
-    background-color var(--ios-duration-base) var(--ios-ease) !important;
+    border-color var(--ios-duration-expand) var(--ios-spring-expand),
+    box-shadow var(--ios-duration-expand) var(--ios-spring-expand),
+    background-color var(--ios-duration-expand) var(--ios-spring-expand) !important;
 }
 
 .explore-chevron-icon {
   transition:
-    transform 0.3s var(--ios-ease),
-    background-color 0.24s ease,
-    border-color 0.24s ease !important;
-}
-
-.explore-accordion-body {
-  animation: iosContentFade var(--ios-duration-base) var(--ios-ease) both !important;
+    transform var(--ios-duration-expand) var(--ios-spring-expand),
+    background-color 350ms ease,
+    border-color 350ms ease,
+    color 350ms ease !important;
 }
 
 /* 5. Pricing Toggle Switch & Cards (Apple iOS Switch Motion) */
@@ -9075,10 +9179,10 @@ video.three-pl-video-element::-webkit-media-controls-enclosure {
 /* 6. Accordion & Details inside Warehouse Capabilities */
 .dynamics-item {
   transition:
-    background-color var(--ios-duration-fast) var(--ios-ease),
-    border-color var(--ios-duration-fast) var(--ios-ease),
-    box-shadow var(--ios-duration-fast) var(--ios-ease),
-    transform var(--ios-duration-fast) var(--ios-ease) !important;
+    background-color 320ms var(--ios-spring-expand),
+    border-color 320ms var(--ios-spring-expand),
+    box-shadow 320ms var(--ios-spring-expand),
+    transform 200ms var(--ios-spring-expand) !important;
 }
 
 .dynamics-item:active {
@@ -9086,19 +9190,21 @@ video.three-pl-video-element::-webkit-media-controls-enclosure {
 }
 
 .dynamics-body {
-  animation: iosAccordionExpand var(--ios-duration-base) var(--ios-ease) both !important;
+  animation: iosAccordionExpand var(--ios-duration-fadein) var(--ios-spring-expand) both !important;
 }
 
 .sales-acc-item {
-  transition: border-color var(--ios-duration-base) var(--ios-ease), box-shadow var(--ios-duration-base) var(--ios-ease) !important;
+  transition:
+    border-color var(--ios-duration-collapse) var(--ios-spring-expand),
+    box-shadow var(--ios-duration-collapse) var(--ios-spring-expand) !important;
 }
 
 .sales-acc-chevron {
-  transition: transform var(--ios-duration-base) var(--ios-ease) !important;
+  transition: transform var(--ios-duration-collapse) var(--ios-spring-expand) !important;
 }
 
 .sales-acc-body {
-  animation: iosContentFade var(--ios-duration-base) var(--ios-ease) both !important;
+  animation: iosAccordionExpand var(--ios-duration-fadein) var(--ios-spring-expand) both !important;
 }
 
 /* 7. Buttons & Interactive Links (Apple iOS Fluid Tactile Feel) */

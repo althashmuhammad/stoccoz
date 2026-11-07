@@ -181,10 +181,15 @@ export interface ThreePLModule {
                 </div>
               </button>
 
-              <!-- Accordion Body (Expanded Content) -->
-              @if (activeModule() === mod.id) {
-                <div class="explore-accordion-body">
-                  <!-- Left Side: 2-Column Responsive Features Grid + Status Chain -->
+              <!-- Accordion Body (Expanded Content with Apple iOS-Inspired Smooth Grid Animation) -->
+              <div
+                class="explore-accordion-collapse"
+                [class.is-open]="activeModule() === mod.id"
+                [attr.aria-hidden]="activeModule() !== mod.id"
+              >
+                <div class="explore-accordion-collapse-inner">
+                  <div class="explore-accordion-body">
+                    <!-- Left Side: 2-Column Responsive Features Grid + Status Chain -->
                   <div class="explore-features-col">
                     @if (mod.statusChain && mod.statusChain.length > 0) {
                       <div class="status-chain-banner">
@@ -384,8 +389,9 @@ export interface ThreePLModule {
                     </div>
                   </aside>
                 </div>
-              }
-            </article>
+              </div>
+            </div>
+          </article>
           }
         </div>
 
