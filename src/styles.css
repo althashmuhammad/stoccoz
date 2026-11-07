@@ -1574,13 +1574,6 @@ app-geometric-grid-background {
   bottom: 20px;
 }
 
-.cap-card.cap-inventory.is-compact .inventory-asset {
-  height: 110px;
-  right: 10px;
-  bottom: 10px;
-  opacity: 0.75;
-}
-
 .purchase-asset {
   bottom: 14px;
   height: 180px;
@@ -1595,13 +1588,6 @@ app-geometric-grid-background {
   bottom: 20px;
 }
 
-.cap-card.cap-purchasing.is-compact .purchase-asset {
-  height: 110px;
-  right: 10px;
-  bottom: 10px;
-  opacity: 0.75;
-}
-
 .movement-asset {
   bottom: 12px;
   height: 135px;
@@ -1614,13 +1600,6 @@ app-geometric-grid-background {
   height: 195px;
   right: 26px;
   bottom: 18px;
-}
-
-.cap-card.cap-movements.is-compact .movement-asset {
-  height: 90px;
-  right: 10px;
-  bottom: 8px;
-  opacity: 0.75;
 }
 
 /* Purchasing and Sales card heading: Keep flex layout full width so yellow button sits at top-right */
@@ -1685,12 +1664,6 @@ app-geometric-grid-background {
   transform: scale(1.18);
   right: 36px;
   bottom: 28px;
-}
-
-.cap-card.cap-reports.is-compact .reports-preview-art {
-  transform: scale(0.8);
-  right: 14px;
-  bottom: 12px;
 }
 
 .chart-bars-art {
@@ -7532,7 +7505,9 @@ app-geometric-grid-background {
    COMPACT CARDS PRESENTATION (MATCHES USER UI SCREENSHOT EXACTLY)
    ========================================================================== */
 .cap-card.is-compact {
-  display: block !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
   background: #ffffff !important;
   border: 1px solid #edf0f5 !important;
   border-radius: 18px !important;
@@ -7540,7 +7515,7 @@ app-geometric-grid-background {
   padding: 18px 22px !important;
   position: relative !important;
   cursor: pointer !important;
-  min-height: 165px !important;
+  min-height: 140px !important;
   box-sizing: border-box !important;
   opacity: 1 !important;
   overflow: hidden !important;
@@ -7558,86 +7533,51 @@ app-geometric-grid-background {
 
 .cap-card.is-compact .cap-heading {
   display: block !important;
-  max-width: calc(100% - 85px) !important;
+  width: 100% !important;
+  max-width: 100% !important;
   margin: 0 !important;
 }
 
-/* Small illustrations in compact state */
+.cap-card.is-compact .inventory-col-left,
+.cap-card.is-compact .purchasing-col-left,
+.cap-card.is-compact .sales-col-left,
+.cap-card.is-compact .movements-col-left,
+.cap-card.is-compact .reports-col-left {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* In shrinked / compact state: HIDE images, illustrations & preview embeds on all shrinked cards */
+.cap-card.is-compact .inventory-col-right,
+.cap-card.is-compact .purchasing-col-right,
+.cap-card.is-compact .sales-col-right,
+.cap-card.is-compact .movements-col-right,
+.cap-card.is-compact .reports-col-right,
 .cap-card.is-compact .inventory-preview-embed,
 .cap-card.is-compact .purchasing-preview-embed,
 .cap-card.is-compact .sales-preview-embed,
 .cap-card.is-compact .movements-preview-embed,
-.cap-card.is-compact .reports-preview-embed {
-  display: flex !important;
-  position: absolute !important;
-  top: 18px !important;
-  right: 18px !important;
-  width: 72px !important;
-  height: 60px !important;
-  align-items: center !important;
-  justify-content: center !important;
-  pointer-events: none !important;
-  z-index: 2 !important;
-}
-
+.cap-card.is-compact .reports-preview-embed,
 .cap-card.is-compact .cap-asset,
 .cap-card.is-compact .inventory-asset,
 .cap-card.is-compact .purchasing-asset,
 .cap-card.is-compact .sales-asset,
-.cap-card.is-compact .movement-asset {
-  max-width: 68px !important;
-  max-height: 58px !important;
-  width: auto !important;
-  height: auto !important;
-  object-fit: contain !important;
-  filter: drop-shadow(0 3px 8px rgba(8, 18, 45, 0.08)) !important;
-}
-
+.cap-card.is-compact .movement-asset,
 .cap-card.is-compact .reports-preview-art {
-  display: flex !important;
-  align-items: flex-end !important;
-  gap: 8px !important;
-  transform: scale(0.68) !important;
-  transform-origin: right top !important;
+  display: none !important;
 }
 
-/* Yellow expand button [↗] at bottom-right corner of compact cards */
+/* In shrinked / compact state: HIDE expand button on all shrinked cards */
 .cap-card.is-compact .cap-expand-btn,
 .cap-card.is-compact .purchasing-arrow-btn,
 .cap-card.is-compact .sales-arrow-btn,
 .cap-card.is-compact .inventory-arrow-btn,
 .cap-card.is-compact .movements-arrow-btn,
 .cap-card.is-compact .reports-arrow-btn {
-  position: absolute !important;
-  bottom: 16px !important;
-  right: 18px !important;
-  top: auto !important;
-  left: auto !important;
-  width: 32px !important;
-  height: 32px !important;
-  border-radius: 8px !important;
-  background: #ffc400 !important;
-  color: #08122d !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 15px !important;
-  font-weight: 800 !important;
-  border: none !important;
-  cursor: pointer !important;
-  box-shadow: 0 3px 10px rgba(255, 196, 0, 0.28) !important;
-  z-index: 5 !important;
-  transition: transform 0.2s ease, background-color 0.2s ease !important;
-}
-
-.cap-card.is-compact .cap-expand-btn:hover,
-.cap-card.is-compact .purchasing-arrow-btn:hover,
-.cap-card.is-compact .sales-arrow-btn:hover,
-.cap-card.is-compact .inventory-arrow-btn:hover,
-.cap-card.is-compact .movements-arrow-btn:hover,
-.cap-card.is-compact .reports-arrow-btn:hover {
-  background: #e6b000 !important;
-  transform: scale(1.08);
+  display: none !important;
 }
 
 /* Hide pills, simulation iframes, and accordions inside compact cards */
