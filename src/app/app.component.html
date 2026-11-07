@@ -25,6 +25,16 @@
       (navigateWarehouse)="onNavigate('explore-warehouse')"
     ></app-vans-explore>
   </main>
+} @else if (activePage() === 'explore-3pl') {
+  <main class="explore-3pl-wrapper">
+    <app-three-pl-explore
+      (navigateAbout)="onNavigate('about')"
+      (navigateHome)="onNavigate('home')"
+      (navigatePricing)="onNavigate('pricing')"
+      (navigateWarehouse)="onNavigate('explore-warehouse')"
+      (navigateVans)="onNavigate('explore-vans')"
+    ></app-three-pl-explore>
+  </main>
 } @else {
   <main #mainRef>
     <app-hero (navigateAbout)="onNavigate('about')"></app-hero>

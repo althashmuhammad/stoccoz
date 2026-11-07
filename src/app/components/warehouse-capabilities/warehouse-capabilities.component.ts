@@ -33,35 +33,43 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
           role="region"
           aria-label="Inventory management"
         >
-          <div class="cap-heading">
-            <div>
-              <h3>Inventory<br />Management</h3>
-              <p>Gain complete control over your inventory with real-time stock visibility, intelligent tracking and seamless warehouse operations.</p>
+          <!-- Left Content (approx 42%) -->
+          <div class="inventory-col-left">
+            <div class="cap-heading">
+              <div>
+                <h3>Inventory<br />Management</h3>
+                <p>Gain complete control over your inventory with real-time stock visibility, intelligent tracking and seamless warehouse operations.</p>
+              </div>
             </div>
-            <button
-              type="button"
-              class="cap-expand-btn"
-              (click)="$event.stopPropagation(); toggleCard('inventory')"
-              [attr.aria-expanded]="expandedCard() === 'inventory'"
-              [attr.aria-label]="expandedCard() === 'inventory' ? 'Collapse inventory details' : 'Expand inventory management'"
-            >
-              <span class="btn-icon">{{ expandedCard() === 'inventory' ? '✕' : '↗' }}</span>
-            </button>
-          </div>
 
-          <!-- DEFAULT / COLLAPSED STATE: 5 Core Capabilities -->
-          <div class="inventory-default-content">
-            <div class="inventory-quick-caps" aria-label="Core inventory capabilities">
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Real-Time Stock Tracking</span>
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Multi-Warehouse Management</span>
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Batch &amp; Expiry Management</span>
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Stock Movement &amp; Adjustments</span>
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Low Stock Alerts &amp; Reordering</span>
+            <!-- DEFAULT / COLLAPSED STATE: 5 Feature Labels Vertically Aligned -->
+            <div class="inventory-default-content">
+              <div class="inventory-feature-list" aria-label="Core inventory capabilities">
+                <div class="inventory-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Real-Time Stock Tracking</span>
+                </div>
+                <div class="inventory-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Multi-Warehouse Management</span>
+                </div>
+                <div class="inventory-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Batch &amp; Expiry Management</span>
+                </div>
+                <div class="inventory-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Stock Movement &amp; Adjustments</span>
+                </div>
+                <div class="inventory-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Low Stock Alerts &amp; Reordering</span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <!-- EXPANDED STATE: Microsoft Dynamics-inspired Interactive Accordion -->
-          <div class="inventory-expanded-section">
+            <!-- EXPANDED STATE: Microsoft Dynamics-inspired Interactive Accordion -->
+            <div class="inventory-expanded-section">
             <div class="inventory-dynamics-header">
               <span class="dynamics-section-label">Core Capabilities Overview</span>
             </div>
@@ -204,12 +212,27 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
               </div>
             </div>
           </div>
+        </div>
+
+          <!-- Right Content (approx 58%) -->
+          <div class="inventory-col-right">
+            <button
+              type="button"
+              class="cap-expand-btn inventory-arrow-btn"
+              (click)="$event.stopPropagation(); toggleCard('inventory')"
+              [attr.aria-expanded]="expandedCard() === 'inventory'"
+              [attr.aria-label]="expandedCard() === 'inventory' ? 'Collapse inventory details' : 'Expand inventory management'"
+            >
+              <span class="btn-icon">{{ expandedCard() === 'inventory' ? '✕' : '↗' }}</span>
+            </button>
+
+            <div class="inventory-preview-embed">
+              <img class="cap-asset inventory-asset" src="/assets/capability-boxes.png" alt="Stacked warehouse boxes" />
+            </div>
+          </div>
 
           <!-- Subtle vertical divider in expanded state -->
           <div class="inventory-v-divider" aria-hidden="true"></div>
-
-          <!-- Existing illustration (100% PRESERVED, UNCHANGED) -->
-          <img class="cap-asset inventory-asset" src="/assets/capability-boxes.png" alt="Stacked warehouse boxes" />
         </article>
 
         <!-- 2. Purchasing Card -->
@@ -384,33 +407,35 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
           role="region"
           aria-label="Sales orders"
         >
-          <div class="cap-heading">
-            <div>
-              <h3>Sales orders</h3>
-              <p>Create, manage and fulfil customer orders seamlessly.</p>
+          <!-- Left Content (approx 42%) -->
+          <div class="sales-col-left">
+            <div class="cap-heading">
+              <div>
+                <h3>Sales orders</h3>
+                <p>Create, manage and fulfil customer orders seamlessly.</p>
+              </div>
             </div>
-            <button
-              type="button"
-              class="cap-expand-btn"
-              (click)="$event.stopPropagation(); toggleCard('sales')"
-              [attr.aria-expanded]="expandedCard() === 'sales'"
-              [attr.aria-label]="expandedCard() === 'sales' ? 'Collapse sales orders details' : 'Expand sales orders'"
-            >
-              <span class="btn-icon">{{ expandedCard() === 'sales' ? '✕' : '↗' }}</span>
-            </button>
-          </div>
 
-          <!-- DEFAULT / COLLAPSED STATE: 3 Core Capabilities -->
-          <div class="sales-default-content">
-            <div class="sales-quick-caps" aria-label="Core sales capabilities">
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Sales Order Creation</span>
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Order Tracking &amp; Management</span>
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Sales Order to Invoice Conversion</span>
+            <!-- DEFAULT / COLLAPSED STATE: 3 Feature Labels Vertically Aligned -->
+            <div class="sales-default-content">
+              <div class="sales-feature-list" aria-label="Core sales capabilities">
+                <div class="sales-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Sales Order Creation</span>
+                </div>
+                <div class="sales-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Order Tracking &amp; Management</span>
+                </div>
+                <div class="sales-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Sales Order to Invoice Conversion</span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <!-- EXPANDED STATE: Interactive Accordion -->
-          <div class="sales-expanded-section">
+            <!-- EXPANDED STATE: Interactive Accordion -->
+            <div class="sales-expanded-section">
             <div class="inventory-dynamics-header">
               <span class="dynamics-section-label">Core Capabilities Overview</span>
             </div>
@@ -504,19 +529,33 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
               </div>
             </div>
           </div>
+        </div>
+
+          <!-- Right Content (approx 58%) -->
+          <div class="sales-col-right">
+            <button
+              type="button"
+              class="cap-expand-btn sales-arrow-btn"
+              (click)="$event.stopPropagation(); toggleCard('sales')"
+              [attr.aria-expanded]="expandedCard() === 'sales'"
+              [attr.aria-label]="expandedCard() === 'sales' ? 'Collapse sales orders details' : 'Expand sales orders'"
+            >
+              <span class="btn-icon">{{ expandedCard() === 'sales' ? '✕' : '↗' }}</span>
+            </button>
+
+            <div class="sales-live-stage-embed">
+              <iframe
+                class="sales-live-iframe"
+                src="/assets/sales-orders-live.html"
+                title="Sales Orders Live Simulation"
+                loading="eager"
+                scrolling="no"
+              ></iframe>
+            </div>
+          </div>
 
           <!-- Subtle vertical divider in expanded state -->
           <div class="sales-v-divider" aria-hidden="true"></div>
-
-          <div class="sales-live-stage-embed">
-            <iframe
-              class="sales-live-iframe"
-              src="/assets/sales-orders-live.html"
-              title="Sales Orders Live Simulation"
-              loading="eager"
-              scrolling="no"
-            ></iframe>
-          </div>
         </article>
 
         <!-- 4. Stock Movements Card -->
@@ -528,98 +567,113 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
           role="region"
           aria-label="Stock movements"
         >
-          <div class="cap-heading">
-            <div>
-              <h3>Stock movements</h3>
-              <p>Track every movement from receipt to dispatch in real time.</p>
+          <!-- Left Content (approx 42%) -->
+          <div class="movements-col-left">
+            <div class="cap-heading">
+              <div>
+                <h3>Stock movements</h3>
+                <p>Track every movement from receipt to dispatch in real time.</p>
+              </div>
             </div>
+
+            <!-- DEFAULT / COLLAPSED STATE: 2 Feature Labels Vertically Aligned -->
+            <div class="movements-default-content">
+              <div class="movements-feature-list" aria-label="Core stock movement capabilities">
+                <div class="movements-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Stock Transfer Management</span>
+                </div>
+                <div class="movements-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Stock Inward &amp; Outward Management</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- EXPANDED STATE: Interactive Accordion -->
+            <div class="movements-expanded-section">
+              <div class="inventory-dynamics-header">
+                <span class="dynamics-section-label">Core Capabilities Overview</span>
+              </div>
+
+              <div class="inventory-dynamics-accordion" role="tablist">
+                <!-- 1. Stock Transfer Management -->
+                <div
+                  class="dynamics-item"
+                  [class.is-active]="activeMovementsItem() === 'transfers'"
+                  (click)="$event.stopPropagation(); setActiveMovementsItem('transfers')"
+                  role="tab"
+                  [attr.aria-selected]="activeMovementsItem() === 'transfers'"
+                >
+                  <div class="dynamics-header">
+                    <div class="dynamics-title-group">
+                      <span class="dynamics-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>
+                        </svg>
+                      </span>
+                      <strong>Stock Transfer Management</strong>
+                    </div>
+                    <span class="dynamics-badge">Multi-Node Sync</span>
+                    <span class="dynamics-arrow">{{ activeMovementsItem() === 'transfers' ? '−' : '+' }}</span>
+                  </div>
+                  @if (activeMovementsItem() === 'transfers') {
+                    <div class="dynamics-body">
+                      <p>Manage stock transfers between warehouses, stores, and vans while tracking every movement in real time with complete visibility.</p>
+                    </div>
+                  }
+                </div>
+
+                <!-- 2. Stock Inward & Outward Management -->
+                <div
+                  class="dynamics-item"
+                  [class.is-active]="activeMovementsItem() === 'inout'"
+                  (click)="$event.stopPropagation(); setActiveMovementsItem('inout')"
+                  role="tab"
+                  [attr.aria-selected]="activeMovementsItem() === 'inout'"
+                >
+                  <div class="dynamics-header">
+                    <div class="dynamics-title-group">
+                      <span class="dynamics-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                          <path d="M12 12v10"/><path d="m16 7-4-4-4 4"/><path d="m8 17 4 4 4-4"/>
+                        </svg>
+                      </span>
+                      <strong>Stock Inward &amp; Outward Management</strong>
+                    </div>
+                    <span class="dynamics-badge">Full Audit</span>
+                    <span class="dynamics-arrow">{{ activeMovementsItem() === 'inout' ? '−' : '+' }}</span>
+                  </div>
+                  @if (activeMovementsItem() === 'inout') {
+                    <div class="dynamics-body">
+                      <p>Record and monitor all stock additions, sales, returns, and adjustments with detailed movement history and accurate inventory records.</p>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Content (approx 58%) -->
+          <div class="movements-col-right">
             <button
               type="button"
-              class="cap-expand-btn"
+              class="cap-expand-btn movements-arrow-btn"
               (click)="$event.stopPropagation(); toggleCard('movements')"
               [attr.aria-expanded]="expandedCard() === 'movements'"
               [attr.aria-label]="expandedCard() === 'movements' ? 'Collapse stock movements details' : 'Expand stock movements'"
             >
               <span class="btn-icon">{{ expandedCard() === 'movements' ? '✕' : '↗' }}</span>
             </button>
-          </div>
 
-          <!-- DEFAULT / COLLAPSED STATE: 2 Core Capabilities -->
-          <div class="movements-default-content">
-            <div class="movements-quick-caps" aria-label="Core stock movement capabilities">
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Stock Transfer Management</span>
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Stock Inward &amp; Outward Management</span>
-            </div>
-          </div>
-
-          <!-- EXPANDED STATE: Interactive Accordion -->
-          <div class="movements-expanded-section">
-            <div class="inventory-dynamics-header">
-              <span class="dynamics-section-label">Core Capabilities Overview</span>
-            </div>
-
-            <div class="inventory-dynamics-accordion" role="tablist">
-              <!-- 1. Stock Transfer Management -->
-              <div
-                class="dynamics-item"
-                [class.is-active]="activeMovementsItem() === 'transfers'"
-                (click)="$event.stopPropagation(); setActiveMovementsItem('transfers')"
-                role="tab"
-                [attr.aria-selected]="activeMovementsItem() === 'transfers'"
-              >
-                <div class="dynamics-header">
-                  <div class="dynamics-title-group">
-                    <span class="dynamics-icon">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>
-                      </svg>
-                    </span>
-                    <strong>Stock Transfer Management</strong>
-                  </div>
-                  <span class="dynamics-badge">Multi-Node Sync</span>
-                  <span class="dynamics-arrow">{{ activeMovementsItem() === 'transfers' ? '−' : '+' }}</span>
-                </div>
-                @if (activeMovementsItem() === 'transfers') {
-                  <div class="dynamics-body">
-                    <p>Manage stock transfers between warehouses, stores, and vans while tracking every movement in real time with complete visibility.</p>
-                  </div>
-                }
-              </div>
-
-              <!-- 2. Stock Inward & Outward Management -->
-              <div
-                class="dynamics-item"
-                [class.is-active]="activeMovementsItem() === 'inout'"
-                (click)="$event.stopPropagation(); setActiveMovementsItem('inout')"
-                role="tab"
-                [attr.aria-selected]="activeMovementsItem() === 'inout'"
-              >
-                <div class="dynamics-header">
-                  <div class="dynamics-title-group">
-                    <span class="dynamics-icon">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
-                        <path d="M12 12v10"/><path d="m16 7-4-4-4 4"/><path d="m8 17 4 4 4-4"/>
-                      </svg>
-                    </span>
-                    <strong>Stock Inward &amp; Outward Management</strong>
-                  </div>
-                  <span class="dynamics-badge">Full Audit</span>
-                  <span class="dynamics-arrow">{{ activeMovementsItem() === 'inout' ? '−' : '+' }}</span>
-                </div>
-                @if (activeMovementsItem() === 'inout') {
-                  <div class="dynamics-body">
-                    <p>Record and monitor all stock additions, sales, returns, and adjustments with detailed movement history and accurate inventory records.</p>
-                  </div>
-                }
-              </div>
+            <div class="movements-preview-embed">
+              <img class="cap-asset movement-asset" src="/assets/capability-pallet.png" alt="Yellow pallet truck carrying boxes" />
             </div>
           </div>
 
           <!-- Subtle vertical divider in expanded state -->
           <div class="movements-v-divider" aria-hidden="true"></div>
-
-          <img class="cap-asset movement-asset" src="/assets/capability-pallet.png" alt="Yellow pallet truck carrying boxes" />
         </article>
 
         <!-- 5. Reports & Insights Card -->
@@ -631,110 +685,125 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
           role="region"
           aria-label="Reports & insights"
         >
-          <div class="cap-heading">
-            <div>
-              <h3>Reports &amp; insights</h3>
-              <p>Get real-time insights with powerful reports and analytics.</p>
+          <!-- Left Content (approx 42%) -->
+          <div class="reports-col-left">
+            <div class="cap-heading">
+              <div>
+                <h3>Reports &amp; insights</h3>
+                <p>Get real-time insights with powerful reports and analytics.</p>
+              </div>
             </div>
+
+            <!-- DEFAULT / COLLAPSED STATE: 2 Feature Labels Vertically Aligned -->
+            <div class="reports-default-content">
+              <div class="reports-feature-list" aria-label="Core reports and insights capabilities">
+                <div class="reports-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Comprehensive Business Reports</span>
+                </div>
+                <div class="reports-feature-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text">Real-Time Analytics &amp; Insights</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- EXPANDED STATE: Interactive Accordion -->
+            <div class="reports-expanded-section">
+              <div class="inventory-dynamics-header">
+                <span class="dynamics-section-label">Core Capabilities Overview</span>
+              </div>
+
+              <div class="inventory-dynamics-accordion" role="tablist">
+                <!-- 1. Comprehensive Business Reports -->
+                <div
+                  class="dynamics-item"
+                  [class.is-active]="activeReportsItem() === 'reports'"
+                  (click)="$event.stopPropagation(); setActiveReportsItem('reports')"
+                  role="tab"
+                  [attr.aria-selected]="activeReportsItem() === 'reports'"
+                >
+                  <div class="dynamics-header">
+                    <div class="dynamics-title-group">
+                      <span class="dynamics-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                          <polyline points="14 2 14 8 20 8"></polyline>
+                          <line x1="16" y1="13" x2="8" y2="13"></line>
+                          <line x1="16" y1="17" x2="8" y2="17"></line>
+                          <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                      </span>
+                      <strong>Comprehensive Business Reports</strong>
+                    </div>
+                    <span class="dynamics-badge">Full Visibility</span>
+                    <span class="dynamics-arrow">{{ activeReportsItem() === 'reports' ? '−' : '+' }}</span>
+                  </div>
+                  @if (activeReportsItem() === 'reports') {
+                    <div class="dynamics-body">
+                      <p>Generate detailed reports on sales, purchases, inventory, payments, and financial performance to gain complete business visibility.</p>
+                    </div>
+                  }
+                </div>
+
+                <!-- 2. Real-Time Analytics & Insights -->
+                <div
+                  class="dynamics-item"
+                  [class.is-active]="activeReportsItem() === 'analytics'"
+                  (click)="$event.stopPropagation(); setActiveReportsItem('analytics')"
+                  role="tab"
+                  [attr.aria-selected]="activeReportsItem() === 'analytics'"
+                >
+                  <div class="dynamics-header">
+                    <div class="dynamics-title-group">
+                      <span class="dynamics-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M3 3v18h18" />
+                          <path d="m19 9-5 5-4-4-3 3" />
+                        </svg>
+                      </span>
+                      <strong>Real-Time Analytics &amp; Insights</strong>
+                    </div>
+                    <span class="dynamics-badge">Live Analytics</span>
+                    <span class="dynamics-arrow">{{ activeReportsItem() === 'analytics' ? '−' : '+' }}</span>
+                  </div>
+                  @if (activeReportsItem() === 'analytics') {
+                    <div class="dynamics-body">
+                      <p>Monitor key business metrics, track performance trends, and make data-driven decisions with clear insights and customizable dashboards.</p>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Content (approx 58%) -->
+          <div class="reports-col-right">
             <button
               type="button"
-              class="cap-expand-btn"
+              class="cap-expand-btn reports-arrow-btn"
               (click)="$event.stopPropagation(); toggleCard('reports')"
               [attr.aria-expanded]="expandedCard() === 'reports'"
               [attr.aria-label]="expandedCard() === 'reports' ? 'Collapse reports and insights details' : 'Expand reports and insights'"
             >
               <span class="btn-icon">{{ expandedCard() === 'reports' ? '✕' : '↗' }}</span>
             </button>
-          </div>
 
-          <!-- DEFAULT / COLLAPSED STATE: 2 Core Capabilities -->
-          <div class="reports-default-content">
-            <div class="reports-quick-caps" aria-label="Core reports and insights capabilities">
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Comprehensive Business Reports</span>
-              <span class="inv-quick-tag"><span class="inv-tag-dot"></span>Real-Time Analytics &amp; Insights</span>
-            </div>
-          </div>
-
-          <!-- EXPANDED STATE: Interactive Accordion -->
-          <div class="reports-expanded-section">
-            <div class="inventory-dynamics-header">
-              <span class="dynamics-section-label">Core Capabilities Overview</span>
-            </div>
-
-            <div class="inventory-dynamics-accordion" role="tablist">
-              <!-- 1. Comprehensive Business Reports -->
-              <div
-                class="dynamics-item"
-                [class.is-active]="activeReportsItem() === 'reports'"
-                (click)="$event.stopPropagation(); setActiveReportsItem('reports')"
-                role="tab"
-                [attr.aria-selected]="activeReportsItem() === 'reports'"
-              >
-                <div class="dynamics-header">
-                  <div class="dynamics-title-group">
-                    <span class="dynamics-icon">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                        <polyline points="10 9 9 9 8 9"></polyline>
-                      </svg>
-                    </span>
-                    <strong>Comprehensive Business Reports</strong>
-                  </div>
-                  <span class="dynamics-badge">Full Visibility</span>
-                  <span class="dynamics-arrow">{{ activeReportsItem() === 'reports' ? '−' : '+' }}</span>
+            <div class="reports-preview-embed">
+              <div class="reports-preview-art" aria-hidden="true">
+                <div class="chart-bars-art">
+                  <span style="height: 48%;"></span>
+                  <span style="height: 72%;"></span>
+                  <span style="height: 100%;"></span>
+                  <span style="height: 64%;"></span>
                 </div>
-                @if (activeReportsItem() === 'reports') {
-                  <div class="dynamics-body">
-                    <p>Generate detailed reports on sales, purchases, inventory, payments, and financial performance to gain complete business visibility.</p>
-                  </div>
-                }
-              </div>
-
-              <!-- 2. Real-Time Analytics & Insights -->
-              <div
-                class="dynamics-item"
-                [class.is-active]="activeReportsItem() === 'analytics'"
-                (click)="$event.stopPropagation(); setActiveReportsItem('analytics')"
-                role="tab"
-                [attr.aria-selected]="activeReportsItem() === 'analytics'"
-              >
-                <div class="dynamics-header">
-                  <div class="dynamics-title-group">
-                    <span class="dynamics-icon">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 3v18h18" />
-                        <path d="m19 9-5 5-4-4-3 3" />
-                      </svg>
-                    </span>
-                    <strong>Real-Time Analytics &amp; Insights</strong>
-                  </div>
-                  <span class="dynamics-badge">Live Analytics</span>
-                  <span class="dynamics-arrow">{{ activeReportsItem() === 'analytics' ? '−' : '+' }}</span>
-                </div>
-                @if (activeReportsItem() === 'analytics') {
-                  <div class="dynamics-body">
-                    <p>Monitor key business metrics, track performance trends, and make data-driven decisions with clear insights and customizable dashboards.</p>
-                  </div>
-                }
+                <div class="chart-donut-art"></div>
               </div>
             </div>
           </div>
 
           <!-- Subtle vertical divider in expanded state -->
           <div class="reports-v-divider" aria-hidden="true"></div>
-
-          <div class="reports-preview-art" aria-hidden="true">
-            <div class="chart-bars-art">
-              <span style="height: 48%;"></span>
-              <span style="height: 72%;"></span>
-              <span style="height: 100%;"></span>
-              <span style="height: 64%;"></span>
-            </div>
-            <div class="chart-donut-art"></div>
-          </div>
         </article>
       </div>
 

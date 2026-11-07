@@ -10,6 +10,7 @@ import { PricingComponent } from './components/pricing/pricing.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { WarehouseExploreComponent } from './components/warehouse-explore/warehouse-explore.component';
 import { VansExploreComponent } from './components/vans-explore/vans-explore.component';
+import { ThreePLExploreComponent } from './components/three-pl-explore/three-pl-explore.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
@@ -27,6 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AboutPageComponent,
     WarehouseExploreComponent,
     VansExploreComponent,
+    ThreePLExploreComponent,
     FooterComponent
   ],
   templateUrl: './app.component.html'
@@ -34,7 +36,7 @@ import { FooterComponent } from './components/footer/footer.component';
 export class AppComponent implements OnDestroy {
   @ViewChild('mainRef') mainRef!: ElementRef<HTMLElement>;
 
-  activePage = signal<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans'>('home');
+  activePage = signal<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl'>('home');
   private cleanups: (() => void)[] = [];
   private frame = 0;
 
@@ -45,7 +47,7 @@ export class AppComponent implements OnDestroy {
     });
   }
 
-  onNavigate(page: 'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans') {
+  onNavigate(page: 'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl') {
     this.activePage.set(page);
     if (page === 'home') {
       setTimeout(() => this.initPageMotion(), 50);
@@ -66,6 +68,9 @@ export class AppComponent implements OnDestroy {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (h === '#explore-vans' || h === '#/explore-vans' || h === '#explore-vansales' || h === '#vansales-explore' || h === '#vans') {
         this.activePage.set('explore-vans');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (h === '#explore-3pl' || h === '#/explore-3pl' || h === '#3pl' || h === '#/3pl' || h === '#three-pl') {
+        this.activePage.set('explore-3pl');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (this.activePage() !== 'home') {
         this.activePage.set('home');

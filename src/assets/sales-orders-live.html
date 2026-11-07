@@ -37,15 +37,16 @@ button{font-family:inherit}
 :focus-visible{outline:2px solid var(--navy);outline-offset:3px}
 
 .wrap{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow:hidden;
-  padding:4px;
-  height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow:visible;
+  padding:10px;
+  height:100%;
+  min-height:100%;
   box-sizing:border-box;
   background:transparent!important;
 }
 
 /* ---------- 3D rig ---------- */
-.scene{width:min(340px,96%);perspective:1300px;animation:sceneIn .8s ease backwards;transform-origin:center center}
+.scene{width:min(326px,96%);perspective:1200px;animation:sceneIn .8s ease backwards;transform-origin:center center}
 @keyframes sceneIn{from{opacity:0}}
 .tilt{transform-style:preserve-3d;will-change:transform}
 .card{
