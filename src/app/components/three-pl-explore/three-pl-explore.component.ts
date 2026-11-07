@@ -48,7 +48,7 @@ export interface ThreePLModule {
       <section
         class="explore-hero-section three-pl-hero-section"
         id="explore-hero"
-        style="background: #ffffff url('/assets/three-pl-distribution-center.jpg') no-repeat right bottom / cover !important;"
+        style="background: #ffffff url('/assets/three-pl-distribution-hub.jpg') no-repeat right bottom / cover !important;"
       >
         <div class="explore-hero-bg-overlay" aria-hidden="true"></div>
         <div class="explore-hero-shell">
