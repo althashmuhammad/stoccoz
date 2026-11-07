@@ -9854,6 +9854,7 @@ app-geometric-grid-background {
   border-radius: 0 !important;
   overflow: hidden;
   margin: 0 auto;
+  cursor: pointer;
   /* Seamless subtle edge blend into surrounding white canvas */
   -webkit-mask-image: radial-gradient(ellipse 98% 95% at 50% 50%, #000 84%, transparent 100%);
   mask-image: radial-gradient(ellipse 98% 95% at 50% 50%, #000 84%, transparent 100%);

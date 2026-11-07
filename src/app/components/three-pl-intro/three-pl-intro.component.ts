@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, afterNextRender, signal, output } from '@angular/core';
+import { Component, ElementRef, ViewChild, afterNextRender, signal, output, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-three-pl-intro',
@@ -36,9 +36,13 @@ import { Component, ElementRef, ViewChild, afterNextRender, signal, output } fro
             </div>
           </div>
 
-          <!-- Right Column: Seamless Integrated Media Stage (No card frame, No border, No shadow) -->
+          <!-- Right Column: Seamless Integrated Media Stage (Plays every 10s & on hover) -->
           <div class="three-pl-visual-col">
-            <div class="three-pl-media-stage">
+            <div
+              class="three-pl-media-stage"
+              (mouseenter)="onStageHover()"
+              (click)="onStageHover()"
+            >
               <!-- Base Still Image: Always in DOM, zero flicker, instantaneous paint -->
               <img
                 src="/assets/three-pl-hub.jpg"
@@ -48,22 +52,21 @@ import { Component, ElementRef, ViewChild, afterNextRender, signal, output } fro
                 decoding="sync"
               />
 
-              <!-- Overlaid Video: Initialized silently, fades in only when active frames render, fades out on end -->
-              @if (!videoEnded()) {
-                <video
-                  #videoPlayer
-                  class="three-pl-video-element"
-                  [class.is-playing]="videoPlaying() && !videoEnded()"
-                  src="/assets/three-pl-animation.mp4"
-                  poster="/assets/three-pl-hub.jpg"
-                  muted
-                  playsinline
-                  preload="auto"
-                  [loop]="false"
-                  (playing)="onVideoPlaying()"
-                  (ended)="onVideoEnded()"
-                ></video>
-              }
+              <!-- Overlaid Video: Plays every 10s and on hover, smooth zero-flash fade -->
+              <video
+                #videoPlayer
+                class="three-pl-video-element"
+                [class.is-playing]="videoPlaying()"
+                src="/assets/three-pl-animation.mp4"
+                poster="/assets/three-pl-hub.jpg"
+                muted
+                playsinline
+                preload="auto"
+                [loop]="false"
+                (playing)="onVideoPlaying()"
+                (ended)="onVideoEnded()"
+                (pause)="onVideoPause()"
+              ></video>
             </div>
           </div>
         </div>
@@ -71,83 +74,119 @@ import { Component, ElementRef, ViewChild, afterNextRender, signal, output } fro
     </section>
   `
 })
-export class ThreePlIntroComponent {
+export class ThreePlIntroComponent implements OnDestroy {
   navigateExplore = output<void>();
 
   @ViewChild('sectionRef') sectionRef?: ElementRef<HTMLElement>;
   @ViewChild('videoPlayer') videoPlayer?: ElementRef<HTMLVideoElement>;
 
   videoPlaying = signal<boolean>(false);
-  videoEnded = signal<boolean>(false);
-  private hasPlayed = false;
+  private intervalId: any = null;
+  private isVisible = false;
+  private cleanupObserver: (() => void) | null = null;
 
   constructor() {
-    try {
-      if (typeof window !== 'undefined' && sessionStorage.getItem('stoccoz_3pl_video_played') === 'true') {
-        this.videoEnded.set(true);
-        this.hasPlayed = true;
-      }
-    } catch {}
-
     afterNextRender(() => {
       this.initIntersectionPlayback();
     });
   }
 
+  playVideo() {
+    const video = this.videoPlayer?.nativeElement;
+    if (!video) return;
+    try {
+      video.currentTime = 0;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    } catch {}
+  }
+
+  onStageHover() {
+    this.playVideo();
+    this.restartInterval();
+  }
+
   onVideoPlaying() {
-    if (!this.videoEnded()) {
-      this.videoPlaying.set(true);
-    }
+    this.videoPlaying.set(true);
   }
 
   onVideoEnded() {
-    // Smoothly fade video out to show underlying base image with zero flash
+    // Smoothly fade video out so base image shows cleanly
     this.videoPlaying.set(false);
-    setTimeout(() => {
-      this.videoEnded.set(true);
-      try {
-        sessionStorage.setItem('stoccoz_3pl_video_played', 'true');
-      } catch {}
-    }, 350);
   }
 
-  onExploreClick(e: Event) {
-    e.preventDefault();
-    try {
-      sessionStorage.setItem('stoccoz_3pl_video_played', 'true');
-    } catch {}
-    window.location.hash = '#explore-3pl';
-    this.navigateExplore.emit();
-    window.scrollTo({ top: 0, behavior: 'instant' });
+  onVideoPause() {
+    if (this.videoPlayer?.nativeElement?.ended) {
+      this.videoPlaying.set(false);
+    }
+  }
+
+  private startInterval() {
+    this.stopInterval();
+    this.intervalId = setInterval(() => {
+      if (this.isVisible) {
+        this.playVideo();
+      }
+    }, 10000);
+  }
+
+  private stopInterval() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
+
+  private restartInterval() {
+    this.startInterval();
   }
 
   private initIntersectionPlayback() {
     if (typeof window === 'undefined') return;
-    if (this.videoEnded()) return;
 
     if ('IntersectionObserver' in window && this.sectionRef?.nativeElement) {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting && !this.hasPlayed && !this.videoEnded()) {
-              this.hasPlayed = true;
-              if (this.videoPlayer?.nativeElement) {
-                this.videoPlayer.nativeElement.play().catch(() => {
-                  // Fallback if browser policy blocks autoplay
-                });
+            if (entry.isIntersecting) {
+              this.isVisible = true;
+              this.playVideo();
+              this.startInterval();
+            } else {
+              this.isVisible = false;
+              this.stopInterval();
+              const video = this.videoPlayer?.nativeElement;
+              if (video && !video.paused) {
+                video.pause();
+                this.videoPlaying.set(false);
               }
-              observer.disconnect();
             }
           });
         },
-        { threshold: 0.2 }
+        { threshold: 0.15 }
       );
       observer.observe(this.sectionRef.nativeElement);
+      this.cleanupObserver = () => observer.disconnect();
     } else {
-      // Fallback: autoplay if observer not available
-      if (this.videoPlayer?.nativeElement) {
-        this.videoPlayer.nativeElement.play().catch(() => {});
-      }
+      this.isVisible = true;
+      this.playVideo();
+      this.startInterval();
+    }
+  }
+
+  onExploreClick(e: Event) {
+    e.preventDefault();
+    window.location.hash = '#explore-3pl';
+    this.navigateExplore.emit();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  ngOnDestroy() {
+    this.stopInterval();
+    if (this.cleanupObserver) {
+      this.cleanupObserver();
     }
   }
 }
