@@ -6174,18 +6174,402 @@ app-geometric-grid-background {
 }
 
 @media (max-width: 1024px) {
+  .about-page-root {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding-bottom: clamp(70px, 9vw, 110px) !important;
+  }
+
+  .about-hero-section {
+    min-height: max(90vh, 600px);
+    max-height: 760px;
+  }
+
+  .about-container {
+    width: min(960px, calc(100% - 40px)) !important;
+    max-width: 100% !important;
+  }
+
   .about-shell {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .about-left-col,
+  .about-right-col {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .about-lead-copy {
+    max-width: 100% !important;
+  }
+
+  .about-contact-channels {
+    max-width: 100% !important;
+    width: 100% !important;
   }
 
   .direct-contact-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
   }
 
   .get-in-touch-card {
-    padding: 28px 22px;
+    padding: 32px 28px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .about-accordion-section {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-page-root {
+    padding-bottom: 70px !important;
+  }
+
+  .about-hero-section {
+    min-height: max(88vh, 560px) !important;
+    max-height: none !important;
+  }
+
+  .about-hero-copy {
+    padding-top: 72px !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .about-hero-title {
+    font-size: clamp(1.65rem, 5.5vw, 2.2rem) !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .about-hero-sub {
+    font-size: 0.92rem !important;
+    line-height: 1.5 !important;
+    padding: 0 6px !important;
+    margin-top: 10px !important;
+  }
+
+  .about-hero-phone {
+    width: min(260px, 62vw) !important;
+    bottom: -2% !important;
+  }
+
+  .about-sections-wrapper {
+    gap: 44px !important;
+    padding: 36px 0 20px !important;
+  }
+
+  /* Accordion on Mobile */
+  .about-accordion-section {
+    padding: 0 16px !important;
+    margin-bottom: 40px !important;
+    width: calc(100% - 32px) !important;
+    max-width: 100% !important;
+  }
+
+  .about-accordion-section .about-header-centered {
+    margin-bottom: 24px !important;
+    padding: 0 4px !important;
+  }
+
+  .about-accordion-section .about-title-large {
+    font-size: clamp(1.55rem, 5vw, 2.1rem) !important;
+    line-height: 1.22 !important;
+  }
+
+  .about-accordion-section .about-desc-lead {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .about-accordion {
+    margin-top: 22px !important;
+  }
+
+  .about-accordion-item {
+    padding-left: 14px !important;
+    border-left-width: 3px !important;
+  }
+
+  .about-accordion-trigger {
+    padding: 16px 0 !important;
+    gap: 12px !important;
+  }
+
+  .about-accordion-heading {
+    font-size: clamp(1.05rem, 3.6vw, 1.22rem) !important;
+    line-height: 1.3 !important;
+    text-align: left !important;
+  }
+
+  .about-accordion-body {
+    padding-bottom: 20px !important;
+    font-size: 0.92rem !important;
+    line-height: 1.62 !important;
+  }
+
+  /* Container & Shell for Contact section on Mobile */
+  .about-container {
+    width: calc(100% - 32px) !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .about-shell {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .about-left-col,
+  .about-right-col {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .about-main-headline {
+    font-size: clamp(26px, 6.5vw, 34px) !important;
+    line-height: 1.18 !important;
+    margin-bottom: 12px !important;
+    word-break: break-word !important;
+  }
+
+  .about-lead-copy {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 20px !important;
+    word-break: break-word !important;
+  }
+
+  .about-contact-channels {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+
+  .about-channel-row {
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 12px !important;
+    padding: 12px 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .about-channel-icon-box {
+    width: 38px !important;
+    height: 38px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .about-channel-details {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+  }
+
+  .about-channel-details strong,
+  .about-channel-details strong a {
+    font-size: clamp(13px, 3.8vw, 15px) !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    hyphens: auto !important;
+    display: inline-block !important;
+    max-width: 100% !important;
+  }
+
+  /* Form Card: Fix clipping & squash on mobile */
+  .get-in-touch-card {
+    padding: 22px 18px !important;
+    border-radius: 18px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
+  }
+
+  .card-main-title {
+    font-size: 22px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .card-subtitle {
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .about-contact-form {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* CRITICAL: Stack 2-column form rows into 1 full-width column on mobile */
+  .form-row-2 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .form-field {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-bottom: 14px !important;
+  }
+
+  .form-field label {
+    font-size: 12.5px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    height: 44px !important;
+    font-size: 14px !important;
+    padding: 0 14px !important;
+    border-radius: 8px !important;
+  }
+
+  .form-field textarea {
+    height: auto !important;
+    min-height: 96px !important;
+    padding: 10px 14px !important;
+  }
+
+  .form-checkbox-field {
+    margin: 4px 0 18px !important;
+  }
+
+  .checkbox-container {
+    align-items: flex-start !important;
+    font-size: 12.5px !important;
+    line-height: 1.45 !important;
+    gap: 8px !important;
+  }
+
+  .checkbox-container input {
+    margin-top: 2px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .button-submit-send {
+    width: 100% !important;
+    height: 46px !important;
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    width: calc(100% - 24px) !important;
+  }
+
+  .about-hero-section {
+    min-height: max(85vh, 520px) !important;
+  }
+
+  .about-hero-copy {
+    padding-top: 64px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .about-hero-title {
+    font-size: 1.55rem !important;
+  }
+
+  .about-hero-c1 {
+    left: 1% !important;
+    top: 48% !important;
+  }
+
+  .about-hero-c2 {
+    left: 1% !important;
+    top: 68% !important;
+  }
+
+  .about-hero-c3 {
+    right: 1% !important;
+    top: 52% !important;
+  }
+
+  .about-hero-c4 {
+    right: 1% !important;
+    top: 72% !important;
+  }
+
+  .about-hero-card {
+    padding: 6px 10px !important;
+    font-size: 0.68rem !important;
+    gap: 6px !important;
+    border-radius: 10px !important;
+  }
+
+  .about-hero-card svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .about-hero-phone {
+    width: min(230px, 60vw) !important;
+    bottom: -2% !important;
+  }
+
+  .about-accordion-section {
+    width: calc(100% - 24px) !important;
+    padding: 0 !important;
+  }
+
+  .about-accordion-item {
+    padding-left: 12px !important;
+  }
+
+  .about-accordion-trigger {
+    padding: 14px 0 !important;
+    gap: 10px !important;
+  }
+
+  .about-accordion-heading {
+    font-size: 1.02rem !important;
+  }
+
+  .get-in-touch-card {
+    padding: 18px 14px !important;
+    border-radius: 16px !important;
+  }
+
+  .card-main-title {
+    font-size: 20px !important;
+  }
+
+  .card-subtitle {
+    font-size: 13px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    padding: 0 12px !important;
+    font-size: 13.5px !important;
   }
 }
 /* Floating glass cards on top */
@@ -8296,23 +8680,41 @@ app-geometric-grid-background {
 
 @media (max-width: 768px) {
   .about-accordion-section {
-    padding: 0 16px;
-    margin-bottom: 48px;
+    padding: 0 16px !important;
+    margin-bottom: 40px !important;
+    width: calc(100% - 32px) !important;
   }
   .about-accordion-item {
-    padding-left: 14px;
-    border-left-width: 3px;
+    padding-left: 14px !important;
+    border-left-width: 3px !important;
   }
   .about-accordion-trigger {
-    padding: 18px 0;
+    padding: 16px 0 !important;
   }
   .about-accordion-heading {
-    font-size: 1.15rem;
+    font-size: clamp(1.05rem, 3.6vw, 1.22rem) !important;
   }
   .about-accordion-body {
-    padding-bottom: 22px;
-    font-size: 0.94rem;
-    line-height: 1.62;
+    padding-bottom: 20px !important;
+    font-size: 0.92rem !important;
+    line-height: 1.62 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-accordion-section {
+    width: calc(100% - 24px) !important;
+    padding: 0 !important;
+  }
+  .about-accordion-item {
+    padding-left: 12px !important;
+  }
+  .about-accordion-trigger {
+    padding: 14px 0 !important;
+    gap: 10px !important;
+  }
+  .about-accordion-heading {
+    font-size: 1.02rem !important;
   }
 }
 
