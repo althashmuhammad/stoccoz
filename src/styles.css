@@ -7563,6 +7563,109 @@ app-geometric-grid-background {
 }
 
 /* ==========================================================================
+   WAREHOUSE EXPLORE HERO - CLEAN WHITE DESIGN WITH LAPTOP & PHONE DEVICES
+   Matches media_1794030714183_c54d9498.jpg exactly
+   ========================================================================== */
+.warehouse-explore-page:not(.vans-explore-page):not(.three-pl-explore-page) .explore-hero-section,
+.explore-hero-section.warehouse-hero-section {
+  background: #ffffff !important;
+  background-image: none !important;
+  min-height: 480px !important;
+  max-height: none !important;
+  padding-top: 104px !important;
+  padding-bottom: 40px !important;
+  border-bottom: 1px solid #edf0f5 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.warehouse-explore-page:not(.vans-explore-page):not(.three-pl-explore-page) .explore-hero-bg-overlay,
+.explore-hero-section.warehouse-hero-section .explore-hero-bg-overlay {
+  display: none !important;
+}
+
+.warehouse-hero-shell {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 36px !important;
+  width: min(1280px, calc(100% - 48px)) !important;
+  margin: 0 auto !important;
+  padding: 0 16px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.warehouse-hero-copy {
+  flex: 1 1 50% !important;
+  max-width: 560px !important;
+  text-align: left !important;
+}
+
+.warehouse-hero-title {
+  font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif !important;
+  font-size: clamp(38px, 4.3vw, 56px) !important;
+  font-weight: 800 !important;
+  color: #08122d !important;
+  line-height: 1.14 !important;
+  letter-spacing: -0.035em !important;
+  margin: 0 0 20px 0 !important;
+}
+
+.warehouse-hero-subtitle {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-size: 15.5px !important;
+  color: #4a5a85 !important;
+  line-height: 1.62 !important;
+  max-width: 510px !important;
+  margin: 0 !important;
+}
+
+.warehouse-hero-visual {
+  flex: 1 1 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  min-height: 420px !important;
+}
+
+.warehouse-hero-devices-img {
+  max-width: 100% !important;
+  max-height: 440px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 20px 40px rgba(8, 18, 45, 0.12)) !important;
+  transform: translateY(6px) !important;
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+@media (max-width: 991px) {
+  .warehouse-hero-shell {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 28px !important;
+  }
+  .warehouse-hero-copy {
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+  .warehouse-hero-subtitle {
+    margin: 0 auto !important;
+  }
+  .warehouse-hero-visual {
+    min-height: 300px !important;
+  }
+  .warehouse-hero-devices-img {
+    max-height: 320px !important;
+  }
+}
+
+/* ==========================================================================
    VANSALES EXPLORE HERO - CLEAN WHITE DESIGN WITH PHONE VISUAL
    Matches media_1794030150770_fe478765.jpg exactly
    ========================================================================== */

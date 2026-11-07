@@ -21,21 +21,27 @@ export interface ExploreModule {
   standalone: true,
   template: `
     <div class="warehouse-explore-page" id="warehouse-explore-top">
-      <!-- Hero Section with Real 3D Warehouse Background -->
-      <section class="explore-hero-section" id="explore-hero">
-        <div class="explore-hero-bg-overlay" aria-hidden="true"></div>
-        <div class="explore-hero-shell">
-          <div class="explore-hero-copy">
-            <div class="explore-pill-tag">
-              <span>WAREHOUSE ERP</span>
-            </div>
-            <h1 class="explore-hero-title">
+      <!-- Hero Section with Devices Visual -->
+      <section class="explore-hero-section warehouse-hero-section" id="explore-hero">
+        <div class="explore-hero-shell warehouse-hero-shell">
+          <!-- Left Column: Copy -->
+          <div class="warehouse-hero-copy">
+            <h1 class="warehouse-hero-title">
               Explore the Complete<br />
-              <span class="hero-highlight-gold">Warehouse Solution</span>
+              Warehouse Solution
             </h1>
-            <p class="explore-hero-subtitle">
+            <p class="warehouse-hero-subtitle">
               A unified ERP to manage warehouses, inventory, purchasing, sales, fleet, and business insights — all in one place.
             </p>
+          </div>
+
+          <!-- Right Column: Laptop + Phone Devices Visual -->
+          <div class="warehouse-hero-visual" aria-hidden="true">
+            <img
+              src="/assets/warehouse-hero-devices.png"
+              alt="Stoccoz Warehouse ERP on Laptop and Mobile Phone"
+              class="warehouse-hero-devices-img"
+            />
           </div>
         </div>
 
