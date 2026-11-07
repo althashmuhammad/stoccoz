@@ -148,6 +148,12 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
             (mouseenter)="onNavHover(aboutLink)"
           >About Us</a>
 
+          <a
+            class="mobile-nav-cta"
+            href="#demo"
+            (click)="goToDemo($event)"
+          >Book a Demo <span>→</span></a>
+
           <!-- Smooth Apple-Style Gliding Active Underline -->
           <span
             class="nav-active-indicator"
@@ -162,6 +168,7 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
 
         <button
           class="menu-toggle"
+          [class.is-active]="mobileOpen()"
           (click)="toggleMobile()"
           aria-label="Toggle menu"
         >

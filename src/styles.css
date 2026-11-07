@@ -3342,55 +3342,281 @@ app-geometric-grid-background {
 
 @media (max-width: 900px) {
   .nav-shell {
-    padding: 0 22px;
+    padding: 0 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    position: relative !important;
   }
 
+  .brand {
+    margin-right: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    z-index: 102 !important;
+  }
+
+  /* Hamburger Menu Button: Positioned on the RIGHT side of mobile header */
+  .menu-toggle {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-left: auto !important;
+    width: 42px !important;
+    height: 42px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    z-index: 102 !important;
+    border-radius: 8px !important;
+    transition: background-color 0.2s ease !important;
+  }
+
+  .menu-toggle:hover {
+    background: rgba(8, 18, 45, 0.05) !important;
+  }
+
+  .menu-toggle i {
+    background: #08122d !important;
+    display: block !important;
+    height: 2.2px !important;
+    margin: 3.5px 0 !important;
+    width: 22px !important;
+    border-radius: 2px !important;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease !important;
+  }
+
+  .site-header.theme-about .menu-toggle i {
+    background: #ffffff !important;
+  }
+
+  /* Animated X toggle state when open */
+  .menu-toggle.is-active i:nth-child(1) {
+    transform: translateY(9px) rotate(45deg) !important;
+  }
+
+  .menu-toggle.is-active i:nth-child(2) {
+    opacity: 0 !important;
+    transform: scaleX(0) !important;
+  }
+
+  .menu-toggle.is-active i:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg) !important;
+  }
+
+  /* Clean, structured mobile dropdown card */
   .nav-links {
-    background: white;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, .1);
-    display: none;
-    flex-direction: column;
-    gap: 2px;
-    left: 20px;
-    padding: 20px;
-    position: absolute;
-    right: 20px;
-    top: 65px;
+    background: #ffffff !important;
+    box-shadow: 0 20px 50px rgba(8, 18, 45, 0.16), 0 4px 16px rgba(8, 18, 45, 0.06) !important;
+    border: 1px solid rgba(8, 18, 45, 0.08) !important;
+    border-radius: 20px !important;
+    display: none !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    left: 16px !important;
+    right: 16px !important;
+    padding: 16px !important;
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    z-index: 101 !important;
+    box-sizing: border-box !important;
+    animation: mobileMenuFadeIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   .nav-links.is-open {
-    display: flex;
+    display: flex !important;
+  }
+
+  .nav-links .nav-active-indicator {
+    display: none !important;
+  }
+
+  .nav-links > a.nav-root-link,
+  .platform-nav > button,
+  .features-nav > button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 12px 14px !important;
+    border-radius: 10px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #08122d !important;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: none !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+    transition: background 0.18s ease, color 0.18s ease !important;
+  }
+
+  .nav-links > a.nav-root-link:hover,
+  .platform-nav > button:hover,
+  .features-nav > button:hover {
+    background: #f8fafc !important;
+    color: #08122d !important;
+  }
+
+  .nav-links > a.nav-root-link.is-active {
+    background: #fff9e6 !important;
+    color: #b45309 !important;
+    font-weight: 700 !important;
+  }
+
+  .platform-nav,
+  .features-nav {
+    width: 100% !important;
+  }
+
+  /* CRITICAL FIX: Hide dropdown submenus completely when closed so they do NOT create an empty blank gap */
+  .features-dropdown:not(.is-open),
+  .mega-menu:not(.is-open) {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .features-dropdown.is-open {
+    display: flex !important;
+    flex-direction: column !important;
+    position: static !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: 1px solid #edf0f5 !important;
+    background: #f8fafc !important;
+    border-radius: 12px !important;
+    padding: 8px !important;
+    margin: 4px 0 6px 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    gap: 4px !important;
+  }
+
+  .features-dropdown a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 10px 12px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(8, 18, 45, 0.04) !important;
+    transition: background 0.15s ease !important;
+  }
+
+  .features-dropdown a:hover {
+    background: #f1f5f9 !important;
+  }
+
+  .features-dropdown a b {
+    font-size: 13.5px !important;
+    color: #08122d !important;
+    display: block !important;
+    font-weight: 700 !important;
+  }
+
+  .features-dropdown a small {
+    font-size: 11.5px !important;
+    color: #64748b !important;
+    display: block !important;
+  }
+
+  .mega-menu.is-open {
+    display: flex !important;
+    flex-direction: column !important;
+    position: static !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: 1px solid #edf0f5 !important;
+    background: #f8fafc !important;
+    border-radius: 12px !important;
+    padding: 8px !important;
+    margin: 4px 0 6px 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    gap: 4px !important;
+  }
+
+  .mega-menu .mega-col {
+    width: 100% !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .mega-menu .mega-col:not(.explore-col) {
+    display: none !important;
+  }
+
+  .mega-menu .mega-col.explore-col > p.eyebrow,
+  .mega-menu .mega-col.explore-col > h3,
+  .mega-menu .mega-col.explore-col > .text-link {
+    display: none !important;
+  }
+
+  .mega-menu .mega-feature {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 10px 12px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(8, 18, 45, 0.04) !important;
+    margin-bottom: 4px !important;
+  }
+
+  .mega-menu .mega-feature b {
+    font-size: 13.5px !important;
+    color: #08122d !important;
+    font-weight: 700 !important;
+  }
+
+  .mega-menu .mega-feature small {
+    font-size: 11.5px !important;
+    color: #64748b !important;
+  }
+
+  .mobile-nav-cta {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    padding: 13px !important;
+    margin-top: 8px !important;
+    background: #08122d !important;
+    color: #ffffff !important;
+    font-size: 14.5px !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 14px rgba(8, 18, 45, 0.18) !important;
+    box-sizing: border-box !important;
+    transition: background 0.2s ease !important;
+  }
+
+  .mobile-nav-cta:hover {
+    background: #1e293b !important;
   }
 
   .nav-cta {
-    margin-left: auto;
-    margin-right: 14px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .mega-menu {
-    display: none;
-  }
-
-  .features-nav {
-    width: 100%;
-  }
-
-  .features-nav>button {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .features-dropdown {
-    box-shadow: none;
-    left: auto;
-    margin-top: 2px;
-    position: static;
-    transform: none;
-    width: 100%;
+    display: none !important;
   }
 
   .hero {
