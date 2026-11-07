@@ -9010,6 +9010,33 @@ app-geometric-grid-background {
   }
 }
 
+/* ==========================================================================
+   GLOBAL LENIS SMOOTH SCROLLING STYLES
+   - Preserves 100% native mobile touch scrolling
+   - Preserves all existing parallax and scroll listeners
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+
 
 
 

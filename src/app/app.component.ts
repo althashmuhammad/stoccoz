@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild, afterNextRender, OnDestroy, signal } from '@angular/core';
+import Lenis from 'lenis';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { WarehouseIntroComponent } from './components/warehouse-intro/warehouse-intro.component';
@@ -43,20 +44,101 @@ export class AppComponent implements OnDestroy {
   activePage = signal<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl' | 'demo'>('home');
   private cleanups: (() => void)[] = [];
   private frame = 0;
+  private lenis: Lenis | null = null;
+  private lenisRafId = 0;
 
   constructor() {
     afterNextRender(() => {
+      this.initSmoothScroll();
       this.initPageMotion();
       this.initHashRouting();
     });
   }
 
+  private initSmoothScroll() {
+    if (typeof window === 'undefined') return;
+
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduceMotion.matches) return;
+
+    try {
+      this.lenis = new Lenis({
+        duration: 1.15,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        touchMultiplier: 1,
+        syncTouch: false,
+        infinite: false,
+      });
+
+      const raf = (time: number) => {
+        this.lenis?.raf(time);
+        this.lenisRafId = requestAnimationFrame(raf);
+      };
+
+      this.lenisRafId = requestAnimationFrame(raf);
+
+      const handleAnchorClick = (e: MouseEvent) => {
+        const target = (e.target as HTMLElement).closest('a');
+        if (!target) return;
+        const href = target.getAttribute('href');
+        if (!href || !href.startsWith('#') || href.length <= 1) return;
+
+        const isPageRoute =
+          href === '#demo' ||
+          href === '#/demo' ||
+          href === '#book-a-demo' ||
+          href === '#contact' ||
+          href === '#about' ||
+          href === '#/about' ||
+          href === '#about-us' ||
+          href === '#pricing' ||
+          href === '#/pricing' ||
+          href.startsWith('#explore');
+
+        if (isPageRoute) return;
+
+        if (href === '#top') {
+          e.preventDefault();
+          this.lenis?.scrollTo(0, { duration: 1.15 });
+          return;
+        }
+
+        const el = document.querySelector(href);
+        if (el) {
+          e.preventDefault();
+          this.lenis?.scrollTo(el as HTMLElement, { offset: -70, duration: 1.15 });
+        }
+      };
+
+      document.addEventListener('click', handleAnchorClick);
+
+      this.cleanups.push(() => {
+        document.removeEventListener('click', handleAnchorClick);
+        if (this.lenisRafId) cancelAnimationFrame(this.lenisRafId);
+        this.lenis?.destroy();
+        this.lenis = null;
+      });
+    } catch (err) {
+      console.warn('Lenis initialization skipped:', err);
+    }
+  }
+
   onNavigate(page: 'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl' | 'demo') {
     if (this.activePage() === page) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (this.lenis) {
+        this.lenis.scrollTo(0, { duration: 0.8 });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
       return;
     }
     this.activePage.set(page);
+    if (this.lenis) {
+      this.lenis.scrollTo(0, { immediate: true });
+    }
     window.scrollTo({ top: 0, behavior: 'instant' });
     if (page === 'home') {
       setTimeout(() => this.initPageMotion(), 50);
@@ -66,27 +148,34 @@ export class AppComponent implements OnDestroy {
   private initHashRouting() {
     const handleHash = () => {
       const h = window.location.hash;
+      const resetScroll = () => {
+        if (this.lenis) {
+          this.lenis.scrollTo(0, { immediate: true });
+        }
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      };
+
       if (h === '#demo' || h === '#/demo' || h === '#book-a-demo' || h === '#/book-a-demo' || h === '#contact' || h === '#/contact' || h === '#book-demo') {
         this.activePage.set('demo');
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        resetScroll();
       } else if (h === '#about' || h === '#/about' || h === '#about-us') {
         this.activePage.set('about');
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        resetScroll();
       } else if (h === '#pricing' || h === '#/pricing' || h === '#plans') {
         this.activePage.set('pricing');
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        resetScroll();
       } else if (h === '#explore-warehouse' || h === '#/explore-warehouse' || h === '#warehouse-explore' || h === '#/warehouse') {
         this.activePage.set('explore-warehouse');
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        resetScroll();
       } else if (h === '#explore-vans' || h === '#/explore-vans' || h === '#explore-vansales' || h === '#vansales-explore' || h === '#vans') {
         this.activePage.set('explore-vans');
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        resetScroll();
       } else if (h === '#explore-3pl' || h === '#/explore-3pl' || h === '#3pl' || h === '#/3pl' || h === '#three-pl') {
         this.activePage.set('explore-3pl');
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        resetScroll();
       } else if (this.activePage() !== 'home') {
         this.activePage.set('home');
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        resetScroll();
         setTimeout(() => this.initPageMotion(), 50);
       }
     };
