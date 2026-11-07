@@ -42,7 +42,7 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
               </div>
             </div>
 
-            <!-- DEFAULT / COLLAPSED STATE: 5 Feature Labels Vertically Aligned -->
+            <!-- DEFAULT / COLLAPSED STATE: Feature Labels Vertically Aligned -->
             <div class="inventory-default-content">
               <div class="inventory-feature-list" aria-label="Core inventory capabilities">
                 <div class="inventory-feature-pill">
@@ -56,10 +56,6 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
                 <div class="inventory-feature-pill">
                   <span class="pill-dot"></span>
                   <span class="pill-text">Batch &amp; Expiry Management</span>
-                </div>
-                <div class="inventory-feature-pill">
-                  <span class="pill-dot"></span>
-                  <span class="pill-text">Stock Movement &amp; Adjustments</span>
                 </div>
                 <div class="inventory-feature-pill">
                   <span class="pill-dot"></span>
@@ -576,20 +572,6 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
               </div>
             </div>
 
-            <!-- DEFAULT / COLLAPSED STATE: 2 Feature Labels Vertically Aligned -->
-            <div class="movements-default-content">
-              <div class="movements-feature-list" aria-label="Core stock movement capabilities">
-                <div class="movements-feature-pill">
-                  <span class="pill-dot"></span>
-                  <span class="pill-text">Stock Transfer Management</span>
-                </div>
-                <div class="movements-feature-pill">
-                  <span class="pill-dot"></span>
-                  <span class="pill-text">Stock Inward &amp; Outward Management</span>
-                </div>
-              </div>
-            </div>
-
             <!-- EXPANDED STATE: Interactive Accordion -->
             <div class="movements-expanded-section">
               <div class="inventory-dynamics-header">
@@ -691,20 +673,6 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
               <div>
                 <h3>Reports &amp; insights</h3>
                 <p>Get real-time insights with powerful reports and analytics.</p>
-              </div>
-            </div>
-
-            <!-- DEFAULT / COLLAPSED STATE: 2 Feature Labels Vertically Aligned -->
-            <div class="reports-default-content">
-              <div class="reports-feature-list" aria-label="Core reports and insights capabilities">
-                <div class="reports-feature-pill">
-                  <span class="pill-dot"></span>
-                  <span class="pill-text">Comprehensive Business Reports</span>
-                </div>
-                <div class="reports-feature-pill">
-                  <span class="pill-dot"></span>
-                  <span class="pill-text">Real-Time Analytics &amp; Insights</span>
-                </div>
               </div>
             </div>
 

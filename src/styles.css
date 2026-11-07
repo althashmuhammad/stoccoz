@@ -6937,6 +6937,19 @@ app-geometric-grid-background {
   max-width: 100%;
 }
 
+.cap-card.cap-movements:not(.is-expanded) .cap-heading p,
+.cap-card.cap-reports:not(.is-expanded) .cap-heading p {
+  margin-bottom: 0;
+}
+
+.cap-card.cap-inventory .inventory-feature-list {
+  gap: 6px;
+}
+
+.cap-card.cap-inventory .inventory-feature-pill {
+  padding: 5.5px 12px;
+}
+
 /* Vertically Aligned Feature Labels with Consistent Spacing */
 .cap-card .purchasing-default-content,
 .cap-card .sales-default-content,
