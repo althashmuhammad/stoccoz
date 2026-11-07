@@ -52,7 +52,12 @@ export class AppComponent implements OnDestroy {
   }
 
   onNavigate(page: 'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl' | 'demo') {
+    if (this.activePage() === page) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     this.activePage.set(page);
+    window.scrollTo({ top: 0, behavior: 'instant' });
     if (page === 'home') {
       setTimeout(() => this.initPageMotion(), 50);
     }
@@ -63,24 +68,25 @@ export class AppComponent implements OnDestroy {
       const h = window.location.hash;
       if (h === '#demo' || h === '#/demo' || h === '#book-a-demo' || h === '#/book-a-demo' || h === '#contact' || h === '#/contact' || h === '#book-demo') {
         this.activePage.set('demo');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
       } else if (h === '#about' || h === '#/about' || h === '#about-us') {
         this.activePage.set('about');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
       } else if (h === '#pricing' || h === '#/pricing' || h === '#plans') {
         this.activePage.set('pricing');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
       } else if (h === '#explore-warehouse' || h === '#/explore-warehouse' || h === '#warehouse-explore' || h === '#/warehouse') {
         this.activePage.set('explore-warehouse');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
       } else if (h === '#explore-vans' || h === '#/explore-vans' || h === '#explore-vansales' || h === '#vansales-explore' || h === '#vans') {
         this.activePage.set('explore-vans');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
       } else if (h === '#explore-3pl' || h === '#/explore-3pl' || h === '#3pl' || h === '#/3pl' || h === '#three-pl') {
         this.activePage.set('explore-3pl');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
       } else if (this.activePage() !== 'home') {
         this.activePage.set('home');
+        window.scrollTo({ top: 0, behavior: 'instant' });
         setTimeout(() => this.initPageMotion(), 50);
       }
     };

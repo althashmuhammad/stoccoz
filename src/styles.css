@@ -8809,6 +8809,208 @@ app-geometric-grid-background {
   }
 }
 
+/* ==========================================================================
+   GLOBAL APPLE iOS-INSPIRED TRANSITION & ANIMATION SYSTEM
+   ==========================================================================
+   - Natural easing & fluid movement: cubic-bezier(0.16, 1, 0.3, 1)
+   - Consistent, lightweight, hardware-accelerated (transform, opacity)
+   - Respects prefers-reduced-motion accessibility
+   ========================================================================== */
+
+:root {
+  --ios-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ios-spring: cubic-bezier(0.2, 0.9, 0.3, 1);
+  --ios-ease-out: cubic-bezier(0.32, 0.72, 0, 1);
+  --ios-duration-fast: 0.18s;
+  --ios-duration-base: 0.28s;
+  --ios-duration-page: 0.32s;
+}
+
+/* 1. Page Navigation Transitions: Smooth fade-in + 8px translateY entrance */
+@keyframes iosPageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ios-page-transition,
+.demo-main-wrapper,
+.about-main-wrapper,
+.pricing-main-wrapper,
+.explore-warehouse-wrapper,
+.explore-vans-wrapper,
+.explore-3pl-wrapper,
+.home-main-wrapper {
+  animation: iosPageEnter var(--ios-duration-page) var(--ios-ease) both;
+  will-change: opacity, transform;
+  min-height: 80vh;
+}
+
+/* 2. Content & Tab Switching Animation */
+@keyframes iosContentFade {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes iosAccordionExpand {
+  0% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 3. Horizontal Module Tabs & Segmented Controls (iOS Segmented Style) */
+.explore-module-tab {
+  transition:
+    background-color var(--ios-duration-base) var(--ios-ease),
+    color var(--ios-duration-base) var(--ios-ease),
+    transform var(--ios-duration-fast) var(--ios-ease),
+    box-shadow var(--ios-duration-base) var(--ios-ease) !important;
+}
+
+.explore-module-tab:active {
+  transform: scale(0.96) !important;
+}
+
+.explore-module-tab.is-active {
+  animation: iosPillPop var(--ios-duration-fast) var(--ios-ease);
+}
+
+@keyframes iosPillPop {
+  0% {
+    transform: scale(0.96);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 4. Accordion Smooth Expansion & Chevron Rotation */
+.explore-accordion-card {
+  transition:
+    border-color var(--ios-duration-base) var(--ios-ease),
+    box-shadow var(--ios-duration-base) var(--ios-ease),
+    background-color var(--ios-duration-base) var(--ios-ease) !important;
+}
+
+.explore-chevron-icon {
+  transition:
+    transform 0.3s var(--ios-ease),
+    background-color 0.24s ease,
+    border-color 0.24s ease !important;
+}
+
+.explore-accordion-body {
+  animation: iosContentFade var(--ios-duration-base) var(--ios-ease) both !important;
+}
+
+/* 5. Pricing Toggle Switch & Cards (Apple iOS Switch Motion) */
+.switch-row .switch {
+  transition:
+    background-color var(--ios-duration-base) var(--ios-ease),
+    box-shadow var(--ios-duration-base) var(--ios-ease) !important;
+}
+
+.switch-row .switch::after {
+  transition: transform var(--ios-duration-base) var(--ios-ease) !important;
+}
+
+.pricing-cards .plan-card {
+  transition:
+    transform var(--ios-duration-base) var(--ios-ease),
+    box-shadow var(--ios-duration-base) var(--ios-ease),
+    border-color var(--ios-duration-base) var(--ios-ease) !important;
+}
+
+.pricing-cards .plan-card:hover {
+  transform: translateY(-4px);
+}
+
+/* 6. Accordion & Details inside Warehouse Capabilities */
+.dynamics-item {
+  transition:
+    background-color var(--ios-duration-fast) var(--ios-ease),
+    border-color var(--ios-duration-fast) var(--ios-ease),
+    box-shadow var(--ios-duration-fast) var(--ios-ease),
+    transform var(--ios-duration-fast) var(--ios-ease) !important;
+}
+
+.dynamics-item:active {
+  transform: scale(0.995);
+}
+
+.dynamics-body {
+  animation: iosAccordionExpand var(--ios-duration-base) var(--ios-ease) both !important;
+}
+
+.sales-acc-item {
+  transition: border-color var(--ios-duration-base) var(--ios-ease), box-shadow var(--ios-duration-base) var(--ios-ease) !important;
+}
+
+.sales-acc-chevron {
+  transition: transform var(--ios-duration-base) var(--ios-ease) !important;
+}
+
+.sales-acc-body {
+  animation: iosContentFade var(--ios-duration-base) var(--ios-ease) both !important;
+}
+
+/* 7. Buttons & Interactive Links (Apple iOS Fluid Tactile Feel) */
+.button,
+.three-pl-explore-btn,
+.cap-expand-btn {
+  transition:
+    background-color var(--ios-duration-fast) var(--ios-ease),
+    transform var(--ios-duration-fast) var(--ios-ease),
+    box-shadow var(--ios-duration-fast) var(--ios-ease),
+    color var(--ios-duration-fast) var(--ios-ease) !important;
+}
+
+.button:active,
+.three-pl-explore-btn:active {
+  transform: scale(0.97) !important;
+}
+
+/* 8. Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .ios-page-transition,
+  .demo-main-wrapper,
+  .about-main-wrapper,
+  .pricing-main-wrapper,
+  .explore-warehouse-wrapper,
+  .explore-vans-wrapper,
+  .explore-3pl-wrapper,
+  .home-main-wrapper {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
 
 
 

@@ -1,22 +1,22 @@
 <app-navbar [activePage]="activePage()" (navigatePage)="onNavigate($event)"></app-navbar>
 
 @if (activePage() === 'demo') {
-  <main class="demo-main-wrapper">
+  <main class="demo-main-wrapper ios-page-transition">
     <app-book-demo-page></app-book-demo-page>
   </main>
 } @else if (activePage() === 'about') {
-  <main class="about-main-wrapper">
+  <main class="about-main-wrapper ios-page-transition">
     <app-about-page></app-about-page>
   </main>
 } @else if (activePage() === 'pricing') {
-  <main class="pricing-main-wrapper">
+  <main class="pricing-main-wrapper ios-page-transition">
     <app-pricing
       (navigateAbout)="onNavigate('about')"
       (navigateDemo)="onNavigate('demo')"
     ></app-pricing>
   </main>
 } @else if (activePage() === 'explore-warehouse') {
-  <main class="explore-warehouse-wrapper">
+  <main class="explore-warehouse-wrapper ios-page-transition">
     <app-warehouse-explore
       (navigateAbout)="onNavigate('about')"
       (navigateDemo)="onNavigate('demo')"
@@ -25,7 +25,7 @@
     ></app-warehouse-explore>
   </main>
 } @else if (activePage() === 'explore-vans') {
-  <main class="explore-vans-wrapper">
+  <main class="explore-vans-wrapper ios-page-transition">
     <app-vans-explore
       (navigateAbout)="onNavigate('about')"
       (navigateDemo)="onNavigate('demo')"
@@ -35,7 +35,7 @@
     ></app-vans-explore>
   </main>
 } @else if (activePage() === 'explore-3pl') {
-  <main class="explore-3pl-wrapper">
+  <main class="explore-3pl-wrapper ios-page-transition">
     <app-three-pl-explore
       (navigateAbout)="onNavigate('about')"
       (navigateDemo)="onNavigate('demo')"
@@ -46,7 +46,7 @@
     ></app-three-pl-explore>
   </main>
 } @else {
-  <main #mainRef>
+  <main #mainRef class="home-main-wrapper ios-page-transition">
     <app-hero
       (navigateAbout)="onNavigate('about')"
       (navigateDemo)="onNavigate('demo')"
