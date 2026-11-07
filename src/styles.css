@@ -6666,9 +6666,14 @@ app-geometric-grid-background {
    ========================================================================== */
 
 /* 1. Inventory Expanded Grid Row: expand downward with generous breathing room */
+.capability-grid.has-expanded-card {
+  height: auto !important;
+  min-height: 760px;
+}
+
 .capability-grid.expanded-inventory {
   grid-template-columns: 1.55fr 0.45fr;
-  grid-template-rows: 390px 140px 140px;
+  grid-template-rows: minmax(470px, auto) 140px 140px;
 }
 
 /* Heading description max-width in Inventory */
@@ -6910,22 +6915,22 @@ app-geometric-grid-background {
    ========================================================================== */
 .capability-grid.expanded-purchasing {
   grid-template-columns: 0.42fr 1.58fr;
-  grid-template-rows: 400px 140px 140px;
+  grid-template-rows: minmax(440px, auto) 140px 140px;
 }
 
 .capability-grid.expanded-sales {
   grid-template-columns: 1.58fr 0.42fr;
-  grid-template-rows: 150px 380px 200px;
+  grid-template-rows: 150px minmax(380px, auto) minmax(190px, auto);
 }
 
 .capability-grid.expanded-movements {
   grid-template-columns: 0.48fr 1.52fr;
-  grid-template-rows: 140px 380px 140px;
+  grid-template-rows: 140px minmax(380px, auto) 140px;
 }
 
 .capability-grid.expanded-reports {
   grid-template-columns: 0.48fr 1.52fr;
-  grid-template-rows: 140px 140px 380px;
+  grid-template-rows: 140px 140px minmax(380px, auto);
 }
 
 /* ==========================================================================
@@ -7233,11 +7238,24 @@ app-geometric-grid-background {
   animation: fadeIn 0.35s ease;
 }
 
+/* ==========================================================================
+   EXPANDED MODULE CARDS: TWO-COLUMN LAYOUT, ALIGNMENT & CONTENT-DRIVEN SIZING
+   Strictly preserves outer card grid, dimensions, interactions and animations
+   ========================================================================== */
 .cap-card.is-expanded {
-  grid-template-columns: 46% 54% !important;
-  gap: 24px;
+  grid-template-columns: 55% 45% !important;
+  gap: 28px !important;
+  align-items: center !important;
+  padding: 26px 28px !important;
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 20px 48px rgba(8, 18, 45, 0.08) !important;
+  position: relative !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
 }
 
+/* Hide Default Collapsed Content in Expanded State */
 .cap-card.is-expanded .purchasing-default-content,
 .cap-card.is-expanded .sales-default-content,
 .cap-card.is-expanded .inventory-default-content,
@@ -7246,20 +7264,379 @@ app-geometric-grid-background {
   display: none !important;
 }
 
+/* Show Expanded Accordion Section */
 .cap-card.is-expanded .purchasing-expanded-section,
 .cap-card.is-expanded .sales-expanded-section,
 .cap-card.is-expanded .inventory-expanded-section,
 .cap-card.is-expanded .movements-expanded-section,
 .cap-card.is-expanded .reports-expanded-section {
   display: flex !important;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: column !important;
+  gap: 8px !important;
+  width: 100% !important;
+  margin-top: 2px !important;
 }
 
-.cap-card.cap-purchasing.is-expanded .purchase-live-stage-embed,
+/* Left Column: Module Heading, Description & Accordion Group */
+.cap-card.is-expanded .inventory-col-left,
+.cap-card.is-expanded .purchasing-col-left,
+.cap-card.is-expanded .sales-col-left,
+.cap-card.is-expanded .movements-col-left,
+.cap-card.is-expanded .reports-col-left {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  position: relative !important;
+  z-index: 3 !important;
+}
+
+/* Heading & Subtitle Spacing */
+.cap-card.is-expanded .cap-heading {
+  margin-bottom: 0 !important;
+  width: 100% !important;
+}
+
+.cap-card.is-expanded .cap-heading h3 {
+  font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif !important;
+  font-size: clamp(20px, 1.8vw, 24px) !important;
+  font-weight: 800 !important;
+  color: #08122d !important;
+  line-height: 1.16 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 0 5px 0 !important;
+}
+
+.cap-card.is-expanded .cap-heading p {
+  color: #64748b !important;
+  font-size: 12.5px !important;
+  line-height: 1.45 !important;
+  margin: 0 0 10px 0 !important;
+  max-width: 100% !important;
+  display: block !important;
+  opacity: 1 !important;
+  max-height: none !important;
+}
+
+/* Core Capabilities Overview Header */
+.cap-card.is-expanded .inventory-dynamics-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin: 0 0 5px 0 !important;
+}
+
+.cap-card.is-expanded .dynamics-section-label {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: #08122d !important;
+}
+
+/* Dynamics Accordion Container */
+.cap-card.is-expanded .inventory-dynamics-accordion {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  width: 100% !important;
+}
+
+/* Dynamics Accordion Item */
+.cap-card.is-expanded .dynamics-item {
+  background: #ffffff !important;
+  border: 1px solid #e9edf4 !important;
+  border-left: 3px solid transparent !important;
+  border-radius: 9px !important;
+  cursor: pointer !important;
+  padding: 8px 12px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+.cap-card.is-expanded .dynamics-item:hover {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+.cap-card.is-expanded .dynamics-item.is-active {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  border-left: 3px solid #ffc400 !important;
+  box-shadow: 0 3px 12px rgba(8, 18, 45, 0.04) !important;
+}
+
+.cap-card.is-expanded .dynamics-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+.cap-card.is-expanded .dynamics-title-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+.cap-card.is-expanded .dynamics-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #08122d !important;
+  flex-shrink: 0 !important;
+}
+
+.cap-card.is-expanded .dynamics-item.is-active .dynamics-icon {
+  color: #b45309 !important;
+}
+
+.cap-card.is-expanded .dynamics-header strong {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #08122d !important;
+  line-height: 1.3 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.cap-card.is-expanded .dynamics-badge {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  color: #475569 !important;
+  background: #f1f5f9 !important;
+  padding: 2.5px 7px !important;
+  border-radius: 999px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  margin-left: auto !important;
+}
+
+.cap-card.is-expanded .dynamics-arrow {
+  color: #94a3b8 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  width: 14px !important;
+  text-align: center !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important;
+}
+
+.cap-card.is-expanded .dynamics-item.is-active .dynamics-arrow {
+  color: #08122d !important;
+}
+
+.cap-card.is-expanded .dynamics-body {
+  margin-top: 6px !important;
+  padding-top: 6px !important;
+  border-top: 1px dashed #e2e8f0 !important;
+  animation: fadeIn 0.22s ease !important;
+}
+
+.cap-card.is-expanded .dynamics-body p {
+  color: #475569 !important;
+  font-size: 11.5px !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+/* Right Column: Visual Stage */
+.cap-card.is-expanded .inventory-col-right,
+.cap-card.is-expanded .purchasing-col-right,
+.cap-card.is-expanded .sales-col-right,
+.cap-card.is-expanded .movements-col-right,
+.cap-card.is-expanded .reports-col-right {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 220px !important;
+  min-width: 0 !important;
+  position: relative !important;
+}
+
+/* Subtle Vertical Divider between 55% Content and 45% Visual */
+.cap-card.is-expanded .purchasing-v-divider,
+.cap-card.is-expanded .sales-v-divider,
+.cap-card.is-expanded .inventory-v-divider,
+.cap-card.is-expanded .movements-v-divider,
+.cap-card.is-expanded .reports-v-divider {
+  display: block !important;
+  position: absolute !important;
+  left: calc(55% + 14px) !important;
+  top: 24px !important;
+  bottom: 24px !important;
+  right: auto !important;
+  width: 1px !important;
+  background: linear-gradient(180deg, rgba(226, 232, 240, 0) 0%, rgba(226, 232, 240, 0.85) 20%, rgba(226, 232, 240, 0.85) 80%, rgba(226, 232, 240, 0) 100%) !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+
+/* Close Button (✕) in Expanded Card */
+.cap-card.is-expanded .purchasing-arrow-btn,
+.cap-card.is-expanded .sales-arrow-btn,
+.cap-card.is-expanded .inventory-arrow-btn,
+.cap-card.is-expanded .movements-arrow-btn,
+.cap-card.is-expanded .reports-arrow-btn,
+.cap-card.is-expanded .cap-expand-btn {
+  position: absolute !important;
+  top: 18px !important;
+  right: 18px !important;
+  z-index: 10 !important;
+  background: #08122d !important;
+  color: #ffffff !important;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 9px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(8, 18, 45, 0.25) !important;
+  cursor: pointer !important;
+  transform: none !important;
+}
+
+.cap-card.is-expanded .cap-expand-btn:hover {
+  background: #1e293b !important;
+  transform: scale(1.06) !important;
+  box-shadow: 0 6px 16px rgba(8, 18, 45, 0.35) !important;
+}
+
+/* 1. Inventory Boxes Preview */
+.cap-card.cap-inventory.is-expanded .inventory-preview-embed {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 8px !important;
+}
+
+.cap-card.cap-inventory.is-expanded .inventory-asset {
+  max-width: 88% !important;
+  max-height: 230px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 14px 28px rgba(8, 18, 45, 0.08)) !important;
+  margin: auto !important;
+}
+
+/* 2. Purchasing Live PO Simulation */
+.cap-card.cap-purchasing.is-expanded .purchase-live-stage-embed {
+  width: 100% !important;
+  max-width: 350px !important;
+  height: 320px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: auto !important;
+  overflow: visible !important;
+}
+
+.cap-card.cap-purchasing.is-expanded .purchase-live-iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* 3. Sales Orders Live Simulation */
 .cap-card.cap-sales.is-expanded .sales-live-stage-embed {
-  max-width: 360px !important;
-  height: 300px !important;
+  width: 100% !important;
+  max-width: 350px !important;
+  height: 310px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: auto !important;
+  overflow: visible !important;
+}
+
+.cap-card.cap-sales.is-expanded .sales-live-iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* 4. Stock Movements Pallet Truck */
+.cap-card.cap-movements.is-expanded .movements-preview-embed {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 8px !important;
+}
+
+.cap-card.cap-movements.is-expanded .movement-asset {
+  max-width: 86% !important;
+  max-height: 220px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 14px 28px rgba(8, 18, 45, 0.08)) !important;
+  margin: auto !important;
+}
+
+/* 5. Reports & Insights Charts */
+.cap-card.cap-reports.is-expanded .reports-preview-embed {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 8px !important;
+}
+
+.cap-card.cap-reports.is-expanded .reports-preview-art {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 32px !important;
+}
+
+.cap-card.cap-reports.is-expanded .chart-bars-art {
+  height: 84px !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  gap: 7px !important;
+}
+
+.cap-card.cap-reports.is-expanded .chart-bars-art span {
+  width: 12px !important;
+  border-radius: 4px 4px 0 0 !important;
+  background: var(--yellow, #f59e0b) !important;
+}
+
+.cap-card.cap-reports.is-expanded .chart-donut-art {
+  width: 76px !important;
+  height: 76px !important;
+  border-radius: 50% !important;
+  background: conic-gradient(var(--yellow, #f59e0b) 0 74%, #e2e8f0 74%) !important;
+  position: relative !important;
+}
+
+.cap-card.cap-reports.is-expanded .chart-donut-art::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 15px !important;
+  border-radius: 50% !important;
+  background: #ffffff !important;
 }
 
 /* Compact States for All Cards */
@@ -7294,31 +7671,6 @@ app-geometric-grid-background {
   width: 30px;
   height: 30px;
   font-size: 13px;
-}
-
-/* Subtle vertical divider in expanded state */
-.purchasing-v-divider,
-.sales-v-divider,
-.inventory-v-divider,
-.movements-v-divider,
-.reports-v-divider {
-  display: none;
-  position: absolute;
-  right: 360px;
-  top: 75px;
-  bottom: 24px;
-  width: 1px;
-  background: linear-gradient(180deg, rgba(226, 232, 240, 0) 0%, rgba(226, 232, 240, 0.9) 25%, rgba(226, 232, 240, 0.9) 75%, rgba(226, 232, 240, 0) 100%);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.cap-card.is-expanded .purchasing-v-divider,
-.cap-card.is-expanded .sales-v-divider,
-.cap-card.is-expanded .inventory-v-divider,
-.cap-card.is-expanded .movements-v-divider,
-.cap-card.is-expanded .reports-v-divider {
-  display: block;
 }
 
 @media (max-width: 991px) {
