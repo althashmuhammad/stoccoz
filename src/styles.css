@@ -5361,7 +5361,7 @@ app-geometric-grid-background {
 
 .site-header.theme-about .nav-active-indicator {
   background: #ffffff;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.5);
 }
 
 .site-header.theme-about .nav-cta {

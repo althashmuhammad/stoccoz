@@ -22,6 +22,7 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
         >
           <a
             #homeLink
+            class="nav-root-link"
             href="#top"
             [class.is-active]="activePage() === 'home'"
             (click)="goToHome($event)"
@@ -131,6 +132,7 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
 
           <a
             #pricingLink
+            class="nav-root-link"
             href="#pricing"
             [class.is-active]="activePage() === 'pricing'"
             (click)="goToPricing($event)"
@@ -139,6 +141,7 @@ import { LineIconComponent } from '../line-icon/line-icon.component';
 
           <a
             #aboutLink
+            class="nav-root-link"
             href="#about"
             [class.is-active]="activePage() === 'about'"
             (click)="goToAbout($event)"
@@ -173,6 +176,9 @@ export class NavbarComponent {
   navigatePage = output<'home' | 'about' | 'pricing' | 'explore-warehouse' | 'explore-vans' | 'explore-3pl'>();
 
   @ViewChild('navLinksRef') navLinksRef?: ElementRef<HTMLElement>;
+  @ViewChild('homeLink') homeLink?: ElementRef<HTMLAnchorElement>;
+  @ViewChild('pricingLink') pricingLink?: ElementRef<HTMLAnchorElement>;
+  @ViewChild('aboutLink') aboutLink?: ElementRef<HTMLAnchorElement>;
   @ViewChild('featuresBtn') featuresBtn?: ElementRef<HTMLButtonElement>;
   @ViewChild('platformBtn') platformBtn?: ElementRef<HTMLButtonElement>;
 
@@ -307,13 +313,13 @@ export class NavbarComponent {
     let targetEl: HTMLElement | null = null;
 
     if (this.activePage() === 'home') {
-      targetEl = nav.querySelector<HTMLElement>('a[href="#top"]');
+      targetEl = this.homeLink?.nativeElement || nav.querySelector<HTMLElement>('a.nav-root-link[href="#top"]') || nav.querySelector<HTMLElement>(':scope > a[href="#top"]');
     } else if (this.activePage() === 'pricing') {
-      targetEl = nav.querySelector<HTMLElement>('a[href="#pricing"]');
+      targetEl = this.pricingLink?.nativeElement || nav.querySelector<HTMLElement>('a.nav-root-link[href="#pricing"]') || nav.querySelector<HTMLElement>(':scope > a[href="#pricing"]');
     } else if (this.activePage() === 'about') {
-      targetEl = nav.querySelector<HTMLElement>('a[href="#about"]');
+      targetEl = this.aboutLink?.nativeElement || nav.querySelector<HTMLElement>('a.nav-root-link[href="#about"]') || nav.querySelector<HTMLElement>(':scope > a[href="#about"]');
     } else if (this.activePage() === 'explore-warehouse' || this.activePage() === 'explore-vans' || this.activePage() === 'explore-3pl') {
-      targetEl = nav.querySelector<HTMLElement>('.features-nav>button') || nav.querySelector<HTMLElement>('.platform-nav>button');
+      targetEl = this.featuresBtn?.nativeElement || this.platformBtn?.nativeElement || nav.querySelector<HTMLElement>(':scope > .features-nav>button');
     }
 
     if (targetEl) {
