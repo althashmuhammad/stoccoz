@@ -6980,10 +6980,31 @@ app-geometric-grid-background {
   padding: 20px 24px !important;
 }
 
-/* 3. Sales Orders Collapsed: room for all 3 capabilities & order checklist illustration */
+/* 3. Sales Orders Collapsed: top-aligned content & 3D stacked documents illustration matching design */
 .cap-card.cap-sales:not(.is-expanded) {
-  grid-template-columns: 51% 49% !important;
-  padding: 22px 26px !important;
+  grid-template-columns: 52% 48% !important;
+  align-items: start !important;
+  padding: 28px 28px 24px 28px !important;
+}
+
+.cap-card.cap-sales:not(.is-expanded):not(.is-compact) .sales-col-left {
+  justify-content: flex-start !important;
+  padding-top: 4px !important;
+}
+
+.cap-card.cap-sales:not(.is-expanded):not(.is-compact) .sales-col-right {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding-top: 0px !important;
+  height: auto !important;
+}
+
+.cap-card.cap-sales:not(.is-expanded):not(.is-compact) .sales-arrow-btn {
+  top: 0px !important;
+  right: 0px !important;
 }
 
 /* 4. Stock Movements Collapsed: consistent internal padding, vertically centered pallet truck */
@@ -7236,7 +7257,7 @@ app-geometric-grid-background {
   transform: translateY(-4px) scale(1.02);
 }
 
-/* 3. Sales Orders Preview Embed (Order Checklist with Boxes Illustration) */
+/* 3. Sales Orders Preview Embed (3D Stacked Documents Illustration) */
 .cap-card.cap-sales .sales-preview-embed {
   position: relative;
   display: flex;
@@ -7246,10 +7267,20 @@ app-geometric-grid-background {
   height: 100%;
 }
 
+.cap-card.cap-sales:not(.is-expanded):not(.is-compact) .sales-preview-embed {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: 8px !important;
+  padding-right: 18px !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
 .cap-card.cap-sales .sales-preview-embed .sales-asset {
   position: static !important;
-  max-width: 165px;
-  max-height: 170px;
+  max-width: 185px;
+  max-height: 185px;
   width: auto;
   height: auto;
   object-fit: contain;

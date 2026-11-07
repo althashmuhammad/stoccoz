@@ -563,8 +563,8 @@ type CapabilityCardId = 'inventory' | 'purchasing' | 'sales' | 'movements' | 're
               <div class="sales-preview-embed">
                 <img
                   class="cap-asset sales-asset"
-                  src="/assets/capability-orders.png"
-                  alt="Sales orders checklist with boxes"
+                  src="/assets/capability-sales-documents.png"
+                  alt="Sales orders documents illustration"
                 />
               </div>
             }
