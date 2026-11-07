@@ -36,12 +36,13 @@ import { Component, ElementRef, ViewChild, afterNextRender, signal, output, OnDe
             </div>
           </div>
 
-          <!-- Right Column: Seamless Integrated Media Stage (Plays every 10s & on hover) -->
+          <!-- Right Column: Seamless Integrated Media Stage (Plays every 20s, stops on hover) -->
           <div class="three-pl-visual-col">
             <div
               class="three-pl-media-stage"
-              (mouseenter)="onStageHover()"
-              (click)="onStageHover()"
+              (mouseenter)="onStageMouseEnter()"
+              (mouseleave)="onStageMouseLeave()"
+              (click)="onStageClick()"
             >
               <!-- Base Still Image: Always in DOM, zero flicker, instantaneous paint -->
               <img
@@ -52,7 +53,7 @@ import { Component, ElementRef, ViewChild, afterNextRender, signal, output, OnDe
                 decoding="sync"
               />
 
-              <!-- Overlaid Video: Plays every 10s and on hover, smooth zero-flash fade -->
+              <!-- Overlaid Video: Plays every 20s, stops on hover, smooth zero-flash fade -->
               <video
                 #videoPlayer
                 class="three-pl-video-element"
@@ -83,6 +84,8 @@ export class ThreePlIntroComponent implements OnDestroy {
   videoPlaying = signal<boolean>(false);
   private intervalId: any = null;
   private isVisible = false;
+  private isHovered = false;
+  private wasPausedByHover = false;
   private cleanupObserver: (() => void) | null = null;
 
   constructor() {
@@ -103,9 +106,36 @@ export class ThreePlIntroComponent implements OnDestroy {
     } catch {}
   }
 
-  onStageHover() {
-    this.playVideo();
-    this.restartInterval();
+  onStageMouseEnter() {
+    this.isHovered = true;
+    const video = this.videoPlayer?.nativeElement;
+    if (video && !video.paused && !video.ended) {
+      video.pause();
+      this.wasPausedByHover = true;
+    }
+  }
+
+  onStageMouseLeave() {
+    this.isHovered = false;
+    if (this.wasPausedByHover) {
+      const video = this.videoPlayer?.nativeElement;
+      if (video && video.paused && !video.ended) {
+        video.play().catch(() => {});
+      }
+      this.wasPausedByHover = false;
+    }
+  }
+
+  onStageClick() {
+    const video = this.videoPlayer?.nativeElement;
+    if (!video) return;
+    if (!video.paused && !video.ended) {
+      video.pause();
+      this.wasPausedByHover = false;
+    } else {
+      this.playVideo();
+      this.restartInterval();
+    }
   }
 
   onVideoPlaying() {
@@ -115,21 +145,23 @@ export class ThreePlIntroComponent implements OnDestroy {
   onVideoEnded() {
     // Smoothly fade video out so base image shows cleanly
     this.videoPlaying.set(false);
+    this.wasPausedByHover = false;
   }
 
   onVideoPause() {
     if (this.videoPlayer?.nativeElement?.ended) {
       this.videoPlaying.set(false);
+      this.wasPausedByHover = false;
     }
   }
 
   private startInterval() {
     this.stopInterval();
     this.intervalId = setInterval(() => {
-      if (this.isVisible) {
+      if (this.isVisible && !this.isHovered) {
         this.playVideo();
       }
-    }, 10000);
+    }, 20000);
   }
 
   private stopInterval() {
